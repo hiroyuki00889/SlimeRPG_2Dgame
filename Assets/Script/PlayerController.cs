@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(-speed, 0);
         }
-        else 
+        /*else 
         {
             rb.velocity = Vector2.zero;
-        }
+        }*/
 
         /*if (Input.GetKey(KeyCode.Space))
         {
