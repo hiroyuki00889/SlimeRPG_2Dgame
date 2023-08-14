@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
+    private int canjump = 1; //ƒWƒƒƒ“ƒv‰ñ”
     Animator animator;
 
     void Start()
@@ -22,20 +23,29 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector2(speed, 0);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector2(-speed, 0);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
-        /*else 
+        else 
         {
-            rb.velocity = Vector2.zero;
-        }*/
+            rb.velocity = new Vector2(0,rb.velocity.y);
+        }
 
-        /*if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
+            Jump();
+        }
+    }
 
-        }*/
+    private void Jump()
+    {
+        if (canjump > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 5);
+            canjump -= 1;
+        }
     }
 }
