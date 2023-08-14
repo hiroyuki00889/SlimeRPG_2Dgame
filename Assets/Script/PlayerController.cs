@@ -6,19 +6,28 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
-    private int canjump = 1; //ジャンプ回数
+    private int maxjump;
+    private int restjump; //ジャンプ回数
     Animator animator;
+    public GroundCheck ground;
 
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
+        maxjump = 2; //if文でフラグ取得の判定
+        restjump = maxjump;
     }
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
+        restjump=ground.IsGround(maxjump, restjump);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
     }
+
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.D))
@@ -34,18 +43,15 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0,rb.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Jump();
-        }
+
     }
 
     private void Jump()
     {
-        if (canjump > 0)
+        if (restjump > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, 5);
-            canjump -= 1;
+            restjump -= 1;
         }
     }
 }
