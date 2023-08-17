@@ -7,13 +7,15 @@ public class GroundCheck : MonoBehaviour
 {
     private bool isGround=false;
     private bool isGroundEnter, isGroundStay,isGroundExit;
+    private bool groundNow = true;
 
-    public int IsGround(int maxjump,int restjump) //ジャンプの最大回数と今ジャンプできる回数を渡して地面に付いたらジャンプ回復、ついてないなら残りのジャンプ回数を返す
+    public int IsGround(int maxjump,int restjump) //今ジャンプできる回数を渡して地面に付いたらジャンプ回復、ついてないなら残りのジャンプ回数を返す
     {
         if (isGroundEnter || isGroundStay)
         {
             isGround = true;
-        } else if (isGroundExit) 
+        }
+        else if (isGroundExit) 
         {
             isGround= false;
         }
@@ -22,10 +24,16 @@ public class GroundCheck : MonoBehaviour
         isGroundExit= false;
         if (isGround)
         {
+            groundNow = true;
             return maxjump;
         }
         else 
         {
+            if (groundNow) 
+            {
+                groundNow = false;
+                return restjump - 1;
+            }
             return restjump;
         }
     }
