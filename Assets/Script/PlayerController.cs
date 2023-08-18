@@ -80,7 +80,8 @@ public class PlayerController : MonoBehaviour
             if (p.point.y < judgePos)
             {
                     //“¥‚ñ‚¾Žž‚Ìˆ—
-                //animator.Play("change1");
+                    //animator.Play("change1");
+                    collision.gameObject.GetComponent<ObjectCollision>().step = true;
             }
             else
             {
