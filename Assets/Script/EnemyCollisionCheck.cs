@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemyCollisionCheck : MonoBehaviour
 {
     public bool isOn = false;
+    private string ground_tag = "Ground"; 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
+        if (collision.tag == ground_tag)
         {
             isOn = true;
         }
@@ -15,7 +16,7 @@ public class EnemyCollisionCheck : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag=="Ground") 
+        if (collision.tag==ground_tag) 
         {
             isOn = false; 
         }
