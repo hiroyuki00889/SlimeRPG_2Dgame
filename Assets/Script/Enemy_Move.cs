@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy_Move : MonoBehaviour
 {
     public float speed;
+    private float time = 0;
     //public float gravity;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -28,6 +29,7 @@ public class Enemy_Move : MonoBehaviour
     {
         if (!oc.step)
         {
+            time += Time.fixedDeltaTime;
             if (check.isOn)
             {
                 right = !right;
@@ -44,7 +46,12 @@ public class Enemy_Move : MonoBehaviour
                 {
                     transform.localScale = new Vector3(1,1,1);
                 }
-                rb.velocity = new Vector2(xVector * speed, rb.velocity.y);
+                if (time>3)
+                {
+                    time = 0;
+                    rb.velocity = new Vector2(xVector * speed, 10);
+                }
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
             }
             else
             {
