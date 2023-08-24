@@ -1,5 +1,7 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [Header("踏みつけ判定の割合")] public float stepOnRate;
     public GroundCheck ground; //接地判定用
 
+    private float time = 1;
+    private bool right = false;
     private bool down=false; //死亡フラグ
 
     void Start()
@@ -32,7 +36,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
-            } 
+            }
         }
     }
 
@@ -40,18 +44,19 @@ public class PlayerController : MonoBehaviour
     {
         if (!down)
         {
-            if (Input.GetKey(KeyCode.D))
+            Move();
+            /*if (Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+                        rb.velocity = new Vector2(speed, rb.velocity.y);
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                    rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
             else
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
-            }
+            }*/
         }
         else 
         {
@@ -65,6 +70,67 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, 5);
             restjump -= 1;
+        }
+    }
+
+    private void Move()
+    {
+        
+        if (Input.GetKey(KeyCode.D))
+        {
+            if (!right) {
+                time = 1;
+                right = true; 
+            }
+
+            if (Input.GetKey(KeyCode.F))
+            {
+                if (rb.velocity.x < 10)
+                {
+                    rb.velocity = new Vector2(speed * time, rb.velocity.y);
+                    time += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                }
+            }
+            else 
+            {
+                time = 1;
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+            }
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            if (right) 
+            {
+                time = 1;
+                right = false;
+            }
+
+            if (Input.GetKey(KeyCode.F))
+            {
+                if (rb.velocity.x > -10)
+                {
+                    rb.velocity = new Vector2(-speed * time, rb.velocity.y);
+                    time += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                }
+            }
+            else 
+            {
+                time = 1;
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
+            }
+        }
+        else
+        {
+            time = 1;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
@@ -89,7 +155,7 @@ public class PlayerController : MonoBehaviour
                 //animator.Play("Player_Down"); //死んだ時のアニメーション
                 down = true;
             }
-        }
+          }
        }
     }
 }
