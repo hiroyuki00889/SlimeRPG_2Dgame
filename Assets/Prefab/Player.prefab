@@ -144,7 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  stepOnRate: 0
   ground: {fileID: 7069119588486186266}
+  st: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
 --- !u!61 &347958846401322832
 BoxCollider2D:
   m_ObjectHideFlags: 0

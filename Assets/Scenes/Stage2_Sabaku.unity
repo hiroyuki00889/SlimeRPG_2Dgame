@@ -1284,6 +1284,7 @@ MonoBehaviour:
   speed: 5
   stepOnRate: 0
   ground: {fileID: 1926572699}
+  st: {fileID: 0}
 --- !u!50 &1724735559
 Rigidbody2D:
   serializedVersion: 4

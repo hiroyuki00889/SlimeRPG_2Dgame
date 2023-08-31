@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private bool right = false;
     private bool down=false; //€–Sƒtƒ‰ƒO
 
+    [SerializeField] private Skill_Table st;
+
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
@@ -36,6 +38,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R)) 
+            {
+                Instantiate(st.skill[0].skill_effect,this.transform.position,Quaternion.identity);
+                //‚±‚±‚Ést.count‚ğŒ¸‚ç‚·ˆ—
             }
         }
     }
