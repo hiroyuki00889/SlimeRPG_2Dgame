@@ -1535,6 +1535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7034934938683881719, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7069119588944955904, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: m_Mass
       value: 10
@@ -1560,6 +1564,10 @@ PrefabInstance:
     - target: {fileID: 4694461556524784060, guid: e1fb2cbfe9ffc8140ac0456aab3e88d7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694461556524784060, guid: e1fb2cbfe9ffc8140ac0456aab3e88d7, type: 3}
+      propertyPath: m_TagString
+      value: EnemyTagA
       objectReference: {fileID: 0}
     - target: {fileID: 4694461556524784062, guid: e1fb2cbfe9ffc8140ac0456aab3e88d7, type: 3}
       propertyPath: m_RootOrder
