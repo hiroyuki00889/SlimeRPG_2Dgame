@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Xsl;
 using UnityEngine;
+using System;
 
 public class Enemy_Move : MonoBehaviour
 {
@@ -64,8 +65,9 @@ public class Enemy_Move : MonoBehaviour
             Destroy(this.gameObject);
             // プレイヤーに当たった場合、敵のタグに応じたカウンターを増加
             EnemyTagCounter enemyTagCounter = FindObjectOfType<EnemyTagCounter>();
-            enemyTagCounter.IncrementCounter("EnemyTagA"); 
-            
+            enemyTagCounter.IncrementCounter("EnemyTagA");
+            Debug.Log(enemyTagCounter);
+
         }
         }
     /*void OnTriggerEnter2D(Collider2D other)
