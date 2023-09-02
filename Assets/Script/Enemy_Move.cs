@@ -58,22 +58,17 @@ public class Enemy_Move : MonoBehaviour
                 rb.Sleep();
             }
         }
-        /*else 
+        else 
         {
+            //敵オブジェクトを破壊する
             Destroy(this.gameObject);
-            if (!dead) //死んだ瞬間の処理
-            {
-                //animator.Play(dead);
-                dead = true;
-            }
-            else 
-            {
-            //死んだ後の余韻
-            }
-        }*/
+            // プレイヤーに当たった場合、敵のタグに応じたカウンターを増加
+            EnemyTagCounter enemyTagCounter = FindObjectOfType<EnemyTagCounter>();
+            enemyTagCounter.IncrementCounter("EnemyTagA"); 
+            
         }
-    void OnTriggerEnter2D(Collider2D other)
-
+        }
+    /*void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -84,5 +79,5 @@ public class Enemy_Move : MonoBehaviour
             // その後、敵オブジェクトを破壊するなどの処理を行う
             Destroy(this.gameObject);
         }
-    }
+    }*/
 }
