@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name == "Enemy")
+        if (collision.gameObject.CompareTag("EnemyTagA"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
         //“¥‚İ‚Â‚¯”»’è‚Ìƒ[ƒ‹ƒhÀ•W
