@@ -32,6 +32,13 @@ public class EnemyTagCounter : MonoBehaviour
         return 0; // カウンターが存在しない場合は0を返す
     }
 
+
+    public Dictionary<string, int> GetAllCounters()
+    {
+        return enemyTagCounters;
+    }
+
+
     // 全てのカウンターをゼロにリセット
     public void ResetCounters()
     {
