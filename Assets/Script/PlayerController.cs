@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private int maxjump;
     private int restjump; //ジャンプ回数
     Animator animator;
-    private BoxCollider2D boxcollider;
+    private CapsuleCollider2D capsulecollider;
     [Header("踏みつけ判定の割合")] public float stepOnRate;
     public GroundCheck ground; //接地判定用
 
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         rb= GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
-        boxcollider= GetComponent<BoxCollider2D>();
+        capsulecollider= GetComponent<CapsuleCollider2D>();
         maxjump = 3; //if文でフラグ取得の判定
         restjump = maxjump;
     }
@@ -146,9 +146,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.name == "Enemy")
        {
-            float stepOnHeight = (boxcollider.size.y * (stepOnRate / 100f));
+            float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
         //踏みつけ判定のワールド座標
-        float judgePos = transform.position.y - (boxcollider.size.y / 2f) + stepOnHeight;
+        float judgePos = transform.position.y - (capsulecollider.size.y / 2f) + stepOnHeight;
         foreach (ContactPoint2D p in collision.contacts)
         {
             if (p.point.y < judgePos)
