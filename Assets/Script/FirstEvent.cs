@@ -30,8 +30,12 @@ public class FirstEvent : MonoBehaviour
         //ナレーターダイアログが開いている間、エンターキーを押すと、文章送り
         if(animateNDialog.IsOpen && animateNDialog.enterTrigger == true)
         {
-            i++;
-            firstEventText.text = words[i];
+            if (i <= words.Length)
+            {
+                i++;
+                firstEventText.text = words[i];
+                animateNDialog.enterTrigger = false;
+            }
 
             //最後の文章になって、エンターキーを押すとフラグオフ、Textオブジェクトを非アクティブにする
             if(i >= words.Length && animateNDialog.enterTrigger == true) 
