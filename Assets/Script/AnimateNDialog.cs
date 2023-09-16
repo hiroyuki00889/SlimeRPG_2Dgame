@@ -14,15 +14,13 @@ public class AnimateNDialog : MonoBehaviour
     // ダイアログは開いているかどうか
     public bool IsOpen => gameObject.activeSelf;//= false;
     // アニメーション中かどうか
-    public bool IsTransition { get; private set; }
+    public bool IsTransition = false;
     //エンターキーで会話を進めるフラグ
     public bool enterTrigger = false;
 
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
-        Debug.Log(IsOpen);
-        Debug.Log(gameObject.activeSelf);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
