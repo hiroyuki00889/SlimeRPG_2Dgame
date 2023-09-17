@@ -869,7 +869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &852413609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,6 +1624,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4926293190938685242, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7034934938683881712, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1680,6 +1684,10 @@ PrefabInstance:
       propertyPath: stepOnRate
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7069119588944955932, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: animateNDialog
+      value: 
+      objectReference: {fileID: 8012215625250133366}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
 --- !u!1 &1457477232
@@ -11672,7 +11680,7 @@ PrefabInstance:
       objectReference: {fileID: 66382052}
     - target: {fileID: 8012215626279118370, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012215626564341504, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: m_Pivot.x

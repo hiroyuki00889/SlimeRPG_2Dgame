@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] AnimateNDialog animateNDialog;
     public float speed;
     private Rigidbody2D rb;
     private int maxjump;
@@ -144,6 +146,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //NDialog表示のフラグon：衝突した相手のタグがEvents
+        if (collision.gameObject.CompareTag("Events"))
+        {
+            animateNDialog.isNDialog = true;
+            Debug.Log("playerflagOK");
+        }
+
         if (collision.gameObject.CompareTag("EnemyTagA") || collision.gameObject.CompareTag("EnemyTagB"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
