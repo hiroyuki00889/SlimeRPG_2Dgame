@@ -8,27 +8,38 @@ public class AnimateNDialog : MonoBehaviour
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
     [SerializeField] FirstEvent firstEvent;
+
     //[SerializeField] FirstEnemy firstEnemy;
-    // IsOpenƒtƒ‰ƒO(ƒAƒjƒ[ƒ^[ƒRƒ“ƒgƒ[ƒ‰[“à‚Å’è‹`‚µ‚½ƒtƒ‰ƒO)
+    // IsOpenï¿½tï¿½ï¿½ï¿½O(ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Å’ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O)
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
-    public bool IsOpen => gameObject.activeSelf;@// ƒ_ƒCƒAƒƒO‚ÍŠJ‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    public bool IsTransition = false;@// ƒAƒjƒ[ƒVƒ‡ƒ“’†‚©‚Ç‚¤‚©
-    public bool enterTrigger = false;@//ƒGƒ“ƒ^[ƒL[‚Å‰ï˜b‚ði‚ß‚éƒtƒ‰ƒO
-    public bool isNDialog = false; //NDialog•\Ž¦ƒtƒ‰ƒO
+    public bool IsOpen => gameObject.activeSelf;ï¿½@// ï¿½_ï¿½Cï¿½Aï¿½ï¿½ï¿½Oï¿½ÍŠJï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
+    public bool IsTransition = false;ï¿½@// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+    public bool enterTrigger = false;ï¿½@//ï¿½Gï¿½ï¿½ï¿½^ï¿½[ï¿½Lï¿½[ï¿½Å‰ï¿½bï¿½ï¿½iï¿½ß‚ï¿½tï¿½ï¿½ï¿½O
+    public bool isNDialog = false; //NDialogï¿½\ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O
 
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //ï¿½Õ“Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ^ï¿½Oï¿½ï¿½Eventsï¿½ï¿½ï¿½ÂA1ï¿½xï¿½ï¿½ï¿½ï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚©
+        if (collision.gameObject.CompareTag("Events") && firstEvent != null && firstEvent.isFirstEvent == true
+            )
+        {
+            DialogNarratorOpen();
+        }
+    }
     private void Update()
     {
-        //ƒiƒŒ[ƒ^[ƒ_ƒCƒAƒƒO‚ªƒAƒNƒeƒBƒu‚©‚ÂAƒGƒ“ƒ^[ƒL[‚ÅƒiƒŒ[ƒ^[‚Ì•¶Í‚ði‚ß‚éƒgƒŠƒK[Ý’è
+
+        //ï¿½iï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½_ï¿½Cï¿½Aï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½ï¿½ï¿½ÂAï¿½Gï¿½ï¿½ï¿½^ï¿½[ï¿½Lï¿½[ï¿½Åƒiï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Ì•ï¿½ï¿½Í‚ï¿½iï¿½ß‚ï¿½gï¿½ï¿½ï¿½Kï¿½[ï¿½Ý’ï¿½
         if (Input.GetKeyDown(KeyCode.Return) && gameObject.activeSelf == true)
         {
             enterTrigger = true;
         }
-        //Õ“Ë‚µ‚½‘ŠŽè‚Ìƒ^ƒO‚ªEvents‚©‚ÂA1“x‚«‚è‚ÌŠeƒtƒ‰ƒO‚ªƒIƒ“‚É‚È‚Á‚Ä‚¢‚é‚©
+        //ï¿½Õ“Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ^ï¿½Oï¿½ï¿½Eventsï¿½ï¿½ï¿½ÂA1ï¿½xï¿½ï¿½ï¿½ï¿½ÌŠeï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚©
         if (isNDialog == true && firstEvent.isFirstEvent == true
             )
         {
@@ -44,31 +55,33 @@ public class AnimateNDialog : MonoBehaviour
         }
     }
 
-    private void DialogNarratorOpen()
+    //private void DialogNarratorOpen()
+    public void DialogNarratorOpen()
+
     {
-        if (IsOpen || IsTransition) return; // •s³‘€ì–hŽ~
-        gameObject.SetActive(true); // DialogNarratorŽ©‘Ì‚ðƒAƒNƒeƒBƒu‚É‚·‚é
-        m_Animator.SetBool(ParamIsOpen, true); // IsOpenƒtƒ‰ƒO‚ðtrue‚ÉƒZƒbƒg
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‘Ò‹@
+        if (IsOpen || IsTransition) return; // ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½hï¿½~
+        gameObject.SetActive(true); // DialogNarratorï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½É‚ï¿½ï¿½ï¿½
+        m_Animator.SetBool(ParamIsOpen, true); // IsOpenï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½trueï¿½ÉƒZï¿½bï¿½g
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ò‹@
         StartCoroutine(WaitAnimation("Shown"));
     }
 
     private void DialogNarratorClose()
     {   
         if (!IsOpen || IsTransition) return;
-        m_Animator.SetBool(ParamIsOpen, false); // IsOpenƒtƒ‰ƒO‚ðfalse‚ÉƒZƒbƒg
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‘Ò‹@‚µAI‚í‚Á‚½‚çƒpƒlƒ‹Ž©‘Ì‚ð”ñƒAƒNƒeƒBƒu‚É‚·‚é
+        m_Animator.SetBool(ParamIsOpen, false); // IsOpenï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½falseï¿½ÉƒZï¿½bï¿½g
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ò‹@ï¿½ï¿½ï¿½Aï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½É‚ï¿½ï¿½ï¿½
         StartCoroutine(WaitAnimation("Hidden", () => gameObject.SetActive(false)));
     }
 
     private IEnumerator WaitAnimation(string stateName, UnityAction onCompleted = null)
     {
-        //‚±‚Ìƒu[ƒ‹’l‚ªtrue‚ÌŠÔ‚Íã2‚Â‚ÌŠÖ”‚ª“®‚©‚È‚¢
+        //ï¿½ï¿½ï¿½Ìƒuï¿½[ï¿½ï¿½ï¿½lï¿½ï¿½trueï¿½ÌŠÔ‚Íï¿½2ï¿½Â‚ÌŠÖï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
         IsTransition = true;
 
         yield return new WaitUntil(() =>
         {
-              //ƒXƒe[ƒg‚ª•Ï‰»‚µAƒAƒjƒ[ƒVƒ‡ƒ“‚ªI—¹‚·‚é‚Ü‚Å‘Ò‹@
+              //ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½Aï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å‘Ò‹@
               var state = m_Animator.GetCurrentAnimatorStateInfo(layer);
               return state.IsName(stateName) && state.normalizedTime >= 1;
         });

@@ -11,24 +11,27 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
     private int maxjump;
-    private int restjump; //ƒWƒƒƒ“ƒv‰ñ”
+    private int restjump; //ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½
     Animator animator;
     private CapsuleCollider2D capsulecollider;
-    [Header("“¥‚İ‚Â‚¯”»’è‚ÌŠ„‡")] public float stepOnRate;
-    public GroundCheck ground; //Ú’n”»’è—p
+    [Header("ï¿½ï¿½ï¿½İ‚Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ÌŠï¿½ï¿½ï¿½")] public float stepOnRate;
+    public GroundCheck ground; //ï¿½Ú’nï¿½ï¿½ï¿½ï¿½p
 
     private float time = 1;
     private bool right = false;
-    private bool down=false; //€–Sƒtƒ‰ƒO
+    private bool down=false; //ï¿½ï¿½ï¿½Sï¿½tï¿½ï¿½ï¿½O
 
     [SerializeField] private Skill_Table st;
+    [SerializeField] private Animator m_Animator;
+    [SerializeField] FirstEvent firstEvent;
+    [SerializeField] AnimateNDialog animateNDialog;
 
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
         capsulecollider= GetComponent<CapsuleCollider2D>();
-        maxjump = 3; //if•¶‚Åƒtƒ‰ƒOæ“¾‚Ì”»’è
+        maxjump = 3; //ifï¿½ï¿½ï¿½Åƒtï¿½ï¿½ï¿½Oï¿½æ“¾ï¿½Ì”ï¿½ï¿½ï¿½
         restjump = maxjump;
     }
 
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R)) 
             {
                 Instantiate(st.skill[0].skill_effect,this.transform.position,Quaternion.identity);
-                //‚±‚±‚Ést.count‚ğŒ¸‚ç‚·ˆ—
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½st.countï¿½ï¿½ï¿½ï¿½ï¿½ç‚·ï¿½ï¿½ï¿½ï¿½
             }
         }
     }
@@ -146,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //NDialog•\¦‚Ìƒtƒ‰ƒOonFÕ“Ë‚µ‚½‘Šè‚Ìƒ^ƒO‚ªEvents
+        //NDialogï¿½\ï¿½ï¿½ï¿½Ìƒtï¿½ï¿½ï¿½Oonï¿½Fï¿½Õ“Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ^ï¿½Oï¿½ï¿½Events
         if (collision.gameObject.CompareTag("Events"))
         {
             animateNDialog.isNDialog = true;
@@ -156,23 +159,35 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyTagA") || collision.gameObject.CompareTag("EnemyTagB"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
-        //“¥‚İ‚Â‚¯”»’è‚Ìƒ[ƒ‹ƒhÀ•W
+        //ï¿½ï¿½ï¿½İ‚Â‚ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½W
         float judgePos = transform.position.y - (capsulecollider.size.y / 2f) + stepOnHeight;
         foreach (ContactPoint2D p in collision.contacts)
         {
             if (p.point.y < judgePos)
             {
-                    //“¥‚ñ‚¾‚Ìˆ—
+                    //ï¿½ï¿½ï¿½ñ‚¾ï¿½ï¿½Ìï¿½ï¿½ï¿½
                     //animator.Play("change1");
                     collision.gameObject.GetComponent<ObjectCollision>().step = true;
             }
             else
             {
-                //ƒ_ƒEƒ“‚·‚é
-                //animator.Play("Player_Down"); //€‚ñ‚¾‚ÌƒAƒjƒ[ƒVƒ‡ƒ“
+                //ï¿½_ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //animator.Play("Player_Down"); //ï¿½ï¿½ï¿½ñ‚¾ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½
                 down = true;
             }
           }
        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //AnimateNDialog animateNDialog = gameObject.AddComponent<AnimateNDialog>();
+        //FirstEvent firstEvent = gameObject.AddComponent<FirstEvent>();
+        //ï¿½Õ“Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ^ï¿½Oï¿½ï¿½Eventsï¿½ï¿½ï¿½ÂA1ï¿½xï¿½ï¿½ï¿½ï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚©
+        if (collision.gameObject.CompareTag("Events") && firstEvent != null && firstEvent.isFirstEvent == true
+            )
+        {
+            animateNDialog.DialogNarratorOpen();
+        }
     }
 }

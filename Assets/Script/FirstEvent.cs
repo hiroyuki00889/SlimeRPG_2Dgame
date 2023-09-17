@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FirstEvent : MonoBehaviour
 {
+
     [SerializeField] AnimateNDialog animateNDialog;
     bool isCallOnece = false;
     public Text firstEventText;
@@ -28,7 +29,7 @@ public class FirstEvent : MonoBehaviour
     private void Update()
     {
         //ナレーターダイアログが開いている間、エンターキーを押すと、文章送り
-        if(animateNDialog.IsOpen && animateNDialog.enterTrigger == true)
+        if (animateNDialog.IsOpen && animateNDialog.enterTrigger == true)
         {
             if (i < words.Length-1)
             {
