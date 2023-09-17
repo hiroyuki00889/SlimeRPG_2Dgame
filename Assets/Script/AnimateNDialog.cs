@@ -12,9 +12,9 @@ public class AnimateNDialog : MonoBehaviour
     //[SerializeField] FirstEnemy firstEnemy;
     // IsOpen�t���O(�A�j���[�^�[�R���g���[���[���Œ�`�����t���O)
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
-    public bool IsOpen => gameObject.activeSelf;�@// �_�C�A���O�͊J���Ă��邩�ǂ���
-    public bool IsTransition = false;�@// �A�j���[�V���������ǂ���
-    public bool enterTrigger = false;�@//�G���^�[�L�[�ŉ�b��i�߂�t���O
+    public bool IsOpen => gameObject.activeSelf;// �_�C�A���O�͊J���Ă��邩�ǂ���
+    public bool IsTransition = false;// �A�j���[�V���������ǂ���
+    public bool enterTrigger = false;//�G���^�[�L�[�ŉ�b��i�߂�t���O
     public bool isNDialog = false; //NDialog�\���t���O
 
     private void Start()

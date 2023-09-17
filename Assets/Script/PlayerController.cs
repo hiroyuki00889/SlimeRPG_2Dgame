@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] AnimateNDialog animateNDialog;
     public float speed;
     private Rigidbody2D rb;
     private int maxjump;
