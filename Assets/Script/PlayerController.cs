@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private bool down=false; //死亡フラグ
 
     [SerializeField] private Skill_Table st;
+    [SerializeField] private Animator m_Animator;
+    [SerializeField] FirstEvent firstEvent;
+    [SerializeField] AnimateNDialog animateNDialog;
 
     void Start()
     {
@@ -165,5 +168,17 @@ public class PlayerController : MonoBehaviour
             }
           }
        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //AnimateNDialog animateNDialog = gameObject.AddComponent<AnimateNDialog>();
+        //FirstEvent firstEvent = gameObject.AddComponent<FirstEvent>();
+        //衝突した相手のタグがEventsかつ、1度きりのフラグがオンになっているか
+        if (collision.gameObject.CompareTag("Events") && firstEvent != null && firstEvent.isFirstEvent == true
+            )
+        {
+            animateNDialog.DialogNarratorOpen();
+        }
     }
 }

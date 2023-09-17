@@ -8,6 +8,7 @@ public class AnimateNDialog : MonoBehaviour
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
     [SerializeField] FirstEvent firstEvent;
+
     //[SerializeField] FirstEnemy firstEnemy;
     // IsOpenフラグ(アニメーターコントローラー内で定義したフラグ)
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
@@ -26,7 +27,7 @@ public class AnimateNDialog : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //衝突した相手のタグがEventsかつ、1度きりのフラグがオンになっているか
-        if (collision.gameObject.CompareTag("Events") && firstEvent.isFirstEvent == true
+        if (collision.gameObject.CompareTag("Events") && firstEvent != null && firstEvent.isFirstEvent == true
             )
         {
             DialogNarratorOpen();
@@ -34,6 +35,7 @@ public class AnimateNDialog : MonoBehaviour
     }
     private void Update()
     {
+
         //ナレーターダイアログがアクティブかつ、エンターキーでナレーターの文章を進めるトリガー設定
         if (Input.GetKeyDown(KeyCode.Return) && gameObject.activeSelf == true)
         {
@@ -47,7 +49,9 @@ public class AnimateNDialog : MonoBehaviour
         }
     }
 
-    private void DialogNarratorOpen()
+    //private void DialogNarratorOpen()
+    public void DialogNarratorOpen()
+
     {
         // 不正操作防止
         if (IsOpen || IsTransition) return;
