@@ -9,6 +9,7 @@ TagManager:
   - EnemyTagA
   - Events
   - EnemyTagB
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
