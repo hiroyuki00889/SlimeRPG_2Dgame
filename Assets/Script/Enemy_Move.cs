@@ -59,13 +59,21 @@ public class Enemy_Move : MonoBehaviour
                 rb.Sleep();
             }
         }
-        else 
+        else
         {
             //敵オブジェクトを破壊する
             Destroy(this.gameObject);
             // プレイヤーに当たった場合、敵のタグに応じたカウンターを増加
             EnemyTagCounter enemyTagCounter = FindObjectOfType<EnemyTagCounter>();
-            enemyTagCounter.IncrementCounter("EnemyTagA");
+            // EnemyTags = GameObject.FindGameObjectsWithTag("Enemy");
+            if(gameObject.CompareTag("EnemyTagA"))
+            {
+                enemyTagCounter.IncrementCounter("EnemyTagA");
+            }
+            else if (gameObject.CompareTag("EnemyTagB"))
+            {
+                enemyTagCounter.IncrementCounter("EnemyTagB");
+            }
             Debug.Log(enemyTagCounter);
 
         }
