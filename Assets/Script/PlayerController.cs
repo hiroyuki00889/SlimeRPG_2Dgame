@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool right = false;
     private bool down=false; //���S�t���O
 
+    [SerializeField] private CursorScript cursorscript;
     [SerializeField] private EnemyTagCounter enemyTagCounter;
     [SerializeField] private Skill_Table st;
     [SerializeField] private Animator m_Animator;
@@ -47,11 +48,16 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R)) 
             {
-                //switch(Getnowskill())�Ŕ���
-                Instantiate(st.skill[0].skill_effect,this.transform.position-new Vector3(0,-1,0),Quaternion.identity); //skill[Getnowskill]�݂����Ȋ����ɂȂ�
-                rb.AddForce(new Vector3(0,200,0),ForceMode2D.Impulse);
-                //rb.velocity+=new Vector2(rb.velocity.x,10);
-                //enemyTagCounter.enemyTagCounters<GetnowSkill> -= 1;
+                switch (cursorscript.GetSkillNow()) 
+                {
+                    case "EnemyTagA":
+                        Instantiate(st.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity); //skill[Getnowskill]�݂����Ȋ����ɂȂ�
+                        rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
+                        enemyTagCounter.enemyTagCounters["EnemyTagA"] -= 1;
+                        break;
+                }
+                
+                //;
                    //���I�����Ă�X�L���̎c��񐔈��������Ă���->����EnemyTagCounter�̒l�����炷
             }
         }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 public class EnemyTagCounter : MonoBehaviour
 {
-    private Dictionary<string, int> enemyTagCounters = new Dictionary<string, int>();
+    public Dictionary<string, int> enemyTagCounters = new Dictionary<string, int>();
     private Dictionary<string, int> previousCounters = new Dictionary<string, int>(); // ’Ç‰Á
+
 
     private void Start()
     {

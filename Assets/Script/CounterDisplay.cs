@@ -8,6 +8,8 @@ public class CounterDisplay : MonoBehaviour
     public Text counterTextA; // カウンターAを表示するUIテキスト
     public Text counterTextB; // カウンターBを表示するUIテキスト
 
+
+
     private void Update()
     {
         // カウンターの情報を取得
