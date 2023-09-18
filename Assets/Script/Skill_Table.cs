@@ -13,10 +13,12 @@ public class Skill
 {
     public enum Skills 
     {
-        Explosion,
-        Electric
+        Bite,
+        UltraSounds,
+        JumpEnhance,
+        Poison
+
     }
     public Skills skill_type;
     public GameObject skill_effect;
-    public int skill_count;
 }

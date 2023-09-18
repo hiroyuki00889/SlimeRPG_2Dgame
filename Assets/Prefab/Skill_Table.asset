@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Skill_Table
   m_EditorClassIdentifier: 
   skill:
-  - skill_type: 0
+  - skill_type: 2
     skill_effect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
-    skill_count: 0
+  - skill_type: 0
+    skill_effect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
   - skill_type: 1
     skill_effect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
-    skill_count: 0
+  - skill_type: 3
+    skill_effect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}

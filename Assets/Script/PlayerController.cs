@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool right = false;
     private bool down=false; //死亡フラグ
 
+    [SerializeField] private EnemyTagCounter enemyTagCounter;
     [SerializeField] private Skill_Table st;
     [SerializeField] private Animator m_Animator;
     [SerializeField] FirstEvent firstEvent;
@@ -45,8 +46,12 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R)) 
             {
-                Instantiate(st.skill[0].skill_effect,this.transform.position,Quaternion.identity);
-                //ここにst.countを減らす処理
+                //switch(Getnowskill())で判定
+                Instantiate(st.skill[0].skill_effect,this.transform.position-new Vector3(0,-1,0),Quaternion.identity); //skill[Getnowskill]みたいな感じになる
+                rb.AddForce(new Vector3(0,200,0),ForceMode2D.Impulse);
+                //rb.velocity+=new Vector2(rb.velocity.x,10);
+                //enemyTagCounter.enemyTagCounters<GetnowSkill> -= 1;
+                   //今選択してるスキルの残り回数引っ張ってくる->直でEnemyTagCounterの値を減らす
             }
         }
     }
@@ -56,18 +61,6 @@ public class PlayerController : MonoBehaviour
         if (!down)
         {
             Move();
-            /*if (Input.GetKey(KeyCode.D))
-            {
-                        rb.velocity = new Vector2(speed, rb.velocity.y);
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                    rb.velocity = new Vector2(-speed, rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }*/
         }
         else 
         {
@@ -89,6 +82,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.D))
         {
+            this.transform.localScale =Vector3.one;
             if (!right) {
                 time = 1;
                 right = true; 
@@ -114,6 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.A))
         {
+            this.transform.localScale = new Vector3(-1,1,1);
             if (right) 
             {
                 time = 1;

@@ -148,6 +148,9 @@ MonoBehaviour:
   stepOnRate: 20
   ground: {fileID: 7069119588486186266}
   st: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
+  m_Animator: {fileID: 0}
+  firstEvent: {fileID: 0}
+  animateNDialog: {fileID: 0}
 --- !u!114 &767388240648638354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +225,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014371365, y: -0.33921725}
+  m_Offset: {x: 0.040286064, y: -0.33921725}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -233,7 +236,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.89171916, y: 0.01930204}
+  m_Size: {x: 0.8579174, y: 0.01930201}
   m_EdgeRadius: 0
 --- !u!114 &7069119588486186266
 MonoBehaviour:
