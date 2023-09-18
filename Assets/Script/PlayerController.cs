@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool right = false;
     private bool down=false; //死亡フラグ
 
+    [SerializeField] private CursorScript cursorscript;
     [SerializeField] private EnemyTagCounter enemyTagCounter;
     [SerializeField] private Skill_Table st;
     [SerializeField] private Animator m_Animator;
@@ -46,11 +47,16 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R)) 
             {
-                //switch(Getnowskill())で判定
-                Instantiate(st.skill[0].skill_effect,this.transform.position-new Vector3(0,-1,0),Quaternion.identity); //skill[Getnowskill]みたいな感じになる
-                rb.AddForce(new Vector3(0,200,0),ForceMode2D.Impulse);
-                //rb.velocity+=new Vector2(rb.velocity.x,10);
-                //enemyTagCounter.enemyTagCounters<GetnowSkill> -= 1;
+                switch (cursorscript.GetSkillNow()) 
+                {
+                    case "EnemyTagA":
+                        Instantiate(st.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity); //skill[Getnowskill]みたいな感じになる
+                        rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
+                        enemyTagCounter.enemyTagCounters["EnemyTagA"] -= 1;
+                        break;
+                }
+                
+                //;
                    //今選択してるスキルの残り回数引っ張ってくる->直でEnemyTagCounterの値を減らす
             }
         }
