@@ -51,14 +51,24 @@ public class PlayerController : MonoBehaviour
                 switch (cursorscript.GetSkillNow()) 
                 {
                     case "EnemyTagA":
-                        Instantiate(st.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity); //skill[Getnowskill]�݂����Ȋ����ɂȂ�
+                        if (enemyTagCounter.enemyTagCounters["EnemyTagA"] > 0)
+                        {
+                            Instantiate(st.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
+                            rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
+                            enemyTagCounter.enemyTagCounters["EnemyTagA"] -= 1;
+                        }
+                            break; 
+
+                    case "EnemyTagB":
+                        Instantiate(st.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
                         rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
-                        enemyTagCounter.enemyTagCounters["EnemyTagA"] -= 1;
+                        enemyTagCounter.enemyTagCounters["EnemyTagB"] -= 1;
+                        break;
+
+                    default:
                         break;
                 }
-                
-                //;
-                   //���I�����Ă�X�L���̎c��񐔈��������Ă���->����EnemyTagCounter�̒l�����炷
+
             }
         }
     }
