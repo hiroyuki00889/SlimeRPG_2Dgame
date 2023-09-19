@@ -4942,7 +4942,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &617288752
 PrefabInstance:
@@ -16513,7 +16513,6 @@ MonoBehaviour:
   stepOnRate: 0
   ground: {fileID: 1926572699}
   cursorscript: {fileID: 0}
-  enemyTagCounter: {fileID: 0}
   st: {fileID: 0}
   m_Animator: {fileID: 0}
   firstEvent: {fileID: 0}
@@ -16967,7 +16966,7 @@ RectTransform:
   - {fileID: 1309559217}
   - {fileID: 1794620754}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

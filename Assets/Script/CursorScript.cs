@@ -37,6 +37,7 @@ public class CursorScript : MonoBehaviour
     {
         if (text.text.ToString().Contains("EnemyTagA"))
         {
+            Debug.Log("aaaa");
             return "EnemyTagA";
         }
         else if (text.text.ToString().Contains("EnemyTagB"))
