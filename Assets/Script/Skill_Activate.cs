@@ -14,7 +14,7 @@ public class Skill_Activate : MonoBehaviour
         enemyTagCounter=GetComponent<EnemyTagCounter>();
     }
 
-    public void Rabbit()
+    public void Bunny()
     {
         Instantiate(skill_table.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
         controller.rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
