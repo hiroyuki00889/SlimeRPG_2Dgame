@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private EnemyTagCounter enemyTagCounter;
     private int maxjump;
     private int restjump; //�W�����v��
@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     private float time = 1;
     private bool right = false;
     private bool down=false; //���S�t���O
-    [SerializeField] private CursorScript cursorscript;
-    [SerializeField] private Skill_Table st;
+    //[SerializeField] private CursorScript cursorscript;
+    //[SerializeField] private Skill_Activate skill_Activate;
     [SerializeField] private Animator m_Animator;
     [SerializeField] FirstEvent firstEvent;
     [SerializeField] AnimateNDialog animateNDialog;
