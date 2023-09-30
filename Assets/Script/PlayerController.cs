@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R)) 
             {
-                switch (cursorscript.GetSkillNow()) 
+                
+                /*switch (cursorscript.GetSkillNow()) 
                 {
                     case "EnemyTagA":
                         if (enemyTagCounter.enemyTagCounters["EnemyTagA"] > 0)
@@ -57,8 +58,7 @@ public class PlayerController : MonoBehaviour
                             rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
                             enemyTagCounter.enemyTagCounters["EnemyTagA"] -= 1;
                         }
-                            break; 
-
+                            break;
                     case "EnemyTagB":
                         Instantiate(st.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
                         rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
                     default:
                         break;
-                }
+                }*/
 
             }
         }

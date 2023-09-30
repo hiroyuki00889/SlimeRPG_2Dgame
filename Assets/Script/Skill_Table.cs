@@ -17,7 +17,6 @@ public class Skill
         UltraSounds,
         JumpEnhance,
         Poison
-
     }
     public Skills skill_type;
     public GameObject skill_effect;
