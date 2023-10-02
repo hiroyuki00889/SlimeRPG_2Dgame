@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Xsl;
 using UnityEngine;
 using System;
+using System.Runtime.CompilerServices;
 
 public class Enemy_Move : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Enemy_Move : MonoBehaviour
    // private bool dead = false;
     private ObjectCollision oc;
     public EnemyCollisionCheck check;
+
+    [SerializeField] private bool Bunny, Bat, Dog, Opossum;
 
 
     private void Start()
@@ -30,33 +33,28 @@ public class Enemy_Move : MonoBehaviour
     {
         if (!oc.step)
         {
-            time += Time.fixedDeltaTime;
+            
             if (check.isOn)
             {
                 right = !right;
             }
-            if (spriteRenderer.isVisible)
+
+
+            if (Bunny)
             {
-                int xVector = -1;
-                if (right)
-                {
-                    xVector = 1;
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
-                else
-                {
-                    transform.localScale = new Vector3(1,1,1);
-                }
-                if (time>3)
-                {
-                    time = 0;
-                    rb.velocity = new Vector2(xVector * speed, 10);
-                }
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                BunnyMove();
             }
-            else
+            else if (Bat)
             {
-                rb.Sleep();
+                BatMove();
+
+            } else if (Dog)
+            {
+                DogMove();
+
+            } else if (Opossum)
+            {
+                OpossumMove();
             }
         }
         else
@@ -90,4 +88,46 @@ public class Enemy_Move : MonoBehaviour
             Destroy(this.gameObject);
         }
     }*/
+    private void BunnyMove() 
+    {
+        time += Time.fixedDeltaTime;
+        if (spriteRenderer.isVisible)
+        {
+            int xVector = -1;
+            if (right)
+            {
+                xVector = 1;
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (time > 3)
+            {
+                time = 0;
+                rb.velocity = new Vector2(xVector * speed, 10);
+            }
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+        }
+        else
+        {
+            rb.Sleep();
+        }
+    }
+
+    private void BatMove() 
+    {
+        //åžå•‚Ì“®‚«
+    }
+
+    private void DogMove() 
+    {
+
+    }
+
+    private void OpossumMove() 
+    {
+
+    }
 }

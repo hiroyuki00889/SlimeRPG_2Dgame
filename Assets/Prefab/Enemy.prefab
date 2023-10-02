@@ -150,6 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   check: {fileID: 4694461556643297814}
+  Bunny: 1
+  Bat: 0
+  Dog: 0
+  Opossum: 0
 --- !u!114 &4694461556524784050
 MonoBehaviour:
   m_ObjectHideFlags: 0
