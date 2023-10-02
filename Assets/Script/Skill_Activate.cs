@@ -7,6 +7,7 @@ public class Skill_Activate : MonoBehaviour
     private PlayerController controller;
     private EnemyTagCounter enemyTagCounter;
     public Skill_Table skill_table;
+    public Transform parent;
 
     private void Start()
     {
@@ -20,4 +21,8 @@ public class Skill_Activate : MonoBehaviour
         controller.rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
     }
 
+    public void Bite()
+    {
+        Instantiate(skill_table.skill[1].skill_effect,parent);
+    }
 }
