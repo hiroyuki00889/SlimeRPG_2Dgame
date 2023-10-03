@@ -462,7 +462,7 @@ RectTransform:
   m_Children:
   - {fileID: 2096287307}
   m_Father: {fileID: 1894274709}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420952772}
+      - m_Target: {fileID: 2020400893}
         m_TargetAssemblyTypeName: Skill_Activate, Assembly-CSharp
         m_MethodName: Bunny
         m_Mode: 1
@@ -576,7 +576,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill_table: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
-  parent: {fileID: 0}
 --- !u!1 &423973026
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +966,6 @@ GameObject:
   - component: {fileID: 667803366}
   - component: {fileID: 667803365}
   - component: {fileID: 667803364}
-  - component: {fileID: 667803367}
   m_Layer: 5
   m_Name: BiteButton
   m_TagString: Untagged
@@ -989,7 +987,7 @@ RectTransform:
   m_Children:
   - {fileID: 194305851}
   m_Father: {fileID: 1894274709}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1009,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1040,7 +1038,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 667803367}
+      - m_Target: {fileID: 2020400893}
         m_TargetAssemblyTypeName: Skill_Activate, Assembly-CSharp
         m_MethodName: Bite
         m_Mode: 1
@@ -1090,20 +1088,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667803362}
   m_CullTransparentMesh: 1
---- !u!114 &667803367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667803362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd5c610105a0190408c691a606a120c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_table: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
-  parent: {fileID: 0}
 --- !u!1 &755425022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,25 +1525,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1248661621 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4840278846548765391, guid: 34d0fead730e72b439de09f7d3eb6c20, type: 3}
-  m_PrefabInstance: {fileID: 1418831370954901727}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1248661625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248661621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd5c610105a0190408c691a606a120c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_table: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
-  parent: {fileID: 1718063344}
 --- !u!1 &1258220488
 GameObject:
   m_ObjectHideFlags: 0
@@ -12193,29 +12158,16 @@ GameObject:
   - component: {fileID: 1800210699}
   - component: {fileID: 1800210698}
   - component: {fileID: 1800210697}
-  - component: {fileID: 1800210696}
   - component: {fileID: 1800210700}
+  - component: {fileID: 1800210701}
+  - component: {fileID: 1800210702}
   m_Layer: 0
-  m_Name: BiteSkill
+  m_Name: BiteAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1800210696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800210695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd5c610105a0190408c691a606a120c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_table: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
-  parent: {fileID: 0}
 --- !u!95 &1800210697
 Animator:
   serializedVersion: 5
@@ -12330,6 +12282,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2228844, y: 2.707716}
   m_EdgeRadius: 0
+--- !u!114 &1800210701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800210695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd1fdb1d08f34742a8721fd50e17385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1800210702
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800210695}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1894274705
 GameObject:
   m_ObjectHideFlags: 0
@@ -12422,8 +12407,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 667803363}
   - {fileID: 420952768}
+  - {fileID: 667803363}
   - {fileID: 1467315960}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -12513,6 +12498,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009706711}
   m_CullTransparentMesh: 1
+--- !u!1 &2020400892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7034934938683881719, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+  m_PrefabInstance: {fileID: 1455636301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020400893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1964562160964239450, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+  m_PrefabInstance: {fileID: 1455636301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020400892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5c610105a0190408c691a606a120c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2096287306
 GameObject:
   m_ObjectHideFlags: 0
@@ -12600,6 +12601,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2380914778820595617, guid: 34d0fead730e72b439de09f7d3eb6c20, type: 3}
+      propertyPath: oyaOb
+      value: 
+      objectReference: {fileID: 2020400892}
     - target: {fileID: 4840278846548765391, guid: 34d0fead730e72b439de09f7d3eb6c20, type: 3}
       propertyPath: m_Name
       value: New Piskel-1.png

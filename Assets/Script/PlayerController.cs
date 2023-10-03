@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public GroundCheck ground; //�ڒn����p
 
     private float time = 1;
-    private bool right = false;
+    public bool right = false;
     private bool down=false; //���S�t���O
     //[SerializeField] private CursorScript cursorscript;
     //[SerializeField] private Skill_Activate skill_Activate;

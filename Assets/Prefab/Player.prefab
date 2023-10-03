@@ -149,6 +149,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   stepOnRate: 20
   ground: {fileID: 7069119588486186266}
+  right: 0
   m_Animator: {fileID: 0}
   firstEvent: {fileID: 0}
   animateNDialog: {fileID: 0}
