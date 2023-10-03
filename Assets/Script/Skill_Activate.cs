@@ -7,7 +7,6 @@ public class Skill_Activate : MonoBehaviour
     private PlayerController controller;
     private EnemyTagCounter enemyTagCounter;
     public Skill_Table skill_table;
-    public Transform parent;
 
     private void Start()
     {
@@ -23,6 +22,10 @@ public class Skill_Activate : MonoBehaviour
 
     public void Bite()
     {
-        Instantiate(skill_table.skill[1].skill_effect,parent);
+        GameObject child;
+        child = Instantiate(skill_table.skill[1].skill_effect,this.transform.position, Quaternion.identity);
+        child.gameObject.GetComponent<BiteClass>().KamuSkill(controller.right, this.gameObject);
+        //ƒfƒNƒŠƒƒ“ƒgˆ—
+        this.gameObject.SetActive(false);
     }
 }
