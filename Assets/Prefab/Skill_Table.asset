@@ -16,7 +16,7 @@ MonoBehaviour:
   - skill_type: 2
     skill_effect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
   - skill_type: 0
-    skill_effect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
+    skill_effect: {fileID: 4840278846548765391, guid: 34d0fead730e72b439de09f7d3eb6c20, type: 3}
   - skill_type: 1
     skill_effect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
   - skill_type: 3
