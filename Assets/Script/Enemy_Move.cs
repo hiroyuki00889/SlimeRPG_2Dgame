@@ -16,6 +16,9 @@ public class Enemy_Move : MonoBehaviour
    // private bool dead = false;
     private ObjectCollision oc;
     public EnemyCollisionCheck check;
+    private GameObject playerOb;
+    private Vector2 playerpos;
+    private Vector2 enemypos;
 
     [SerializeField] private bool Bunny, Bat, Dog, Opossum;
 
@@ -123,6 +126,25 @@ public class Enemy_Move : MonoBehaviour
 
     private void DogMove() 
     {
+        playerOb = GameObject.FindWithTag("Player");
+        if(spriteRenderer.isVisible)
+        {
+            playerpos = playerOb.transform.position;
+            enemypos = transform.position;
+            if (playerpos.x < enemypos.x)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+        else
+        {
+            rb.Sleep();
+        }
+
 
     }
 
