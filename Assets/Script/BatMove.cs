@@ -9,8 +9,10 @@ public class BatMove : MonoBehaviour
     Rigidbody2D rb;
     private bool move = false;
     private bool punish = false;
+    private GameObject player;
     [SerializeField] private GameObject ultraSounds;
-    private float time = 0f;
+
+    private Vector3 destination;
 
     void Start()
     {
@@ -22,61 +24,60 @@ public class BatMove : MonoBehaviour
     {
         if (spriteRenderer.isVisible)
         {
-            
+
             if (!punish && move)
-            { 
-                time += Time.fixedDeltaTime;
-                Debug.Log(time);
-                if (time > 2f) 
-                {
-                    
-                    rb.velocity = Vector2.zero;
-                    Magic();
-                }
+            {
+                StartCoroutine(Magic());
+                Debug.Log("終了");
             }
                     
         }
         else 
         {
             rb.Sleep();
-            move= false;   
+            //元居たところに戻る処理
         }
     }
 
-    private void Magic() 
+    private IEnumerator FirstMove()
     {
-        punish = true;
-        Instantiate(ultraSounds, this.transform.position, Quaternion.identity);
-        //アニメーション終わるまで待つ処理,または後隙の設定
-        Debug.Log("Magic");
-        Invoke("Punish", 1f);
-    }
-
-    private void Punish()
-    {
-        punish = false;
-        //ここに次の動きの処理
-        time = 0;
-        rb.velocity = new Vector2(3*RandomMove(),3*RandomMove());
-        Debug.Log("Punish");
-    }
-
-
-    private int RandomMove() 
-    {
-        int i = Random.Range(-1, 2);
-        if (i == -1)
+        Debug.Log("aaaaa");
+        while (destination.y < this.transform.position.y)
         {
-            return -1;
+            rb.velocity = new Vector3(0, -3, 0);
+            yield return null;
         }
-        else if (i == 0)
+        rb.velocity =Vector2.zero;
+                move = true;
+                yield break;
+            //プレイヤーの高さまで動き終わるまで待つ処
+    }
+
+    private IEnumerator Magic() 
+    {
+        punish= true;
+        Instantiate(ultraSounds, this.transform.position, Quaternion.identity);//スキル発動兼後隙 スキルの時間より長めに待機させる
+        yield return new WaitForSeconds(2f);
+        if (player.transform.position.x < this.transform.position.x)
         {
-            return 0;
+            destination.x = -5;
         }
         else 
         {
-            return 1;
+            destination.x = 5;
         }
+        if (player.transform.position.y < this.transform.position.y)
+        {
+            destination.y = -5;
+        }
+        else 
+        {
+            destination.y = 5;
+        }
+        rb.velocity = destination;
+        yield return new WaitForSeconds(1f);
+        rb.velocity = Vector2.zero;
+        punish = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,8 +85,10 @@ public class BatMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !move) 
         {
             //最初のムーブ プレイヤーの高さまでなど
-            move = true;
-            rb.AddForce(new Vector2(0, -3), ForceMode2D.Impulse);
+            player = collision.gameObject;
+            destination = player.transform.position;
+            Debug.Log(destination);
+            StartCoroutine(FirstMove());
         }
     }
 }

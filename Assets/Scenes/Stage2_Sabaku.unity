@@ -752,6 +752,10 @@ PrefabInstance:
       value: Bite
       objectReference: {fileID: 0}
     - target: {fileID: 2288248300618714168, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288248300618714168, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2123866582}
@@ -13979,6 +13983,6 @@ PrefabInstance:
     - target: {fileID: 4213227686412408247, guid: b577b8b34e26613409ad9486e5922824, type: 3}
       propertyPath: ultraSounds
       value: 
-      objectReference: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      objectReference: {fileID: 1845240806346120, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b577b8b34e26613409ad9486e5922824, type: 3}
