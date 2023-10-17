@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BatMove : MonoBehaviour
@@ -30,9 +31,9 @@ public class BatMove : MonoBehaviour
                 StartCoroutine(Magic());
                 Debug.Log("終了");
             }
-                    
+
         }
-        else 
+        else if (!move)
         {
             rb.Sleep();
             //元居たところに戻る処理
@@ -42,13 +43,14 @@ public class BatMove : MonoBehaviour
     private IEnumerator FirstMove()
     {
         Debug.Log("aaaaa");
-        while (destination.y < this.transform.position.y)
+        while (destination.y+1 < this.transform.position.y)
         {
             rb.velocity = new Vector3(0, -3, 0);
             yield return null;
         }
         rb.velocity =Vector2.zero;
                 move = true;
+        Debug.Log("first終了");
                 yield break;
             //プレイヤーの高さまで動き終わるまで待つ処
     }
@@ -56,17 +58,23 @@ public class BatMove : MonoBehaviour
     private IEnumerator Magic() 
     {
         punish= true;
-        Instantiate(ultraSounds, this.transform.position, Quaternion.identity);//スキル発動兼後隙 スキルの時間より長めに待機させる
+        GameObject magic=Instantiate(ultraSounds, this.transform.position, Quaternion.identity);//スキル発動兼後隙 スキルの時間より長めに待機させる 何故かエフェクトが残るのでエフェクトの時間で消す
         yield return new WaitForSeconds(2f);
+        Destroy(magic);
+        yield return new WaitForSeconds(1f);
         if (player.transform.position.x < this.transform.position.x)
         {
             destination.x = -5;
         }
-        else 
+        else
         {
             destination.x = 5;
         }
-        if (player.transform.position.y < this.transform.position.y)
+        if (Mathf.Abs(player.transform.position.y - this.transform.position.y) < 1)
+        {
+            destination.y = Random.Range(-1.5f,1.5f);
+        }
+        else if (player.transform.position.y < this.transform.position.y)
         {
             destination.y = -5;
         }

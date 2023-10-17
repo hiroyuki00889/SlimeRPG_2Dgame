@@ -17,7 +17,7 @@ public class Skill_Activate : MonoBehaviour
     public void Bunny()
     {
         Instantiate(skill_table.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
-        controller.rb.AddForce(new Vector3(0, 200, 0), ForceMode2D.Impulse);
+        controller.rb.AddForce(new Vector3(0, 100, 0), ForceMode2D.Impulse);
     }
 
     public void Bite()
@@ -28,4 +28,12 @@ public class Skill_Activate : MonoBehaviour
         //ƒfƒNƒŠƒƒ“ƒgˆ—
         this.gameObject.SetActive(false);
     }
+
+    public void UltraSounds() 
+    {
+        GameObject ultrasoounds=Instantiate(skill_table.skill[2].skill_effect,this.transform.position,Quaternion.identity);
+        ultrasoounds.transform.SetParent(this.transform);
+        Destroy(ultrasoounds,2f);
+    }
+
 }

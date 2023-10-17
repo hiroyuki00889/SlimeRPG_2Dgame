@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97222a3c7c504841a0eb73ea927bcf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ultraSounds: {fileID: 100008, guid: e3d819d8722fa1f47a3f68574b56dfb3, type: 3}
+  ultraSounds: {fileID: 100002, guid: db50ab1c866680e4bb870bf5eb72dd3d, type: 3}
 --- !u!58 &4213227686412408246
 CircleCollider2D:
   m_ObjectHideFlags: 0
