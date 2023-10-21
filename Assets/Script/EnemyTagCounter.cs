@@ -12,11 +12,21 @@ public class EnemyTagCounter : MonoBehaviour
         ResetCounters();
     }
 
+    // スキルカウンター増加
     public void IncrementCounter(string enemyTag)
     {
         if (enemyTagCounters.ContainsKey(enemyTag))
         {
             enemyTagCounters[enemyTag]++;
+        }
+    }
+
+    // スキルカウンター減少
+    public void DecrementCounter(string enemyTag)
+    {
+        if (enemyTagCounters.ContainsKey(enemyTag))
+        {
+            enemyTagCounters[enemyTag]--;
         }
     }
 
@@ -37,7 +47,7 @@ public class EnemyTagCounter : MonoBehaviour
     public void ResetCounters()
     {
         enemyTagCounters.Clear();
-        enemyTagCounters.Add("EnemyTagA", 0);
+        enemyTagCounters.Add("Bunny", 0);
         enemyTagCounters.Add("EnemyTagB", 0);
 
         // 追加: 初期化時に前回のカウンターも更新

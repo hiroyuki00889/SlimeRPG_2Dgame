@@ -22,7 +22,7 @@ public class CounterDisplay : MonoBehaviour
 
         foreach (var kvp in counters)
         {
-            if (kvp.Key == "EnemyTagA")
+            if (kvp.Key == "Bunny")
             {
                 if (kvp.Value == 0)
                 {
