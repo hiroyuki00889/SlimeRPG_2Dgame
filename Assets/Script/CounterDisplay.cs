@@ -10,6 +10,7 @@ public class CounterDisplay : MonoBehaviour
     public Text counterTextB; // カウンターBを表示するUIテキスト
     public Image Club;
     public Image Axe;
+    public Button bunny;
 
 
 
@@ -19,7 +20,6 @@ public class CounterDisplay : MonoBehaviour
         Dictionary<string, int> counters = enemyTagCounter.GetAllCounters();
 
         // カウンターの値をUIテキストに表示
-
         foreach (var kvp in counters)
         {
             if (kvp.Key == "Bunny")
