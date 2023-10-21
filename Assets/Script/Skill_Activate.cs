@@ -16,7 +16,6 @@ public class Skill_Activate : MonoBehaviour
 
     public void Bunny()
     {
-        // カウンターの数値を見て実行
         // スキル発動前にデクリメント処理
         enemyTagCounter.IncrementCounter("Bunny");
         Instantiate(skill_table.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
