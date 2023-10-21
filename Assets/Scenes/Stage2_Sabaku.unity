@@ -13994,6 +13994,7 @@ MonoBehaviour:
   counterTextB: {fileID: 1586481094}
   Club: {fileID: 844458422}
   Axe: {fileID: 740450714}
+  bunny: {fileID: 844458421}
 --- !u!114 &1942112294
 MonoBehaviour:
   m_ObjectHideFlags: 0
