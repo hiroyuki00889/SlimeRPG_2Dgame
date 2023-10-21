@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private float time = 1;
     public bool right = false;
-    private bool down=false; //���S�t���O
+    public bool down=false; //���S�t���O
     //[SerializeField] private CursorScript cursorscript;
     //[SerializeField] private Skill_Activate skill_Activate;
     [SerializeField] private Animator m_Animator;

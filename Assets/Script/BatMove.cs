@@ -11,6 +11,7 @@ public class BatMove : MonoBehaviour
     private bool move = false;
     private bool punish = false;
     private GameObject player;
+    private ObjectCollision oc;
     [SerializeField] private GameObject ultraSounds;
 
     private Vector3 destination;
@@ -19,10 +20,17 @@ public class BatMove : MonoBehaviour
     {
         spriteRenderer= GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        oc= GetComponent<ObjectCollision>();
     }
 
     private void FixedUpdate()
     {
+        if (oc.step) 
+        {
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject,5f);
+        }
+
         if (spriteRenderer.isVisible)
         {
 
@@ -59,9 +67,10 @@ public class BatMove : MonoBehaviour
     {
         punish= true;
         GameObject magic=Instantiate(ultraSounds, this.transform.position, Quaternion.identity);//スキル発動兼後隙 スキルの時間より長めに待機させる 何故かエフェクトが残るのでエフェクトの時間で消す
+        magic.gameObject.transform.SetParent(this.gameObject.transform);
         yield return new WaitForSeconds(2f);
         Destroy(magic);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         if (player.transform.position.x < this.transform.position.x)
         {
             destination.x = -5;
