@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Xsl;
 using UnityEngine;
-using System;
 using System.Runtime.CompilerServices;
 
 public class Enemy_Move : MonoBehaviour
@@ -19,6 +18,8 @@ public class Enemy_Move : MonoBehaviour
     private GameObject playerOb;
     private Vector2 playerpos;
     private Vector2 enemypos;
+
+    private bool opposumright;
 
     [SerializeField] private bool Bunny, Bat, Dog, Opossum;
 
@@ -58,6 +59,22 @@ public class Enemy_Move : MonoBehaviour
             } else if (Opossum)
             {
                 OpossumMove();
+                if (time < 0.5)
+                {
+                    time += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        opposumright = true;
+                    }
+                    else 
+                    {
+                        opposumright= false;
+                    }
+                    time = 0;
+                }
             }
         }
         else
@@ -150,6 +167,23 @@ public class Enemy_Move : MonoBehaviour
 
     private void OpossumMove() 
     {
-
+        if (spriteRenderer.isVisible)
+        {
+                int xVector = -1;
+                if (opposumright)
+                {
+                    xVector = 1;
+                    transform.localScale = new Vector3(-0.5f, 0.5f, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                }
+                rb.velocity = new Vector2(xVector * speed, rb.velocity.y);
+            }
+        else 
+        {
+            rb.Sleep();
+        }
     }
 }
