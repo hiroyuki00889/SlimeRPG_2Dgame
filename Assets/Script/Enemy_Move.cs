@@ -18,6 +18,7 @@ public class Enemy_Move : MonoBehaviour
     private GameObject playerOb;
     private Vector2 playerpos;
     private Vector2 enemypos;
+    private bool enemyRight = true;
 
     private bool opposumright;
 
@@ -29,6 +30,7 @@ public class Enemy_Move : MonoBehaviour
         spriteRenderer= GetComponent<SpriteRenderer>();
         rb= GetComponent<Rigidbody2D>();
         oc = GetComponent<ObjectCollision>();
+        playerOb = GameObject.FindWithTag("Player");
     }
 
 
@@ -93,7 +95,12 @@ public class Enemy_Move : MonoBehaviour
                 enemyTagCounter.IncrementCounter("EnemyTagB");
             }
             Debug.Log(enemyTagCounter);
-
+        }
+        if(spriteRenderer.isVisible && Dog)
+        {
+            //Playerと敵の位置変数の用意
+            playerpos = playerOb.transform.position;
+            enemypos = transform.position;
         }
         }
     /*void OnTriggerEnter2D(Collider2D other)
@@ -143,26 +150,67 @@ public class Enemy_Move : MonoBehaviour
 
     private void DogMove() 
     {
-        playerOb = GameObject.FindWithTag("Player");
-        if(spriteRenderer.isVisible)
+        //画面内に入ったら
+        /*if (spriteRenderer.isVisible)
         {
+            //Playerと敵の位置変数の用意
             playerpos = playerOb.transform.position;
             enemypos = transform.position;
-            if (playerpos.x < enemypos.x)
+        }*/
+        if (playerpos.x < enemypos.x)　//敵の位置がPlayerより右の場合
+        {
+            enemyRight = true;
+            //犬は左に歩く
+            while (true) 
             {
-                
-            }
-            else
-            {
-                
+                Vector2 now = rb.position;
+                now += new Vector2(-0.5f, 0);
+                rb.position = now;
+                //Playerとの位置が5以内でアニメーション変更
+                if (enemypos.x - playerpos.x <= 5)
+                {
+                    DogAttack();
+                    break;
+                }
             }
         }
+        else if (playerpos.x > enemypos.x)　//敵の位置がPlayerより左の場合
+        {
+            enemyRight = false;
+            //犬は右に歩く
+            while (true)
+            {
+                Vector2 now = rb.position;
+                now += new Vector2(0.5f, 0);
+                rb.position = now;
+                //Playerとの位置が5以内でアニメーション変更
+                if (enemypos.x - playerpos.x <= 5)
+                {
+                    DogAttack();
+                    break;
+                }
+            }
+            //Playerとの位置が10以内でアニメーション変更、右方向へ突撃
+        }
+
         else
         {
             rb.Sleep();
         }
+    }
 
+    private void DogAttack()
+    {
+        //犬が右にいるので左に突撃
+        if(enemyRight == true)
+        {
 
+        }
+        //犬が左にいるので右に突撃
+        else
+        {
+
+        }
     }
 
     private void OpossumMove() 
