@@ -40,10 +40,10 @@ public class Enemy_Move : MonoBehaviour
         if (!oc.step)
         {
 
-            /*if (check.isOn)
+            if (check.isOn)
             {
                 right = !right;
-            }*/
+            }
 
 
             if (Bunny)
@@ -164,9 +164,10 @@ public class Enemy_Move : MonoBehaviour
             //犬は左に歩く,animation
             transform.position += new Vector3(-speed * 0.01f, 0, 0);
             //Playerとの位置が5以内でアニメーション変更
-            if (enemypos_x - playerpos_x <= 5)
+            if (enemypos_x - playerpos_x <= 5 && time >= 3)
             {
                 StartCoroutine(DogAttack());
+                time = 0;
             }
         }
         else if (playerpos_x > enemypos_x)　//敵の位置がPlayerより左の場合
@@ -176,9 +177,10 @@ public class Enemy_Move : MonoBehaviour
             //犬は右に歩く,animation
             transform.position += new Vector3(speed * 0.01f, 0, 0);
             //Playerとの位置が5以内でアニメーション変更
-            if (enemypos_x - playerpos_x <= 5)
+            if (enemypos_x - playerpos_x <= 5 && time >= 3)
             {
                 StartCoroutine(DogAttack());
+                time = 0;
             }
         }
         else
@@ -194,7 +196,7 @@ public class Enemy_Move : MonoBehaviour
         if (enemyRight == true)
         {
             Debug.Log("totugeki");
-            rb.AddForce(new Vector2(-0.5f, 0));
+            rb.AddForce(new Vector2(-10f, 0));
             Invoke(("Stop"), 0.1f);
             yield return new WaitForSeconds(1);
         }
@@ -202,7 +204,7 @@ public class Enemy_Move : MonoBehaviour
         else if (enemyRight == false)
         {
             Debug.Log("totugeki2");
-            rb.AddForce(new Vector2(0.5f, 0));
+            rb.AddForce(new Vector2(10f, 1));
         }
     }
 
