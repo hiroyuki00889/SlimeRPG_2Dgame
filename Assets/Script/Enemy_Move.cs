@@ -12,12 +12,12 @@ public class Enemy_Move : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private bool right = false;
-   // private bool dead = false;
+    // private bool dead = false;
     private ObjectCollision oc;
     public EnemyCollisionCheck check;
     private GameObject playerOb;
-    private Vector2 playerpos;
-    private Vector2 enemypos;
+    private float playerpos_x;
+    private float enemypos_x;
     private bool enemyRight = true;
 
     private bool opposumright;
@@ -27,8 +27,8 @@ public class Enemy_Move : MonoBehaviour
 
     private void Start()
     {
-        spriteRenderer= GetComponent<SpriteRenderer>();
-        rb= GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         oc = GetComponent<ObjectCollision>();
         playerOb = GameObject.FindWithTag("Player");
     }
@@ -39,11 +39,11 @@ public class Enemy_Move : MonoBehaviour
     {
         if (!oc.step)
         {
-            
-            if (check.isOn)
+
+            /*if (check.isOn)
             {
                 right = !right;
-            }
+            }*/
 
 
             if (Bunny)
@@ -71,9 +71,9 @@ public class Enemy_Move : MonoBehaviour
                     {
                         opposumright = true;
                     }
-                    else 
+                    else
                     {
-                        opposumright= false;
+                        opposumright = false;
                     }
                     time = 0;
                 }
@@ -86,7 +86,7 @@ public class Enemy_Move : MonoBehaviour
             // プレイヤーに当たった場合、敵のタグに応じたカウンターを増加
             EnemyTagCounter enemyTagCounter = FindObjectOfType<EnemyTagCounter>();
             // EnemyTags = GameObject.FindGameObjectsWithTag("Enemy");
-            if(gameObject.CompareTag("EnemyTagA"))
+            if (gameObject.CompareTag("EnemyTagA"))
             {
                 enemyTagCounter.IncrementCounter("EnemyTagA");
             }
@@ -96,13 +96,14 @@ public class Enemy_Move : MonoBehaviour
             }
             Debug.Log(enemyTagCounter);
         }
-        if(spriteRenderer.isVisible && Dog)
+        if (spriteRenderer.isVisible && Dog)
         {
+
             //Playerと敵の位置変数の用意
-            playerpos = playerOb.transform.position;
-            enemypos = transform.position;
+            playerpos_x = playerOb.transform.position.x;
+            enemypos_x = transform.position.x;
         }
-        }
+    }
     /*void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -115,7 +116,7 @@ public class Enemy_Move : MonoBehaviour
             Destroy(this.gameObject);
         }
     }*/
-    private void BunnyMove() 
+    private void BunnyMove()
     {
         time += Time.fixedDeltaTime;
         if (spriteRenderer.isVisible)
@@ -143,12 +144,12 @@ public class Enemy_Move : MonoBehaviour
         }
     }
 
-    private void BatMove() 
+    private void BatMove()
     {
         //蝙蝠の動き
     }
 
-    private void DogMove() 
+    private void DogMove()
     {
         //画面内に入ったら
         /*if (spriteRenderer.isVisible)
@@ -157,60 +158,57 @@ public class Enemy_Move : MonoBehaviour
             playerpos = playerOb.transform.position;
             enemypos = transform.position;
         }*/
-        if (playerpos.x < enemypos.x)　//敵の位置がPlayerより右の場合
+        if (playerpos_x < enemypos_x)　//敵の位置がPlayerより右の場合
         {
             enemyRight = true;
-            //犬は左に歩く
-            while (true) 
+            //犬は左に歩く,animation
+            transform.position += new Vector3(-speed * 0.01f, 0, 0);
+            //Playerとの位置が5以内でアニメーション変更
+            if (enemypos_x - playerpos_x <= 5)
             {
-                Vector2 now = rb.position;
-                now += new Vector2(-0.5f, 0);
-                rb.position = now;
-                //Playerとの位置が5以内でアニメーション変更
-                if (enemypos.x - playerpos.x <= 5)
-                {
-                    DogAttack();
-                    break;
-                }
+                StartCoroutine(DogAttack());
             }
         }
-        else if (playerpos.x > enemypos.x)　//敵の位置がPlayerより左の場合
+        else if (playerpos_x > enemypos_x)　//敵の位置がPlayerより左の場合
         {
             enemyRight = false;
-            //犬は右に歩く
-            while (true)
+            time += Time.fixedDeltaTime;
+            //犬は右に歩く,animation
+            transform.position += new Vector3(speed * 0.01f, 0, 0);
+            //Playerとの位置が5以内でアニメーション変更
+            if (enemypos_x - playerpos_x <= 5)
             {
-                Vector2 now = rb.position;
-                now += new Vector2(0.5f, 0);
-                rb.position = now;
-                //Playerとの位置が5以内でアニメーション変更
-                if (enemypos.x - playerpos.x <= 5)
-                {
-                    DogAttack();
-                    break;
-                }
+                StartCoroutine(DogAttack());
             }
-            //Playerとの位置が10以内でアニメーション変更、右方向へ突撃
         }
-
         else
         {
             rb.Sleep();
         }
     }
 
-    private void DogAttack()
+    IEnumerator DogAttack()
     {
-        //犬が右にいるので左に突撃
-        if(enemyRight == true)
+        yield return new WaitForSeconds(1);
+        //犬が右にいるので左に突撃、Animation切り替え
+        if (enemyRight == true)
         {
-
+            Debug.Log("totugeki");
+            rb.AddForce(new Vector2(-0.5f, 0));
+            Invoke(("Stop"), 0.1f);
+            yield return new WaitForSeconds(1);
         }
-        //犬が左にいるので右に突撃
-        else
+        //犬が左にいるので右に突撃、Animation切り替え
+        else if (enemyRight == false)
         {
-
+            Debug.Log("totugeki2");
+            rb.AddForce(new Vector2(0.5f, 0));
         }
+    }
+
+    private void Stop()
+    {
+        rb.velocity = Vector2.zero;
     }
 
     private void OpossumMove() 
