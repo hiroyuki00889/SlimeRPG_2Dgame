@@ -86,9 +86,9 @@ public class Enemy_Move : MonoBehaviour
             // プレイヤーに当たった場合、敵のタグに応じたカウンターを増加
             EnemyTagCounter enemyTagCounter = FindObjectOfType<EnemyTagCounter>();
             // EnemyTags = GameObject.FindGameObjectsWithTag("Enemy");
-            if (gameObject.CompareTag("EnemyTagA"))
+            if (gameObject.CompareTag("Bunny"))
             {
-                enemyTagCounter.IncrementCounter("EnemyTagA");
+                enemyTagCounter.IncrementCounter("Bunny");
             }
             else if (gameObject.CompareTag("EnemyTagB"))
             {
