@@ -17,7 +17,7 @@ public class Skill_Activate : MonoBehaviour
     public void Bunny()
     {
         // スキル発動前にデクリメント処理
-        enemyTagCounter.IncrementCounter("Bunny");
+        enemyTagCounter.DecrementCounter("Bunny");
         Instantiate(skill_table.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
         controller.rb.AddForce(new Vector3(0, 100, 0), ForceMode2D.Impulse);
     }

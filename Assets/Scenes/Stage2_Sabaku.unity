@@ -128,6 +128,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2288248301045833836, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
   m_PrefabInstance: {fileID: 564196705}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &290814750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2288248301522731011, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319892602
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,8 +871,32 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2782567607363467986, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+--- !u!1 &564196706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2288248301045833832, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &564196707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564196706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d14ea967c235a40821a53a55cc5560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTagCounter: {fileID: 1440763932}
+  counterTextBunny: {fileID: 1612579693}
+  counterTextB: {fileID: 1202181729}
+  Club: {fileID: 830438459}
+  Axe: {fileID: 290814750}
+  Bunny: {fileID: 1607946807}
 --- !u!1001 &617288752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1241,6 +1276,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804065077}
   m_CullTransparentMesh: 1
+--- !u!114 &830438459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2288248300188461084, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &830663930
 GameObject:
   m_ObjectHideFlags: 3
@@ -13821,6 +13867,28 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &1607946807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2288248300618714168, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1612579693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2288248301111277749, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1932793800
 GameObject:
   m_ObjectHideFlags: 0
@@ -13990,11 +14058,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTagCounter: {fileID: 1440763932}
-  counterTextA: {fileID: 1202181729}
+  counterTextBunny: {fileID: 0}
   counterTextB: {fileID: 1586481094}
   Club: {fileID: 844458422}
   Axe: {fileID: 740450714}
-  bunny: {fileID: 844458421}
+  Bunny: {fileID: 0}
 --- !u!114 &1942112294
 MonoBehaviour:
   m_ObjectHideFlags: 0

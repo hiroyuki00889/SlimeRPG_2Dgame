@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class CounterDisplay : MonoBehaviour
 {
     public EnemyTagCounter enemyTagCounter;
-    public Text counterTextA; // カウンターAを表示するUIテキスト
+    public Text counterTextBunny; // カウンターAを表示するUIテキスト
     public Text counterTextB; // カウンターBを表示するUIテキスト
     public Image Club;
     public Image Axe;
-    public Button bunny;
+    public Button Bunny;
 
 
 
@@ -26,16 +26,18 @@ public class CounterDisplay : MonoBehaviour
             {
                 if (kvp.Value == 0)
                 {
-                    Club.gameObject.SetActive(false); // 画像を非表示
-                    counterTextA.gameObject.SetActive(false);  // テキストを非表示
+                    //Club.gameObject.SetActive(false); // 画像を非表示
+                    Bunny.interactable = false;
+                    counterTextBunny.gameObject.SetActive(false);  // テキストを非表示
                 }
                 else if (kvp.Value >= 1)
                 {
-                    Club.gameObject.SetActive(true);  // 画像を表示
-                    counterTextA.gameObject.SetActive(true);   // テキストを表示
+                    //Club.gameObject.SetActive(true);  // 画像を表示
+                    Bunny.interactable = true;
+                    counterTextBunny.gameObject.SetActive(true);   // テキストを表示
 
                     // テキストに数値を表示
-                    counterTextA.text = kvp.Value.ToString();
+                    counterTextBunny.text = kvp.Value.ToString();
                 }
                 // counterTextA.text = $"EnemyTagA: {kvp.Value}";
             }

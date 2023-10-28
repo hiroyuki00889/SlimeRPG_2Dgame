@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 2288248300618714170}
   - component: {fileID: 2288248300618714171}
   - component: {fileID: 2288248300618714168}
+  - component: {fileID: 2782567607363467986}
   m_Layer: 5
   m_Name: BunnyButton
   m_TagString: Untagged
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2288248300618714182}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -268,6 +269,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2782567607363467986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288248300618714182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d14ea967c235a40821a53a55cc5560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTagCounter: {fileID: 0}
+  counterTextA: {fileID: 2288248301111277749}
+  counterTextB: {fileID: 0}
+  Club: {fileID: 0}
+  Axe: {fileID: 0}
+  Bunny: {fileID: 2288248300618714168}
 --- !u!1 &2288248300929214915
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +562,7 @@ GameObject:
   - component: {fileID: 2288248301111277748}
   - component: {fileID: 2288248301111277749}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: BunnyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
