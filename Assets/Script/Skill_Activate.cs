@@ -38,4 +38,10 @@ public class Skill_Activate : MonoBehaviour
         Destroy(ultrasoounds,2f);
     }
 
+    public void SmallSlime() 
+    {
+        Instantiate(skill_table.skill[3].skill_effect,this.transform.position,Quaternion.identity);
+        controller.SmallSlime();
+    }
+
 }
