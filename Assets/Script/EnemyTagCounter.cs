@@ -49,6 +49,7 @@ public class EnemyTagCounter : MonoBehaviour
         enemyTagCounters.Clear();
         enemyTagCounters.Add("Bunny", 0);
         enemyTagCounters.Add("Dog", 0);
+        enemyTagCounters.Add("Bat", 0);
 
         // 追加: 初期化時に前回のカウンターも更新
         //foreach (var kvp in enemyTagCounters)

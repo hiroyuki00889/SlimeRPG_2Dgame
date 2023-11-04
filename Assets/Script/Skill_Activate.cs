@@ -34,6 +34,8 @@ public class Skill_Activate : MonoBehaviour
 
     public void UltraSounds() 
     {
+        // スキル発動前にデクリメント処理
+        enemyTagCounter.DecrementCounter("Bat");
         GameObject ultrasoounds=Instantiate(skill_table.skill[2].skill_effect,this.transform.position,Quaternion.identity);
         ultrasoounds.transform.SetParent(this.transform);
         Destroy(ultrasoounds,2f);

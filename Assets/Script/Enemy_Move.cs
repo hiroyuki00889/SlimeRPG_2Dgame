@@ -97,9 +97,13 @@ public class Enemy_Move : MonoBehaviour
             {
                 enemyTagCounter.IncrementCounter("Bunny");
             }
-            else if (gameObject.CompareTag("EnemyTagB"))
+            else if (gameObject.CompareTag("Dog"))
             {
-                enemyTagCounter.IncrementCounter("EnemyTagB");
+                enemyTagCounter.IncrementCounter("Dog");
+            }
+            else if (gameObject.CompareTag("Bat"))
+            {
+                enemyTagCounter.IncrementCounter("Bat");
             }
             Debug.Log(enemyTagCounter);
         }

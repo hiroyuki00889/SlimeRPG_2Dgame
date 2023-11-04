@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("playerflagOK");
         }
 
-        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("EnemyTagB"))
+        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
         //���݂�����̃��[���h���W
