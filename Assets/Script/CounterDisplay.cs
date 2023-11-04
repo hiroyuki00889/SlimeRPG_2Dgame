@@ -8,8 +8,6 @@ public class CounterDisplay : MonoBehaviour
     public EnemyTagCounter enemyTagCounter;
     public Text counterTextBunny; // カウンターAを表示するUIテキスト
     public Text counterTextDog; // カウンターBを表示するUIテキスト
-    public Image Club;
-    public Image Axe;
     public Button Bunny;
     public Button Dog;
 
