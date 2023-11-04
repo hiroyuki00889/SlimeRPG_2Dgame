@@ -950,10 +950,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTagCounter: {fileID: 1440763932}
   counterTextBunny: {fileID: 1612579693}
-  counterTextB: {fileID: 1202181729}
+  counterTextDog: {fileID: 1865207166}
   Club: {fileID: 830438459}
   Axe: {fileID: 290814750}
   Bunny: {fileID: 1607946807}
+  Dog: {fileID: 1786618654}
 --- !u!1001 &617288752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13946,6 +13947,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1786618654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2288248300188461085, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1865207166 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2288248300929214917, guid: 3b7db137cc54de24ca75b4908c3bb916, type: 3}
+  m_PrefabInstance: {fileID: 564196705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1932793800
 GameObject:
   m_ObjectHideFlags: 0
@@ -14116,10 +14139,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTagCounter: {fileID: 1440763932}
   counterTextBunny: {fileID: 0}
-  counterTextB: {fileID: 1586481094}
+  counterTextDog: {fileID: 0}
   Club: {fileID: 844458422}
   Axe: {fileID: 740450714}
   Bunny: {fileID: 0}
+  Dog: {fileID: 0}
 --- !u!114 &1942112294
 MonoBehaviour:
   m_ObjectHideFlags: 0

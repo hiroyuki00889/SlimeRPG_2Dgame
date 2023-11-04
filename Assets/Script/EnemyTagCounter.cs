@@ -21,7 +21,7 @@ public class EnemyTagCounter : MonoBehaviour
         }
     }
 
-    // スキルカウンター減少
+        // スキルカウンター減少
     public void DecrementCounter(string enemyTag)
     {
         if (enemyTagCounters.ContainsKey(enemyTag))
@@ -48,7 +48,7 @@ public class EnemyTagCounter : MonoBehaviour
     {
         enemyTagCounters.Clear();
         enemyTagCounters.Add("Bunny", 0);
-        enemyTagCounters.Add("EnemyTagB", 0);
+        enemyTagCounters.Add("Dog", 0);
 
         // 追加: 初期化時に前回のカウンターも更新
         //foreach (var kvp in enemyTagCounters)

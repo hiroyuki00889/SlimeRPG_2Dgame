@@ -24,10 +24,11 @@ public class Skill_Activate : MonoBehaviour
 
     public void Bite()
     {
+        // スキル発動前にデクリメント処理
+        enemyTagCounter.DecrementCounter("Dog");
         GameObject child;
         child = Instantiate(skill_table.skill[1].skill_effect,this.transform.position, Quaternion.identity);
         child.gameObject.GetComponent<BiteClass>().KamuSkill(controller.right, this.gameObject);
-        //デクリメント処理
         this.gameObject.SetActive(false);
     }
 

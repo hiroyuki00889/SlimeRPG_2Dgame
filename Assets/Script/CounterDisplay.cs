@@ -7,10 +7,11 @@ public class CounterDisplay : MonoBehaviour
 {
     public EnemyTagCounter enemyTagCounter;
     public Text counterTextBunny; // カウンターAを表示するUIテキスト
-    public Text counterTextB; // カウンターBを表示するUIテキスト
+    public Text counterTextDog; // カウンターBを表示するUIテキスト
     public Image Club;
     public Image Axe;
     public Button Bunny;
+    public Button Dog;
 
 
 
@@ -41,20 +42,22 @@ public class CounterDisplay : MonoBehaviour
                 }
                 // counterTextA.text = $"EnemyTagA: {kvp.Value}";
             }
-            else if (kvp.Key == "EnemyTagB")
+            else if (kvp.Key == "Dog")
             {
                 if (kvp.Value == 0)
                 {
-                    Axe.gameObject.SetActive(false); // 画像を非表示
-                    counterTextB.gameObject.SetActive(false);  // テキストを非表示
+                    //Club.gameObject.SetActive(false); // 画像を非表示
+                    Dog.interactable = false;
+                    counterTextDog.gameObject.SetActive(false);  // テキストを非表示
                 }
                 else if (kvp.Value >= 1)
                 {
-                    Axe.gameObject.SetActive(true);  // 画像を表示
-                    counterTextB.gameObject.SetActive(true);   // テキストを表示
+                    //Club.gameObject.SetActive(true);  // 画像を表示
+                    Dog.interactable = true;
+                    counterTextDog.gameObject.SetActive(true);   // テキストを表示
 
                     // テキストに数値を表示
-                    counterTextB.text = kvp.Value.ToString();
+                    counterTextDog.text = kvp.Value.ToString();
                 }
                 // counterTextB.text = $"EnemyTagB: {kvp.Value}";
             }
