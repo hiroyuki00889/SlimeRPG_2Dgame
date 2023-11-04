@@ -11,6 +11,7 @@ public class Enemy_Move : MonoBehaviour
     //public float gravity;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private Animator animator;
     private bool right = false;
     // private bool dead = false;
     private ObjectCollision oc;
@@ -18,6 +19,8 @@ public class Enemy_Move : MonoBehaviour
     private GameObject playerOb;
     private float playerpos_x;
     private float enemypos_x;
+    private float distance;
+    private bool coroutine = false;
     private bool enemyRight = true;
 
     private bool opposumright;
@@ -29,6 +32,7 @@ public class Enemy_Move : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         playerOb = GameObject.FindWithTag("Player");
     }
@@ -54,8 +58,11 @@ public class Enemy_Move : MonoBehaviour
             {
                 BatMove();
 
-            } else if (Dog)
+            } else if (spriteRenderer.isVisible && Dog && coroutine == false)
             {
+                //Playerと敵の位置変数の用意
+                playerpos_x = playerOb.transform.position.x;
+                enemypos_x = transform.position.x;
                 DogMove();
 
             } else if (Opossum)
@@ -95,13 +102,6 @@ public class Enemy_Move : MonoBehaviour
                 enemyTagCounter.IncrementCounter("EnemyTagB");
             }
             Debug.Log(enemyTagCounter);
-        }
-        if (spriteRenderer.isVisible && Dog)
-        {
-
-            //Playerと敵の位置変数の用意
-            playerpos_x = playerOb.transform.position.x;
-            enemypos_x = transform.position.x;
         }
     }
     /*void OnTriggerEnter2D(Collider2D other)
@@ -162,9 +162,13 @@ public class Enemy_Move : MonoBehaviour
         {
             enemyRight = true;
             //犬は左に歩く,animation
-            transform.position += new Vector3(-speed * 0.01f, 0, 0);
+            transform.localScale = new Vector3(1,1,1);
+            rb.velocity = new Vector2(-speed , rb.velocity.y);
+            animator.SetFloat("speed", rb.velocity.x * -1);
+            //Playerとenemyの位置変数
+            distance = Vector3.Distance(transform.position, playerOb.transform.position);
             //Playerとの位置が5以内でアニメーション変更
-            if (enemypos_x - playerpos_x <= 5 && time >= 3)
+            if (distance <= 5)
             {
                 StartCoroutine(DogAttack());
                 time = 0;
@@ -175,37 +179,44 @@ public class Enemy_Move : MonoBehaviour
             enemyRight = false;
             time += Time.fixedDeltaTime;
             //犬は右に歩く,animation
-            transform.position += new Vector3(speed * 0.01f, 0, 0);
+            transform.localScale = new Vector3(-1,1,1);
+            rb.velocity = new Vector2(speed , rb.velocity.y);
+            animator.SetFloat("speed", rb.velocity.x);
+            //Playerとenemyの位置変数
+            distance = Vector3.Distance(transform.position, playerOb.transform.position);
             //Playerとの位置が5以内でアニメーション変更
-            if (enemypos_x - playerpos_x <= 5 && time >= 3)
+            if (distance <= 5)
             {
                 StartCoroutine(DogAttack());
                 time = 0;
             }
         }
-        else
-        {
-            rb.Sleep();
-        }
     }
 
     IEnumerator DogAttack()
     {
+        coroutine = true;
+        animator.SetBool("attack", true);
         yield return new WaitForSeconds(1);
         //犬が右にいるので左に突撃、Animation切り替え
         if (enemyRight == true)
         {
-            Debug.Log("totugeki");
-            rb.AddForce(new Vector2(-10f, 0));
-            Invoke(("Stop"), 0.1f);
-            yield return new WaitForSeconds(1);
+            rb.AddForce(new Vector2(-15, 0), ForceMode2D.Impulse);
+            Invoke(("Stop"), 0.4f);
+            animator.SetBool("stop", true);
+            yield return new WaitForSeconds(2);
         }
         //犬が左にいるので右に突撃、Animation切り替え
         else if (enemyRight == false)
         {
-            Debug.Log("totugeki2");
-            rb.AddForce(new Vector2(10f, 1));
+            rb.AddForce(new Vector2(15, 1), ForceMode2D.Impulse);
+            Invoke(("Stop"), 0.4f);
+            animator.SetBool("stop", true);
+            yield return new WaitForSeconds(2);
         }
+        coroutine = false;
+        animator.SetBool("attack", false);
+        animator.SetBool("stop", false);
     }
 
     private void Stop()
