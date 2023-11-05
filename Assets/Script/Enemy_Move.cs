@@ -24,8 +24,9 @@ public class Enemy_Move : MonoBehaviour
     private bool enemyRight = true;
 
     private bool opposumright;
+    private Coroutine pigcoroutine = null;
 
-    [SerializeField] private bool Bunny, Bat, Dog, Opossum;
+    [SerializeField] private bool Bunny, Bat, Dog, Opossum, pig;
 
 
     private void Start()
@@ -84,6 +85,9 @@ public class Enemy_Move : MonoBehaviour
                     }
                     time = 0;
                 }
+            } else if (pig)
+            {
+                PigMove();
             }
         }
         else
@@ -144,7 +148,7 @@ public class Enemy_Move : MonoBehaviour
         }
         else
         {
-            rb.Sleep();
+
         }
     }
 
@@ -166,8 +170,8 @@ public class Enemy_Move : MonoBehaviour
         {
             enemyRight = true;
             //Œ¢‚Í¶‚É•à‚­,animation
-            transform.localScale = new Vector3(1,1,1);
-            rb.velocity = new Vector2(-speed , rb.velocity.y);
+            transform.localScale = new Vector3(1, 1, 1);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
             animator.SetFloat("speed", rb.velocity.x * -1);
             //Player‚Æenemy‚ÌˆÊ’u•Ï”
             distance = Vector3.Distance(transform.position, playerOb.transform.position);
@@ -183,8 +187,8 @@ public class Enemy_Move : MonoBehaviour
             enemyRight = false;
             time += Time.fixedDeltaTime;
             //Œ¢‚Í‰E‚É•à‚­,animation
-            transform.localScale = new Vector3(-1,1,1);
-            rb.velocity = new Vector2(speed , rb.velocity.y);
+            transform.localScale = new Vector3(-1, 1, 1);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
             animator.SetFloat("speed", rb.velocity.x);
             //Player‚Æenemy‚ÌˆÊ’u•Ï”
             distance = Vector3.Distance(transform.position, playerOb.transform.position);
@@ -228,25 +232,79 @@ public class Enemy_Move : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    private void OpossumMove() 
+    private void OpossumMove()
     {
         if (spriteRenderer.isVisible)
         {
-                int xVector = -1;
-                if (opposumright)
-                {
-                    xVector = 1;
-                    transform.localScale = new Vector3(-0.5f, 0.5f, 1);
-                }
-                else
-                {
-                    transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                }
-                rb.velocity = new Vector2(xVector * speed, rb.velocity.y);
+            int xVector = -1;
+            if (opposumright)
+            {
+                xVector = 1;
+                transform.localScale = new Vector3(-0.5f, 0.5f, 1);
             }
-        else 
+            else
+            {
+                transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            }
+            rb.velocity = new Vector2(xVector * speed, rb.velocity.y);
+        }
+        else
         {
             rb.Sleep();
         }
+    }
+
+
+    private void PigMove()
+    {
+        if (spriteRenderer.isVisible)
+        {
+            int xVector = -1;
+            if (playerOb.transform.position.x>this.transform.position.x)
+            {
+                xVector = 1;
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            if (pigcoroutine == null)
+            {
+                if ((playerOb.transform.position - this.transform.position).sqrMagnitude < 9)
+                {
+                    pigcoroutine = StartCoroutine(PigJump());
+                }
+                else
+                {
+                    rb.velocity = new Vector2(xVector * speed, rb.velocity.y);
+                }
+            }
+            
+            else 
+            {
+
+            }
+        }
+        else
+        {
+            rb.Sleep();
+        }
+    }
+
+    private IEnumerator PigJump() 
+    {
+        rb.gravityScale = 0;
+        rb.velocity = new Vector2(0, 6);
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        rb.velocity = new Vector2(0, -20);
+        yield return new WaitUntil(() =>rb.velocity.y==0);
+        yield return new WaitForSeconds(1f);
+        rb.gravityScale = 1;
+        pigcoroutine = null;
+        yield break;
     }
 }
