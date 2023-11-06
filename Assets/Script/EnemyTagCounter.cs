@@ -30,6 +30,7 @@ public class EnemyTagCounter : MonoBehaviour
         }
     }
 
+    //カウンター取得
     public int GetCounter(string enemyTag)
     {
         if (enemyTagCounters.ContainsKey(enemyTag))
