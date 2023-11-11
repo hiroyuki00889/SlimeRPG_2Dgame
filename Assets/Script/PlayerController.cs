@@ -11,16 +11,16 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     private EnemyTagCounter enemyTagCounter;
     private int maxjump;
-    private int restjump; //�W�����v��
+    private int restjump; //ジャンプ回数
     Animator animator;
     private CapsuleCollider2D capsulecollider;
-    [Header("���݂�����̊���")] public float stepOnRate;
+    [Header("Playerの踏みつけ判定足下から何割足すか")] public float stepOnRate;
 
-    public GroundCheck ground; //�ڒn����p
+    public GroundCheck ground; //接地判定用
 
     private float time = 1;
     public bool right = false;
-    public bool down=false; //���S�t���O
+    public bool down=false; //死亡フラグ
     private bool small;
     private float cashe_steponrate;
     //[SerializeField] private CursorScript cursorscript;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         animator= GetComponent<Animator>();
         capsulecollider= GetComponent<CapsuleCollider2D>();
         enemyTagCounter= GetComponent<EnemyTagCounter>();
-        maxjump = 3; //if���Ńt���O�擾�̔���
+        maxjump = 3; //if文でフラグ取得の判定
         restjump = maxjump;
         cashe_steponrate = stepOnRate;
     }
@@ -153,23 +153,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //NDialog�\���̃t���Oon�F�Փ˂�������̃^�O��Events
-        if (collision.gameObject.CompareTag("Events"))
-        {
-            animateNDialog.isNDialog = true;
-            Debug.Log("playerflagOK");
-        }
 
         if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
-        //���݂�����̃��[���h���W
+        //踏みつけ判定のワールド座標
         float judgePos = transform.position.y - (capsulecollider.size.y / 2f) + stepOnHeight;
         foreach (ContactPoint2D p in collision.contacts)
         {
             if (p.point.y < judgePos)
             {
-                    //���񂾎��̏���
+                    //踏んだ時の処理
                     //animator.Play("change1");
                     collision.gameObject.GetComponent<ObjectCollision>().step = true;
             }
@@ -177,8 +171,8 @@ public class PlayerController : MonoBehaviour
             {
                     if (!small)
                     {
-                        //�_�E������
-                        //animator.Play("Player_Down"); //���񂾎��̃A�j���[�V����
+                        //ダウンする
+                        //animator.Play("Player_Down"); //死んだときのアニメーション
                         down = true;
                     }
                     else 
@@ -202,13 +196,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //AnimateNDialog animateNDialog = gameObject.AddComponent<AnimateNDialog>();
-        //FirstEvent firstEvent = gameObject.AddComponent<FirstEvent>();
-        //�Փ˂�������̃^�O��Events���A1�x����̃t���O���I���ɂȂ��Ă��邩
-        if (collision.gameObject.CompareTag("Events") && firstEvent != null && firstEvent.isFirstEvent == true
-            )
+        //ナレーターイベントのbool値判定、必要な分追加していく
+        if (firstEvent != null && firstEvent.isFirstEvent)
         {
-            animateNDialog.DialogNarratorOpen();
+            //Eventsタグでナレーターダイアログを開く
+            if (collision.gameObject.CompareTag("Events") )
+            {
+                animateNDialog.DialogNarratorOpen();
+            }
         }
     }
 

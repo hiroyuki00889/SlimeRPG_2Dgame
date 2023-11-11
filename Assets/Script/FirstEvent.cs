@@ -28,7 +28,7 @@ public class FirstEvent : MonoBehaviour
 
     private void Update()
     {
-        //ナレーターダイアログが開いている間、エンターキーを押すと、文章送り
+        //ナレーターダイアログが開いている間、左クリックを押すと、文章送り
         if (animateNDialog.IsOpen && animateNDialog.enterTrigger == true)
         {
             if (i < words.Length-1)
@@ -38,7 +38,7 @@ public class FirstEvent : MonoBehaviour
                 animateNDialog.enterTrigger = false;
             }
 
-            //最後の文章になって、エンターキーを押すとフラグオフ、Textオブジェクトを非アクティブにする
+            //最後の文章になって、左クリックを押すとフラグオフ、Textオブジェクトを非アクティブにする
             if(i >= words.Length-1 && animateNDialog.enterTrigger == true) 
             {
                 isFirstEvent = false;
