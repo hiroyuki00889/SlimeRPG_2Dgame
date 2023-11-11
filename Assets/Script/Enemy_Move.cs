@@ -272,9 +272,9 @@ public class Enemy_Move : MonoBehaviour
 
             if (pigcoroutine == null)
             {
-                if ((playerOb.transform.position - this.transform.position).sqrMagnitude < 9)
+                if ((playerOb.transform.position - this.transform.position).sqrMagnitude < 25)
                 {
-                    pigcoroutine = StartCoroutine(PigJump());
+                    pigcoroutine = StartCoroutine(PigJump(xVector));
                 }
                 else
                 {
@@ -293,17 +293,18 @@ public class Enemy_Move : MonoBehaviour
         }
     }
 
-    private IEnumerator PigJump() 
+    private IEnumerator PigJump(int xVector) 
     {
         rb.gravityScale = 0;
-        rb.velocity = new Vector2(0, 6);
-        yield return new WaitForSeconds(0.5f);
+        rb.velocity = new Vector2(3*xVector, 6);
+        yield return new WaitForSeconds(0.5f); //ã¸
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);//‰º~
         rb.velocity = new Vector2(0, -20);
         yield return new WaitUntil(() =>rb.velocity.y==0);
         yield return new WaitForSeconds(1f);
         rb.gravityScale = 1;
+        yield return new WaitForSeconds(0.5f);
         pigcoroutine = null;
         yield break;
     }
