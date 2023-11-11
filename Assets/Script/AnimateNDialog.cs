@@ -10,48 +10,31 @@ public class AnimateNDialog : MonoBehaviour
     [SerializeField] FirstEvent firstEvent;
 
     //[SerializeField] FirstEnemy firstEnemy;
-    // IsOpen�t���O(�A�j���[�^�[�R���g���[���[���Œ�`�����t���O)
+    // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
-    public bool IsOpen => gameObject.activeSelf;// �_�C�A���O�͊J���Ă��邩�ǂ���
-    public bool IsTransition = false;// �A�j���[�V���������ǂ���
-    public bool enterTrigger = false;//�G���^�[�L�[�ŉ�b��i�߂�t���O
-    public bool isNDialog = false; //NDialog�\���t���O
+    public bool IsOpen => gameObject.activeSelf;// ダイアログは開いているかどうか
+    public bool IsTransition = false;// アニメーション中かどうか
+    public bool enterTrigger = false;//文章送りに使うbool値
 
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //�Փ˂�������̃^�O��Events���A1�x����̃t���O���I���ɂȂ��Ă��邩
-        if (collision.gameObject.CompareTag("Events") && firstEvent != null && firstEvent.isFirstEvent == true
-            )
-        {
-            DialogNarratorOpen();
-        }
-    }
     private void Update()
     {
 
-        //�i���[�^�[�_�C�A���O���A�N�e�B�u���A�G���^�[�L�[�Ńi���[�^�[�̕��͂�i�߂�g���K�[�ݒ�
-        if (Input.GetKeyDown(KeyCode.Return) && gameObject.activeSelf == true)
+        //ダイアログが開いていて左クリックをしたら文章送りのboolをtrueにする
+        if (Input.GetMouseButtonDown(0) && gameObject.activeSelf == true)
         {
             enterTrigger = true;
         }
-        //�Փ˂�������̃^�O��Events���A1�x����̊e�t���O���I���ɂȂ��Ă��邩
-        if (isNDialog == true && firstEvent.isFirstEvent == true
-            )
-        {
-            DialogNarratorOpen();
 
-        }
         //
         if (enterTrigger == true && firstEvent.isFirstEvent == false) 
         {
             DialogNarratorClose();
             enterTrigger = false;
-            isNDialog= false;
         }
     }
 
@@ -59,29 +42,29 @@ public class AnimateNDialog : MonoBehaviour
     public void DialogNarratorOpen()
 
     {
-        if (IsOpen || IsTransition) return; // �s������h�~
-        gameObject.SetActive(true); // DialogNarrator���̂��A�N�e�B�u�ɂ���
-        m_Animator.SetBool(ParamIsOpen, true); // IsOpen�t���O��true�ɃZ�b�g
-        // �A�j���[�V�����ҋ@
+        if (IsOpen || IsTransition) return; // 不正操作防止
+        gameObject.SetActive(true); // DialogNarratorをアクティブにする
+        m_Animator.SetBool(ParamIsOpen, true); // IsOpenフラグをtrueにセット
+        // アニメーション待機
         StartCoroutine(WaitAnimation("Shown"));
     }
 
     private void DialogNarratorClose()
     {   
         if (!IsOpen || IsTransition) return;
-        m_Animator.SetBool(ParamIsOpen, false); // IsOpen�t���O��false�ɃZ�b�g
-        // �A�j���[�V�����ҋ@���A�I�������p�l�����̂��A�N�e�B�u�ɂ���
+        m_Animator.SetBool(ParamIsOpen, false); // IsOpenフラグをfalseにセット
+        // アニメーション待機し、終わったらパネル自体を非アクティブにする
         StartCoroutine(WaitAnimation("Hidden", () => gameObject.SetActive(false)));
     }
 
     private IEnumerator WaitAnimation(string stateName, UnityAction onCompleted = null)
     {
-        //���̃u�[���l��true�̊Ԃ͏�2�̊֐��������Ȃ�
+        //このブール値がtrueの間は上2つの関数が動かない
         IsTransition = true;
 
         yield return new WaitUntil(() =>
         {
-              //�X�e�[�g���ω����A�A�j���[�V�������I������܂őҋ@
+              //ステートが変化し、アニメーションが終了するまで待機
               var state = m_Animator.GetCurrentAnimatorStateInfo(layer);
               return state.IsName(stateName) && state.normalizedTime >= 1;
         });
