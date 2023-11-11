@@ -13,11 +13,17 @@ public class BatMove : MonoBehaviour
     private GameObject player;
     private ObjectCollision oc;
     [SerializeField] private GameObject ultraSounds;
+    private Animator anim;
+
+    private int batfall = Animator.StringToHash("BatFall");
+    private int batattack = Animator.StringToHash("BatAttack");
+    private int batmove = Animator.StringToHash("BatMove");
 
     private Vector3 destination;
 
     void Start()
     {
+        anim= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         oc= GetComponent<ObjectCollision>();
@@ -36,6 +42,7 @@ public class BatMove : MonoBehaviour
 
             if (!punish && move)
             {
+                anim.SetTrigger(batattack);
                 StartCoroutine(Magic());
                 Debug.Log("èIóπ");
             }
@@ -51,6 +58,7 @@ public class BatMove : MonoBehaviour
     private IEnumerator FirstMove()
     {
         Debug.Log("aaaaa");
+        anim.SetTrigger(batfall); //
         while (destination.y+1 < this.transform.position.y)
         {
             rb.velocity = new Vector3(0, -3, 0);
@@ -70,14 +78,17 @@ public class BatMove : MonoBehaviour
         magic.gameObject.transform.SetParent(this.gameObject.transform);
         yield return new WaitForSeconds(2f);
         Destroy(magic);
+        anim.SetTrigger(batmove);
         yield return new WaitForSeconds(2f);
         if (player.transform.position.x < this.transform.position.x)
         {
             destination.x = -5;
+            this.transform.localScale=new Vector3(-1,1,1);
         }
         else
         {
             destination.x = 5;
+            this.transform.localScale = new Vector3(1, 1, 1);
         }
         if (Mathf.Abs(player.transform.position.y - this.transform.position.y) < 1)
         {
