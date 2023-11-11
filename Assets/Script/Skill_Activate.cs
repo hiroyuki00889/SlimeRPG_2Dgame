@@ -47,4 +47,13 @@ public class Skill_Activate : MonoBehaviour
         controller.SmallSlime();
     }
 
+    public void Fire()
+    {
+        // スキル発動前にデクリメント処理
+        enemyTagCounter.DecrementCounter("Dino");
+        GameObject fire = Instantiate(skill_table.skill[4].skill_effect, this.transform.position, Quaternion.identity);
+        fire.transform.SetParent(this.transform);
+        Destroy(fire, 2f);
+    }
+
 }

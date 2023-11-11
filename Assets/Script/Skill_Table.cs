@@ -16,7 +16,8 @@ public class Skill
         Bite,
         UltraSounds,
         JumpEnhance,
-        SmallSlime
+        SmallSlime,
+        Fire
     }
     public Skills skill_type;
     public GameObject skill_effect;
