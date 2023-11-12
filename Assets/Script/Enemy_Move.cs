@@ -159,13 +159,7 @@ public class Enemy_Move : MonoBehaviour
 
     private void DogMove()
     {
-        //画面内に入ったら
-        /*if (spriteRenderer.isVisible)
-        {
-            //Playerと敵の位置変数の用意
-            playerpos = playerOb.transform.position;
-            enemypos = transform.position;
-        }*/
+        animator.SetBool("goState", false);
         if (playerpos_x < enemypos_x)　//敵の位置がPlayerより右の場合
         {
             enemyRight = true;
@@ -222,9 +216,10 @@ public class Enemy_Move : MonoBehaviour
             animator.SetBool("stop", true);
             yield return new WaitForSeconds(2);
         }
-        coroutine = false;
+        animator.SetBool("goState", true);
         animator.SetBool("attack", false);
         animator.SetBool("stop", false);
+        coroutine = false;
     }
 
     private void Stop()
