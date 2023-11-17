@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Xml.Xsl;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.Events;
 
 public class Enemy_Move : MonoBehaviour
 {
@@ -173,13 +175,11 @@ public class Enemy_Move : MonoBehaviour
             if (distance <= 5)
             {
                 StartCoroutine(DogAttack());
-                time = 0;
             }
         }
         else if (playerpos_x > enemypos_x)　//敵の位置がPlayerより左の場合
         {
             enemyRight = false;
-            time += Time.fixedDeltaTime;
             //犬は右に歩く,animation
             transform.localScale = new Vector3(-1, 1, 1);
             rb.velocity = new Vector2(speed, rb.velocity.y);
@@ -190,7 +190,6 @@ public class Enemy_Move : MonoBehaviour
             if (distance <= 5)
             {
                 StartCoroutine(DogAttack());
-                time = 0;
             }
         }
     }
@@ -205,26 +204,38 @@ public class Enemy_Move : MonoBehaviour
         {
             rb.AddForce(new Vector2(-15, 0), ForceMode2D.Impulse);
             Invoke(("Stop"), 0.4f);
-            animator.SetBool("stop", true);
-            yield return new WaitForSeconds(2);
+            StartCoroutine(WaitAnimation("Dog_Attack"));            
+            yield return new WaitForSeconds(2);           
         }
         //犬が左にいるので右に突撃、Animation切り替え
         else if (enemyRight == false)
         {
             rb.AddForce(new Vector2(15, 1), ForceMode2D.Impulse);
             Invoke(("Stop"), 0.4f);
-            animator.SetBool("stop", true);
-            yield return new WaitForSeconds(2);
+            StartCoroutine(WaitAnimation("Dog_Attack"));
+            yield return new WaitForSeconds(2);    
         }
+        animator.SetTrigger("stop");
         animator.SetBool("goState", true);
         animator.SetBool("attack", false);
-        animator.SetBool("stop", false);
+        
         coroutine = false;
     }
 
     private void Stop()
     {
         rb.velocity = Vector2.zero;
+    }
+
+    private IEnumerator WaitAnimation(string stateName, UnityAction onCompleted = null)
+    {
+        yield return new WaitUntil(() =>
+        {
+            //ステートが変化し、アニメーションが終了するまで待機
+            var state = animator.GetCurrentAnimatorStateInfo(0);
+            return state.IsName(stateName) && state.normalizedTime >= 1;
+        });
+        onCompleted?.Invoke();
     }
 
     private void OpossumMove()
