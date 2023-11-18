@@ -38,6 +38,8 @@ public class Enemy_Move : MonoBehaviour
         animator = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         playerOb = GameObject.FindWithTag("Player");
+
+
     }
 
 
