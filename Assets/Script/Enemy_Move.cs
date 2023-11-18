@@ -28,7 +28,7 @@ public class Enemy_Move : MonoBehaviour
     private bool opposumright;
     private Coroutine pigcoroutine = null;
 
-    [SerializeField] private bool Bunny, Bat, Dog, Opossum, pig;
+    [SerializeField] private bool Bunny, Bat, Dog, Opossum, pig, Dino;
 
 
     private void Start()
@@ -63,14 +63,16 @@ public class Enemy_Move : MonoBehaviour
             {
                 BatMove();
 
-            } else if (spriteRenderer.isVisible && Dog && coroutine == false)
+            }
+            else if (spriteRenderer.isVisible && Dog && coroutine == false)
             {
                 //PlayerÇ∆ìGÇÃà íuïœêîÇÃópà”
                 playerpos_x = playerOb.transform.position.x;
                 enemypos_x = transform.position.x;
                 DogMove();
 
-            } else if (Opossum)
+            }
+            else if (Opossum)
             {
                 OpossumMove();
                 if (time < 0.5)
@@ -89,10 +91,13 @@ public class Enemy_Move : MonoBehaviour
                     }
                     time = 0;
                 }
-            } else if (pig)
+            }
+            else if (pig)
             {
                 PigMove();
             }
+            else if (Dino)
+                DinoMove();
         }
         else
         {
@@ -159,6 +164,33 @@ public class Enemy_Move : MonoBehaviour
     private void BatMove()
     {
         //ÂûÂïÇÃìÆÇ´
+    }
+    private void DinoMove()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+        rb.velocity = new Vector2(-speed, rb.velocity.y);
+        animator.SetFloat("speed", rb.velocity.x * -1);
+        //ã∞ó≥ÇÃìÆÇ´
+        /*-time += Time.fixedDeltaTime;
+        if (spriteRenderer.isVisible)
+        {
+            int xVector = -1;
+            if (right)
+            {
+                xVector = 1;
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (time > 3)
+            {
+                time = 0;
+                rb.velocity = new Vector2(xVector * speed, 10);
+            }
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+        }*/
     }
 
     private void DogMove()
