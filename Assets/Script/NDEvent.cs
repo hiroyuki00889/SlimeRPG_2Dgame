@@ -35,16 +35,16 @@ public class NDEvent : MonoBehaviour
     {
         isCallOnece = true;
         //”»’è—p•Ï””z—ñ‚Ì—v‘f‚ğ‡”Ô‚É”»’è
-        for (int i  = 0; i <= hantei.Length-1; i++)
+        /*for (int i  = 0; i <= hantei.Length-1; i++)
         {
-            /*if ()
+            if ()
             {
 
             }
             if else (){
 
-            }*/
-        }
+            }
+        }*/
         isNDEvent = true;
     }
 
