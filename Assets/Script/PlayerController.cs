@@ -197,14 +197,14 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //ナレーターイベントのbool値判定、必要な分追加していく
-        if (ndEvent.isNDEvent)
+        /*if (ndEvent.isNDEvent)
         {
             //Eventsタグでナレーターダイアログを開く
             if (collision.gameObject.CompareTag("Events") )
             {
                 animateNDialog.DialogNarratorOpen();
             }
-        }
+        }*/
     }
 
     public void SmallSlime() 
