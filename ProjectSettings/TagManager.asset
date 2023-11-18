@@ -15,6 +15,7 @@ TagManager:
   - Dog
   - Opossum
   - AttackCollider
+  - Dino
   layers:
   - Default
   - TransparentFX
