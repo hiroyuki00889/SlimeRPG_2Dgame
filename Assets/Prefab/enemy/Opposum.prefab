@@ -103,7 +103,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012685537, y: -0.012685657}
+  m_Offset: {x: -0.009912491, y: -0.012685657}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -114,7 +114,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0262847, y: 1.0770271}
+  m_Size: {x: 1.553154, y: 1.0770271}
   m_EdgeRadius: 0.12
 --- !u!50 &6131338247968321384
 Rigidbody2D:
@@ -156,6 +156,7 @@ MonoBehaviour:
   Dog: 0
   Opossum: 1
   pig: 0
+  Dino: 0
 --- !u!114 &6131338247968321386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,8 +237,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.3761196, y: 0}
-  m_Size: {x: 0.082089424, y: 1.1671643}
+  m_Offset: {x: -0.1, y: 0}
+  m_Size: {x: 0.037771642, y: 1.1671643}
   m_Direction: 0
 --- !u!114 &6131338247986121934
 MonoBehaviour:
