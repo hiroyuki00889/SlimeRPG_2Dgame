@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private CursorScript cursorscript;
     //[SerializeField] private Skill_Activate skill_Activate;
     [SerializeField] private Animator m_Animator;
-    [SerializeField] FirstEvent firstEvent;
+    [SerializeField] NDEvent ndEvent;
     [SerializeField] AnimateNDialog animateNDialog;
 
     void Start()
@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //ナレーターイベントのbool値判定、必要な分追加していく
-        if (firstEvent != null && firstEvent.isFirstEvent)
+        if (ndEvent.isNDEvent)
         {
             //Eventsタグでナレーターダイアログを開く
             if (collision.gameObject.CompareTag("Events") )

@@ -7,14 +7,14 @@ public class AnimateNDialog : MonoBehaviour
 {
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
-    [SerializeField] FirstEvent firstEvent;
+    [SerializeField] NDEvent ndEvent;
 
     //[SerializeField] FirstEnemy firstEnemy;
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
     public bool IsOpen => gameObject.activeSelf;// ダイアログは開いているかどうか
     public bool IsTransition = false;// アニメーション中かどうか
-    public bool enterTrigger = false;//文章送りに使うbool値
+    public bool n_SentenceTrigger = false;//文章送りに使うbool値
 
     private void Start()
     {
@@ -27,14 +27,14 @@ public class AnimateNDialog : MonoBehaviour
         //ダイアログが開いていて左クリックをしたら文章送りのboolをtrueにする
         if (Input.GetMouseButtonDown(0) && gameObject.activeSelf == true)
         {
-            enterTrigger = true;
+            n_SentenceTrigger = true;
         }
 
-        //
-        if (enterTrigger == true && firstEvent.isFirstEvent == false) 
+        //文章が表示されていて、表示フラグがfalseになったら閉じる
+        if (n_SentenceTrigger == true && ndEvent.isNDEvent == false)
         {
             DialogNarratorClose();
-            enterTrigger = false;
+            n_SentenceTrigger = false;
         }
     }
 
@@ -50,7 +50,7 @@ public class AnimateNDialog : MonoBehaviour
     }
 
     private void DialogNarratorClose()
-    {   
+    {
         if (!IsOpen || IsTransition) return;
         m_Animator.SetBool(ParamIsOpen, false); // IsOpenフラグをfalseにセット
         // アニメーション待機し、終わったらパネル自体を非アクティブにする
@@ -64,9 +64,9 @@ public class AnimateNDialog : MonoBehaviour
 
         yield return new WaitUntil(() =>
         {
-              //ステートが変化し、アニメーションが終了するまで待機
-              var state = m_Animator.GetCurrentAnimatorStateInfo(layer);
-              return state.IsName(stateName) && state.normalizedTime >= 1;
+            //ステートが変化し、アニメーションが終了するまで待機
+            var state = m_Animator.GetCurrentAnimatorStateInfo(layer);
+            return state.IsName(stateName) && state.normalizedTime >= 1;
         });
 
         IsTransition = false;
