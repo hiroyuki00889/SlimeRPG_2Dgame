@@ -169,7 +169,7 @@ public class Enemy_Move : MonoBehaviour
     {
         transform.localScale = new Vector3(1, 1, 1);
         rb.velocity = new Vector2(-speed, rb.velocity.y);
-        animator.SetFloat("speed", rb.velocity.x * -1);
+        //animator.SetFloat("speed", rb.velocity.x * -1);
         //‹°—³‚Ì“®‚«
         /*-time += Time.fixedDeltaTime;
         if (spriteRenderer.isVisible)
