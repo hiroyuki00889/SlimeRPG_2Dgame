@@ -28,7 +28,7 @@ public class Enemy_Move : MonoBehaviour
     private bool opposumright;
     private Coroutine pigcoroutine = null;
 
-    [SerializeField] private bool Bunny, Bat, Dog, Opossum, pig, Dino;
+    [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino;
 
 
     private void Start()
@@ -38,8 +38,6 @@ public class Enemy_Move : MonoBehaviour
         animator = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         playerOb = GameObject.FindWithTag("Player");
-
-
     }
 
 
@@ -92,7 +90,7 @@ public class Enemy_Move : MonoBehaviour
                     time = 0;
                 }
             }
-            else if (pig)
+            else if (Pig)
             {
                 PigMove();
             }
@@ -135,10 +133,19 @@ public class Enemy_Move : MonoBehaviour
     }*/
     private void BunnyMove()
     {
-        time += Time.fixedDeltaTime;
+       
         if (spriteRenderer.isVisible)
         {
+
+                animator.SetInteger("BunnyMove",(int)rb.velocity.y); 
+
+            if (rb.velocity.y==0)
+            {
+                time += Time.fixedDeltaTime; 
+            }
+
             int xVector = -1;
+
             if (right)
             {
                 xVector = 1;
@@ -154,10 +161,6 @@ public class Enemy_Move : MonoBehaviour
                 rb.velocity = new Vector2(xVector * speed, 10);
             }
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
-        }
-        else
-        {
-
         }
     }
 
@@ -314,6 +317,7 @@ public class Enemy_Move : MonoBehaviour
             {
                 if ((playerOb.transform.position - this.transform.position).sqrMagnitude < 25)
                 {
+                    animator.SetTrigger("PigJump");
                     pigcoroutine = StartCoroutine(PigJump(xVector));
                 }
                 else
@@ -339,9 +343,18 @@ public class Enemy_Move : MonoBehaviour
         rb.velocity = new Vector2(3*xVector, 6);
         yield return new WaitForSeconds(0.5f); //ã¸
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(0.4f);//‰º~
-        rb.velocity = new Vector2(0, -20);
+        //yield return new WaitForSeconds(0.4f);//‘Ø‹óŽžŠÔ
+        int rnd = Random.Range(1,11);
+        WaitForSeconds w=new WaitForSeconds(0.1f);
+        for (int i=0;i<rnd;i++)
+        {
+            //—h‚ç‚·ˆ—
+            //rnd-1‚ÅŽ~‚Ü‚é
+            yield return w;
+        }
+        rb.velocity = new Vector2(0, -20);//‰º~
         yield return new WaitUntil(() =>rb.velocity.y==0);
+        animator.SetTrigger("PigRun");
         yield return new WaitForSeconds(1f);
         rb.gravityScale = 1;
         yield return new WaitForSeconds(0.5f);
