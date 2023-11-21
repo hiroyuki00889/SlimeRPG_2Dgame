@@ -9,7 +9,6 @@ public class AnimateNDialog : MonoBehaviour
     [SerializeField] private int layer;
     [SerializeField] NDEvent ndEvent;
 
-    //[SerializeField] FirstEnemy firstEnemy;
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
     public bool IsOpen => gameObject.activeSelf;// ダイアログは開いているかどうか

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AnimateTDialog : MonoBehaviour
+/*public class AnimateTDialog : MonoBehaviour
 {
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
@@ -72,5 +72,5 @@ public class AnimateTDialog : MonoBehaviour
         t_IsTransition = false;
         onCompleted?.Invoke();
     }
-}
+}*/
 
