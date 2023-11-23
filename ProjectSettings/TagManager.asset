@@ -16,6 +16,7 @@ TagManager:
   - Opossum
   - AttackCollider
   - Dino
+  - Fire
   layers:
   - Default
   - TransparentFX

@@ -95,7 +95,11 @@ public class Enemy_Move : MonoBehaviour
                 PigMove();
             }
             else if (Dino)
+            {
+                playerpos_x = playerOb.transform.position.x;
+                enemypos_x = transform.position.x;
                 DinoMove();
+            }
         }
         else
         {
@@ -170,31 +174,25 @@ public class Enemy_Move : MonoBehaviour
     }
     private void DinoMove()
     {
-        transform.localScale = new Vector3(1, 1, 1);
-        rb.velocity = new Vector2(-speed, rb.velocity.y);
-        //animator.SetFloat("speed", rb.velocity.x * -1);
-        //ã∞ó≥ÇÃìÆÇ´
-        /*-time += Time.fixedDeltaTime;
-        if (spriteRenderer.isVisible)
+        distance = Vector3.Distance(transform.position, playerOb.transform.position);
+        if (distance <= 3) //ìGÇÃà íuÇ™PlayerÇÊÇËâEÇÃèÍçá
         {
-            int xVector = -1;
-            if (right)
-            {
-                xVector = 1;
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            if (time > 3)
-            {
-                time = 0;
-                rb.velocity = new Vector2(xVector * speed, 10);
-            }
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
-        }*/
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            // DinoFire();
+
+        }
+        else if (playerpos_x < enemypos_x) //ìGÇÃà íuÇ™PlayerÇÊÇËâEÇÃèÍçá
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+        }
+        else if(playerpos_x >= enemypos_x) //ìGÇÃà íuÇ™PlayerÇÊÇËç∂ÇÃèÍçá
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+        }
     }
+
 
     private void DogMove()
     {
