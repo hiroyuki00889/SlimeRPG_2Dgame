@@ -343,15 +343,8 @@ public class Enemy_Move : MonoBehaviour
         yield return new WaitForSeconds(0.5f); //ã¸
         rb.velocity = Vector2.zero;
         //yield return new WaitForSeconds(0.4f);//‘Ø‹óŠÔ
-        int rnd = Random.Range(1,11);
-        WaitForSeconds w=new WaitForSeconds(0.1f);
-        /*for (int i=0;i<rnd;i++)
-        {
-            //—h‚ç‚·ˆ—
-            //rnd-1‚Å~‚Ü‚é
-            yield return w;
-        }*/
-        this.transform.DOShakePosition(rnd - 0.1f,50f,30,10f,false); //‚±‚±‚Å‚·
+        float rnd = Random.Range(2,10)/10f;
+        this.transform.DOShakePosition(rnd-0.1f,1f,20,90f,false); //‚±‚±‚Å‚·
         rb.velocity = new Vector2(0, -20);//‰º~
         yield return new WaitUntil(() =>rb.velocity.y==0);
         animator.SetTrigger("PigRun");
