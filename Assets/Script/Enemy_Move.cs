@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Runtime.CompilerServices;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class Enemy_Move : MonoBehaviour
 {
@@ -344,12 +345,13 @@ public class Enemy_Move : MonoBehaviour
         //yield return new WaitForSeconds(0.4f);//‘Ø‹óŽžŠÔ
         int rnd = Random.Range(1,11);
         WaitForSeconds w=new WaitForSeconds(0.1f);
-        for (int i=0;i<rnd;i++)
+        /*for (int i=0;i<rnd;i++)
         {
             //—h‚ç‚·ˆ—
             //rnd-1‚ÅŽ~‚Ü‚é
             yield return w;
-        }
+        }*/
+        //this.transform.DOShakePosition(rnd - 0.1,1,5,1,180,false); //‚±‚±‚Å‚·
         rb.velocity = new Vector2(0, -20);//‰º~
         yield return new WaitUntil(() =>rb.velocity.y==0);
         animator.SetTrigger("PigRun");
