@@ -351,7 +351,7 @@ public class Enemy_Move : MonoBehaviour
             //rnd-1‚ÅŽ~‚Ü‚é
             yield return w;
         }*/
-        //this.transform.DOShakePosition(rnd - 0.1,1,5,1,180,false); //‚±‚±‚Å‚·
+        this.transform.DOShakePosition(rnd - 0.1f,50f,30,10f,false); //‚±‚±‚Å‚·
         rb.velocity = new Vector2(0, -20);//‰º~
         yield return new WaitUntil(() =>rb.velocity.y==0);
         animator.SetTrigger("PigRun");
