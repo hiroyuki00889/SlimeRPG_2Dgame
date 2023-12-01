@@ -4,34 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NDEvent : MonoBehaviour
+public class TDEvent : MonoBehaviour
 {
-
-    [SerializeField] AnimateNDialog animateNDialog;
+    [SerializeField] AnimateTDialog animateTDialog;
     bool isCallOnece = false;
-    public Text ndEventText;
-    private string[] parts;
-    int i = 0;
-    public bool isNDEvent = false;
+    public Text nameText;
+    public Text tdEventText;
+    string[] parts;
+    int i = 1;
+    public bool isTDEvent = false;
     ////辞書定義
     private Dictionary<string, string> ndEvent = new Dictionary<string, string>();
 
     private void Start()
     {
-        ndEvent.Add("NDEventTag1-A", "魔物の縄張りに住むスライムは平和に暮らしていました,,しかし、あることで縄張りを治める四天王にムカついてしまいました,,スライムは四天王を倒す旅に出ます");
-        ndEvent.Add("NDEventTagB", "イベントタグBの文章です");
-        ndEvent.Add("NDEventTagC", "イベントタグCの文章です");
-        ndEvent.Add("NDEventTagD", "イベントタグDの文章です");
+        ndEvent.Add("TDEventTag1-A", "悟空,,オッス、オラ悟空！,,この世界にはつえーやつがたくさんいるんだな,,オラワクワクすっぞ！");
+        ndEvent.Add("TDEventTagB", "イベントタグBの文章です");
+        ndEvent.Add("TDEventTagC", "イベントタグCの文章です");
+        ndEvent.Add("TDEventTagD", "イベントタグDの文章です");
         // ここに会話文追加
     }
 
-    public void StartNDEvent(string eventTag)
+    public void StartTDEvent(string eventTag)
     {
         // コライダーのタグで会話内容を取得
-        if (ndEvent.TryGetValue(eventTag, out string ndEventText))
+        if (ndEvent.TryGetValue(eventTag, out string tdEventText))
         {
             // 会話内容を表示
-            DisplayNDEvent(ndEventText);
+            DisplayTDEvent(tdEventText);
         }
         else
         {
@@ -40,13 +40,15 @@ public class NDEvent : MonoBehaviour
         }
     }
 
-    void DisplayNDEvent(string text)
+    void DisplayTDEvent(string text)
     {
         string delimiter = ",,"; //区切り文字
         //区切り文字で区切ったパートを配列に入れる処理
         parts = text.Split(new[] { delimiter }, StringSplitOptions.None);
+        //名前入力
+        nameText.text = parts[0];
         //最初の文章入力
-        ndEventText.text = parts[0];
+        tdEventText.text = parts[1];
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -54,27 +56,27 @@ public class NDEvent : MonoBehaviour
         //一度しか呼び出されないフラグがfalseかつ、衝突してきた相手がPlayer
         if (!isCallOnece && collider.gameObject.CompareTag("Player"))
         {
-            isCallOnece = true;           
-            isNDEvent = true;
+            isCallOnece = true;
+            isTDEvent = true;
         }
     }
 
     private void Update()
     {
         //ナレーターダイアログが開いている間、左クリックを押すと、文章送り
-        if (animateNDialog.IsOpen && animateNDialog.n_SentenceTrigger == true)
+        if (animateTDialog.t_IsOpen && animateTDialog.t_SentenceTrigger == true)
         {
             if (i < parts.Length - 1)
             {
                 i++;
-                ndEventText.text = parts[i];
-                animateNDialog.n_SentenceTrigger = false;　//クリックを押さなくても文章送りされるのを防ぐ
+                tdEventText.text = parts[i];
+                animateTDialog.t_SentenceTrigger = false;　//クリックを押さなくても文章送りされるのを防ぐ
             }
 
             //最後の文章になって、左クリックを押すとフラグオフ、Textオブジェクトを非アクティブにする
             if (i >= parts.Length - 1)
             {
-                isNDEvent = false;
+                isTDEvent = false;
             }
         }
     }

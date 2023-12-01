@@ -113,8 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 5842683862153037219}
   layer: 0
-  firstEvent: {fileID: 0}
-  enterTrigger: 0
+  ndEvent: {fileID: 0}
+  IsTransition: 0
+  n_SentenceTrigger: 0
 --- !u!1 &8012215626564341508
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8012215626564341510
 MonoBehaviour:

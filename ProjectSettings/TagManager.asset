@@ -18,6 +18,7 @@ TagManager:
   - Dino
   - Fire
   - NDEventTag1-A
+  - TDEventTag1-A
   layers:
   - Default
   - TransparentFX

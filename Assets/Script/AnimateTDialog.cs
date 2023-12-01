@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-/*public class AnimateTDialog : MonoBehaviour
+public class AnimateTDialog : MonoBehaviour
 {
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
-    [SerializeField] NDEvent ndEvent;
+    [SerializeField] TDEvent tdEvent;
 
-    //[SerializeField] FirstEnemy firstEnemy;
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
-    private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
+    private static readonly int ParamIsOpen = Animator.StringToHash("TDIsOpen");
     public bool t_IsOpen => gameObject.activeSelf;// ダイアログは開いているかどうか
     public bool t_IsTransition = false;// アニメーション中かどうか
     public bool t_SentenceTrigger = false;//文章送りに使うbool値
@@ -30,8 +29,8 @@ using UnityEngine.Events;
             t_SentenceTrigger = true;
         }
 
-        //
-        if (t_SentenceTrigger == true && ndEvent.isNDEvent == false)
+        //文章が表示されていて、表示フラグがfalseになったら閉じる
+        if (t_SentenceTrigger == true && tdEvent.isTDEvent == false)
         {
             TDialogClose();
             t_SentenceTrigger = false;
@@ -72,5 +71,5 @@ using UnityEngine.Events;
         t_IsTransition = false;
         onCompleted?.Invoke();
     }
-}*/
+}
 

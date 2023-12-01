@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private Skill_Activate skill_Activate;
     [SerializeField] private Animator m_Animator;
     [SerializeField] NDEvent ndEvent;
+    [SerializeField] TDEvent tdEvent;
     [SerializeField] AnimateNDialog animateNDialog;
+    [SerializeField] AnimateTDialog animateTDialog;
 
     void Start()
     {
@@ -206,6 +208,17 @@ public class PlayerController : MonoBehaviour
             {
                 animateNDialog.DialogNarratorOpen();
                 ndEvent.StartNDEvent(tag);
+            }
+        }
+        if(tdEvent!=null && tdEvent.isTDEvent)
+        {
+            string tag =collision.gameObject.tag;
+            string hantei = "TDEvent";
+            //TDEventがタグに含まれていたらトークダイアログを開く
+            if (tag.Contains(hantei))
+            {
+                animateTDialog.TDialogOpen();
+                tdEvent.StartTDEvent(tag);
             }
         }
     }

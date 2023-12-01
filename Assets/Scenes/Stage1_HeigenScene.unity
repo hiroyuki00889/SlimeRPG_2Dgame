@@ -623,13 +623,14 @@ GameObject:
   - component: {fileID: 622442944}
   - component: {fileID: 622442943}
   - component: {fileID: 622442945}
+  - component: {fileID: 622442946}
   m_Layer: 5
   m_Name: TDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622442942
 RectTransform:
   m_ObjectHideFlags: 0
@@ -712,6 +713,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &622442946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622442941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe4fa4c1d851b847bf157a3cd7ca3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 622442945}
+  layer: 0
+  tdEvent: {fileID: 832153259}
+  t_IsTransition: 0
+  t_SentenceTrigger: 0
 --- !u!1 &755425022
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +787,7 @@ GameObject:
   - component: {fileID: 813369821}
   - component: {fileID: 813369820}
   m_Layer: 0
-  m_Name: FirstEvent1
+  m_Name: FirstEvent
   m_TagString: NDEventTag1-A
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +808,6 @@ MonoBehaviour:
   animateNDialog: {fileID: 8012215625250133366}
   ndEventText: {fileID: 1643551292}
   isNDEvent: 0
-  FirstEvent: 1
 --- !u!61 &813369821
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -842,26 +859,14 @@ GameObject:
   m_Component:
   - component: {fileID: 832153258}
   - component: {fileID: 832153257}
-  - component: {fileID: 832153256}
+  - component: {fileID: 832153259}
   m_Layer: 5
-  m_Name: TalkRei
-  m_TagString: Untagged
+  m_Name: TalkEvent
+  m_TagString: TDEventTag1-A
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &832153256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832153255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe4fa4c1d851b847bf157a3cd7ca3b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &832153257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -875,7 +880,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.0988894}
+  m_Offset: {x: 0.44842327, y: 1.0988894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -886,7 +891,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.857111}
+  m_Size: {x: 1.2550328, y: 3.857111}
   m_EdgeRadius: 0
 --- !u!224 &832153258
 RectTransform:
@@ -908,6 +913,22 @@ RectTransform:
   m_AnchoredPosition: {x: 1.26, y: -5.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &832153259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832153255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58e8311abe894241bcdf2f4b9b63c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animateTDialog: {fileID: 622442946}
+  nameText: {fileID: 1795564068}
+  tdEventText: {fileID: 833457992}
+  isTDEvent: 0
 --- !u!1 &833457990
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +1000,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3050\u304A\u304A\u304A\u304A\u3002\u307E\u305F\u3001\u307E\u305F\u7ACB\u3064\u306E\u304B\u3088\u30C0\u30F3\u30D0\u30F3\uFF01\n\u3053\u306E\u4FFA\u306E\u524D\u306B\uFF01"
+  m_Text: 
 --- !u!222 &833457993
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1066,7 +1087,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &852413612
 RectTransform:
@@ -1764,6 +1785,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 813369820}
     - target: {fileID: 7069119588944955932, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: tdEvent
+      value: 
+      objectReference: {fileID: 832153259}
+    - target: {fileID: 7069119588944955932, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: firstEvent
       value: 
       objectReference: {fileID: 0}
@@ -1775,6 +1800,10 @@ PrefabInstance:
       propertyPath: animateNDialog
       value: 
       objectReference: {fileID: 8012215625250133366}
+    - target: {fileID: 7069119588944955932, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: animateTDialog
+      value: 
+      objectReference: {fileID: 622442946}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
 --- !u!1 &1457477232
@@ -11477,7 +11506,7 @@ GameObject:
   - component: {fileID: 1643551293}
   - component: {fileID: 1643551292}
   m_Layer: 5
-  m_Name: FirstEventText
+  m_Name: NDEventText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11964,7 +11993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30E0\u30E0\u30AB"
+  m_Text: 
 --- !u!222 &1795564069
 CanvasRenderer:
   m_ObjectHideFlags: 0
