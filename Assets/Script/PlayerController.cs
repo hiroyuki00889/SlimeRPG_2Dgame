@@ -199,11 +199,13 @@ public class PlayerController : MonoBehaviour
         //ナレーターイベントのbool値判定、必要な分追加していく
         if (ndEvent!=null && ndEvent.isNDEvent)
         {
-            //Eventsタグでナレーターダイアログを開く
-            if (collision.gameObject.CompareTag("Events") )
+            string tag = collision.gameObject.tag;
+            string hantei = "NDEvent";
+            //NDEventがタグに含まれていたらナレーターダイアログを開く
+            if (tag.Contains(hantei))
             {
-                Debug.Log("open");
                 animateNDialog.DialogNarratorOpen();
+                ndEvent.StartNDEvent(tag);
             }
         }
     }

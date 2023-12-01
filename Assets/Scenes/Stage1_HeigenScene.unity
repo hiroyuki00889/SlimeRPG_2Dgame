@@ -123,81 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &66382049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 66382050}
-  - component: {fileID: 66382051}
-  - component: {fileID: 66382052}
-  m_Layer: 0
-  m_Name: FirstEvent
-  m_TagString: Events
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &66382050
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66382049}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -1.2562374, z: -0.5282897}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &66382051
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66382049}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.1779685, y: -3.337901}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.3653383, y: 3.599802}
-  m_EdgeRadius: 0
---- !u!114 &66382052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66382049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b7220f1d3e49747bb4aab9b3531160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animateNDialog: {fileID: 8012215625250133366}
-  ndEventText: {fileID: 1643551292}
-  isNDEvent: 0
-  FirstEvent: 1
 --- !u!1 &92501365
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +770,7 @@ GameObject:
   - component: {fileID: 813369820}
   m_Layer: 0
   m_Name: FirstEvent1
-  m_TagString: Events
+  m_TagString: NDEventTag1-A
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -905,7 +830,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832153255
 GameObject:
@@ -937,11 +862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe4fa4c1d851b847bf157a3cd7ca3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
-  layer: 0
-  ndEvent: {fileID: 0}
-  t_IsTransition: 0
-  t_SentenceTrigger: 0
 --- !u!61 &832153257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1846,7 +1766,7 @@ PrefabInstance:
     - target: {fileID: 7069119588944955932, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: firstEvent
       value: 
-      objectReference: {fileID: 66382052}
+      objectReference: {fileID: 0}
     - target: {fileID: 7069119588944955932, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: stepOnRate
       value: 20
@@ -12836,7 +12756,7 @@ PrefabInstance:
     - target: {fileID: 2135158693730118947, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: firstEvent
       value: 
-      objectReference: {fileID: 66382052}
+      objectReference: {fileID: 0}
     - target: {fileID: 8012215626279118370, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: m_IsActive
       value: 0

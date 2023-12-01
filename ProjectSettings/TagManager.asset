@@ -17,6 +17,7 @@ TagManager:
   - AttackCollider
   - Dino
   - Fire
+  - NDEventTag1-A
   layers:
   - Default
   - TransparentFX
