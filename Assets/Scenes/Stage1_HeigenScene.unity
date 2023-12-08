@@ -12199,6 +12199,7 @@ GameObject:
   - component: {fileID: 8626839791629838453}
   - component: {fileID: 1810874115440027826}
   - component: {fileID: 4844258291559444073}
+  - component: {fileID: 8626839791629838454}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12424,11 +12425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402911628294532072, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.28
+      value: 9.36
       objectReference: {fileID: 0}
     - target: {fileID: 5402911628294532072, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.04
+      value: -5.14
       objectReference: {fileID: 0}
     - target: {fileID: 5402911628294532072, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12975,3 +12976,17 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &8626839791629838454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636295902040289794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef260e54e58c4b840bd91f21ed027268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animateNDialog: {fileID: 8012215625250133366}
+  ndEvent: {fileID: 813369820}

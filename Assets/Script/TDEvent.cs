@@ -18,6 +18,7 @@ public class TDEvent : MonoBehaviour
 
     private void Start()
     {
+        //会話文追加。「,,」で名前と文章の区切り。最初は名前。Unityの方のタグと合わせる
         ndEvent.Add("TDEventTag1-A", "悟空,,オッス、オラ悟空！,,この世界にはつえーやつがたくさんいるんだな,,オラワクワクすっぞ！");
         ndEvent.Add("TDEventTagB", "イベントタグBの文章です");
         ndEvent.Add("TDEventTagC", "イベントタグCの文章です");
@@ -36,7 +37,7 @@ public class TDEvent : MonoBehaviour
         else
         {
             //エラーハンドリングの内容をここに記述
-
+            Debug.Log("トークダイアログのタグか文章の辞書が上手く参照されていない");
         }
     }
 

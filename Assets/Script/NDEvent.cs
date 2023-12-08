@@ -18,11 +18,13 @@ public class NDEvent : MonoBehaviour
 
     private void Start()
     {
+        //会話文追加。「,,」で文章の区切り。タグはUnityの方と合わせる
         ndEvent.Add("NDEventTag1-A", "魔物の縄張りに住むスライムは平和に暮らしていました,,しかし、あることで縄張りを治める四天王にムカついてしまいました,,スライムは四天王を倒す旅に出ます");
         ndEvent.Add("NDEventTagB", "イベントタグBの文章です");
         ndEvent.Add("NDEventTagC", "イベントタグCの文章です");
         ndEvent.Add("NDEventTagD", "イベントタグDの文章です");
-        // ここに会話文追加
+        //Stage1初回起動時の表示文章、実行はStage1スクリプト
+        ndEvent.Add("Stage1", "魔物の縄張りに住むスライムは平和に暮らしていました,,しかし、あることで縄張りを治める四天王にムカついてしまいました,,スライムは四天王を倒す旅に出ます");
     }
 
     public void StartNDEvent(string eventTag)
@@ -36,7 +38,7 @@ public class NDEvent : MonoBehaviour
         else
         {
             //エラーハンドリングの内容をここに記述
-
+            Debug.Log("ナレーターダイアログのタグか文章の辞書が上手く参照されていない");
         }
     }
 

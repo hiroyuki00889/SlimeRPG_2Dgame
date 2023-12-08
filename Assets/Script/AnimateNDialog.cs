@@ -41,11 +41,13 @@ public class AnimateNDialog : MonoBehaviour
     public void DialogNarratorOpen()
 
     {
+         
         if (IsOpen || IsTransition) return; // 不正操作防止
         gameObject.SetActive(true); // DialogNarratorをアクティブにする
         m_Animator.SetBool(ParamIsOpen, true); // IsOpenフラグをtrueにセット
         // アニメーション待機
         StartCoroutine(WaitAnimation("Shown"));
+        Time.timeScale = 0;
     }
 
     private void DialogNarratorClose()
@@ -54,6 +56,7 @@ public class AnimateNDialog : MonoBehaviour
         m_Animator.SetBool(ParamIsOpen, false); // IsOpenフラグをfalseにセット
         // アニメーション待機し、終わったらパネル自体を非アクティブにする
         StartCoroutine(WaitAnimation("Hidden", () => gameObject.SetActive(false)));
+        Time.timeScale = 1;
     }
 
     private IEnumerator WaitAnimation(string stateName, UnityAction onCompleted = null)
@@ -69,6 +72,7 @@ public class AnimateNDialog : MonoBehaviour
         });
 
         IsTransition = false;
+        //恐らくラムダ式のnullチェック
         onCompleted?.Invoke();
     }
 }
