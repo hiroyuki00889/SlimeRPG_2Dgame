@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat"))
+        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat") || collision.gameObject.CompareTag("Dino"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
         //踏みつけ判定のワールド座標
@@ -192,8 +192,10 @@ public class PlayerController : MonoBehaviour
                         //無敵時間処理追加予定
                     }
             }
-          }
+        }
+        
        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
