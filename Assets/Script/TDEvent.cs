@@ -78,6 +78,7 @@ public class TDEvent : MonoBehaviour
             if (i >= parts.Length - 1)
             {
                 isTDEvent = false;
+                i = 0;
             }
         }
     }

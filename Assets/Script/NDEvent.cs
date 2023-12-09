@@ -12,7 +12,7 @@ public class NDEvent : MonoBehaviour
     public Text ndEventText;
     private string[] parts;
     int i = 0;
-    public bool isNDEvent = false;
+    public bool isNDEvent;
     ////«‘’è‹`
     private Dictionary<string, string> ndEvent = new Dictionary<string, string>();
 
@@ -77,6 +77,7 @@ public class NDEvent : MonoBehaviour
             if (i >= parts.Length - 1)
             {
                 isNDEvent = false;
+                i=0;
             }
         }
     }

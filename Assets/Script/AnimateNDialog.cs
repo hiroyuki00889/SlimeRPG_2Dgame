@@ -18,6 +18,7 @@ public class AnimateNDialog : MonoBehaviour
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
+        m_Animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     private void Update()
@@ -28,6 +29,11 @@ public class AnimateNDialog : MonoBehaviour
         {
             n_SentenceTrigger = true;
         }
+        else
+        {
+            //エラーハンドリング
+            Debug.Log("NDialogのオブジェクトがアクティブでないか、マウス左クリックが入力されていない");
+        }
 
         //文章が表示されていて、表示フラグがfalseになったら閉じる
         if (n_SentenceTrigger == true && ndEvent.isNDEvent == false)
@@ -35,13 +41,15 @@ public class AnimateNDialog : MonoBehaviour
             DialogNarratorClose();
             n_SentenceTrigger = false;
         }
+        else
+        {
+            Debug.Log("表示フラグががfalseか、文章トリガーがtrueじゃない");
+        }
     }
 
     //private void DialogNarratorOpen()
     public void DialogNarratorOpen()
-
-    {
-         
+    {       
         if (IsOpen || IsTransition) return; // 不正操作防止
         gameObject.SetActive(true); // DialogNarratorをアクティブにする
         m_Animator.SetBool(ParamIsOpen, true); // IsOpenフラグをtrueにセット
@@ -63,14 +71,12 @@ public class AnimateNDialog : MonoBehaviour
     {
         //このブール値がtrueの間は上2つの関数が動かない
         IsTransition = true;
-
         yield return new WaitUntil(() =>
         {
             //ステートが変化し、アニメーションが終了するまで待機
             var state = m_Animator.GetCurrentAnimatorStateInfo(layer);
             return state.IsName(stateName) && state.normalizedTime >= 1;
         });
-
         IsTransition = false;
         //恐らくラムダ式のnullチェック
         onCompleted?.Invoke();
