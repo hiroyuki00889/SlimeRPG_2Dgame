@@ -25,9 +25,13 @@ public class Enemy_Move : MonoBehaviour
     private float distance;
     private bool coroutine = false;
     private bool enemyRight = true;
-
+    public GameObject firePre;  // 発射するオブジェクトのプレハブ
+    public Transform spawnPoint;         // 発射位置
+    public float fireSpeed = 10f;  // 発射速度
+    public float fireLifetime = 2f; // 発射オブジェクトの寿命（秒）
     private bool opposumright;
     private Coroutine pigcoroutine = null;
+    public Transform Player;
 
     [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino;
 
@@ -176,22 +180,40 @@ public class Enemy_Move : MonoBehaviour
     private void DinoMove()
     {
         distance = Vector3.Distance(transform.position, playerOb.transform.position);
-        if (distance <= 3) //敵の位置がPlayerより右の場合
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            // DinoFire();
+        //if (distance <= 1) //敵の位置がPlayerより右の場合
+        //{
+        //    rb.velocity = new Vector2(0, rb.velocity.y);
+        //    DinoFire();
 
-        }
-        else if (playerpos_x < enemypos_x) //敵の位置がPlayerより右の場合
+        //}
+        if (playerpos_x < enemypos_x) //敵の位置がPlayerより右の場合
         {
             transform.localScale = new Vector3(1, 1, 1);
             rb.velocity = new Vector2(-speed, rb.velocity.y);
+            if (distance <= 5)
+                DinoFire();
         }
         else if(playerpos_x >= enemypos_x) //敵の位置がPlayerより左の場合
         {
             transform.localScale = new Vector3(-1, 1, 1);
             rb.velocity = new Vector2(speed, rb.velocity.y);
+            if (distance <= 5)
+                DinoFire();
         }
+    }
+
+    private void DinoFire()
+    {
+        // プレハブから新しい発射オブジェクトを生成
+        GameObject Fire = Instantiate(firePre, spawnPoint.position, Quaternion.identity);
+
+        // 発射方向の計算
+        Vector2 launchDirection = (Player.position - spawnPoint.position).normalized;
+
+        Fire.GetComponent<Rigidbody2D>().velocity = launchDirection * fireSpeed;
+
+        // 一定時間後に発射オブジェクトを破棄
+        Destroy(Fire, fireLifetime);
     }
 
 
