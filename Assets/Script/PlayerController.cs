@@ -156,14 +156,14 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat") || collision.gameObject.CompareTag("Dino"))
+        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat") || collision.gameObject.CompareTag("Dino") || collision.gameObject.CompareTag("Bear"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
         //踏みつけ判定のワールド座標
         float judgePos = transform.position.y - (capsulecollider.size.y / 2f) + stepOnHeight;
         foreach (ContactPoint2D p in collision.contacts)
         {
-            if (p.point.y < judgePos)
+            if (p.point.y < judgePos || !collision.gameObject.CompareTag("Bear"))
             {
                     //踏んだ時の処理
                     //animator.Play("change1");
