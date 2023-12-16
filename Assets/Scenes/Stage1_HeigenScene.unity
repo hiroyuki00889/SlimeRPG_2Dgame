@@ -910,7 +910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.26, y: -5.1}
+  m_AnchoredPosition: {x: 2.73, y: -5.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &832153259
@@ -11670,6 +11670,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   check: {fileID: 403562768}
+  firePre: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  fireSpeed: 10
+  fireLifetime: 2
+  Player: {fileID: 0}
   Bunny: 0
   Bat: 0
   Dog: 1
@@ -12425,11 +12430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402911628294532072, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.36
+      value: 8.74
       objectReference: {fileID: 0}
     - target: {fileID: 5402911628294532072, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.14
+      value: -5.05
       objectReference: {fileID: 0}
     - target: {fileID: 5402911628294532072, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
       propertyPath: m_LocalPosition.z

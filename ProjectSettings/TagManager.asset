@@ -19,6 +19,7 @@ TagManager:
   - Fire
   - NDEventTag1-A
   - TDEventTag1-A
+  - Bear
   layers:
   - Default
   - TransparentFX
