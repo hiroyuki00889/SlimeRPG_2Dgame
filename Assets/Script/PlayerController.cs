@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         if (/*restjump > 0*/restjump>0)
         {
+            animator.SetTrigger("isJumping");
             rb.velocity = new Vector2(rb.velocity.x, 5);
             restjump -= 1;
         }
@@ -97,16 +98,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (rb.velocity.x < 10)
                 {
+                    animator.SetBool("Dash", true);
                     rb.velocity = new Vector2(speed * time, rb.velocity.y);
                     time += Time.fixedDeltaTime;
+                    
                 }
                 else
                 {
+                    
                     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
                 }
             }
             else 
             {
+                animator.SetBool("Dash", false);
                 time = 1;
                 rb.velocity = new Vector2(speed, rb.velocity.y);
             }
@@ -132,6 +137,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (rb.velocity.x > -10)
                 {
+                    animator.SetBool("Dash", true);
                     rb.velocity = new Vector2(-speed * time, rb.velocity.y);
                     time += Time.fixedDeltaTime;
                 }
@@ -142,12 +148,14 @@ public class PlayerController : MonoBehaviour
             }
             else 
             {
+                animator.SetBool("Dash", false);
                 time = 1;
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
         }
         else
         {
+            animator.SetBool("Dash", false);
             time = 1;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
@@ -163,10 +171,10 @@ public class PlayerController : MonoBehaviour
         float judgePos = transform.position.y - (capsulecollider.size.y / 2f) + stepOnHeight;
         foreach (ContactPoint2D p in collision.contacts)
         {
-            if (p.point.y < judgePos || !collision.gameObject.CompareTag("Bear"))
+            if (p.point.y < judgePos)
             {
                     //踏んだ時の処理
-                    //animator.Play("change1");
+                    animator.SetTrigger("isEat");
                     collision.gameObject.GetComponent<ObjectCollision>().step = true;
             }
             else
