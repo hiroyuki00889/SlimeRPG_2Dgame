@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -150,9 +150,12 @@ MonoBehaviour:
   stepOnRate: 20
   ground: {fileID: 7069119588486186266}
   right: 0
+  down: 0
   m_Animator: {fileID: 0}
-  firstEvent: {fileID: 0}
+  ndEvent: {fileID: 0}
+  tdEvent: {fileID: 0}
   animateNDialog: {fileID: 0}
+  animateTDialog: {fileID: 0}
 --- !u!114 &767388240648638354
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (/*restjump > 0*/restjump>0)
         {
             animator.SetTrigger("isJumping");
-            rb.velocity = new Vector2(rb.velocity.x, 5);
+            rb.velocity = new Vector2(rb.velocity.x, 10);
             restjump -= 1;
         }
     }

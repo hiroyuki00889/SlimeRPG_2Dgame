@@ -18,13 +18,17 @@ public class NDEvent : MonoBehaviour
 
     private void Start()
     {
-        //会話文追加。「,,」で文章の区切り。タグはUnityの方と合わせる
-        ndEvent.Add("NDEventTag1-A", "魔物の縄張りに住むスライムは平和に暮らしていました,,しかし、あることで縄張りを治める四天王にムカついてしまいました,,スライムは四天王を倒す旅に出ます");
+        //会話文追加。「,,」で文章の区切り。タグはUnityの方と合わせて、NDEventを付ける
+        ndEvent.Add("NDEventTag1-A", "あっ、あれは犬の魔物です,,近づくと突撃してくるから注意して！,,無防備な上から覆いかぶされば魔物を食べることができるよ");
         ndEvent.Add("NDEventTagB", "イベントタグBの文章です");
         ndEvent.Add("NDEventTagC", "イベントタグCの文章です");
         ndEvent.Add("NDEventTagD", "イベントタグDの文章です");
+
+        ndEvent.Add("Title1", "SLIME RPG へようこそ,,あなたはスライムとして冒険してもらいます,,そこの家のドアに行くと冒険が始まります,,Aキー、Dキーで左右に移動\nFキーを押しながら移動で早く動けます,,Spaceキーでジャンプすることが出来ます,,では、よい冒険を！");
         //Stage1初回起動時の表示文章、実行はStage1スクリプト
         ndEvent.Add("Stage1", "魔物の縄張りに住むスライムは平和に暮らしていました,,しかし、あることで縄張りを治める四天王にムカついてしまいました,,スライムは四天王を倒す旅に出ます");
+        ndEvent.Add("Skill", "やったね！\n犬の魔物を飲み込めたね！,,スライムは飲み込んだ敵の情報を取り込んでスキルとして使えるようになるよ,,スキルは画面の下に表示されるよ,,使いたいスキルにカーソルを合わせてクリックしてね");
+
     }
 
     public void StartNDEvent(string eventTag)
@@ -34,6 +38,7 @@ public class NDEvent : MonoBehaviour
         {
             // 会話内容を表示
             DisplayNDEvent(ndEventText);
+            Debug.Log("totyuu");
         }
         else
         {

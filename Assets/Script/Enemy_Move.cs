@@ -22,6 +22,7 @@ public class Enemy_Move : MonoBehaviour
     private GameObject playerOb;
     private float playerpos_x;
     private float enemypos_x;
+    private Vector2 startPos;
     private float distance;
     private bool coroutine = false;
     private bool enemyRight = true;
@@ -43,6 +44,7 @@ public class Enemy_Move : MonoBehaviour
         animator = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         playerOb = GameObject.FindWithTag("Player");
+        startPos = transform.position;    //後でセーブした地点に戻った時に初期位置に移動、復活するコード書く
     }
 
 
@@ -109,7 +111,7 @@ public class Enemy_Move : MonoBehaviour
         else
         {
             //敵オブジェクトを破壊する
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
             // プレイヤーに当たった場合、敵のタグに応じたカウンターを増加
             EnemyTagCounter enemyTagCounter = FindObjectOfType<EnemyTagCounter>();
             // EnemyTags = GameObject.FindGameObjectsWithTag("Enemy");
@@ -128,6 +130,7 @@ public class Enemy_Move : MonoBehaviour
             Debug.Log(enemyTagCounter);
         }
     }
+
     /*void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
