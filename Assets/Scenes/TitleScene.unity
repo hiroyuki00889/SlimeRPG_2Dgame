@@ -803,6 +803,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1758940194}
   - component: {fileID: 1758940193}
+  - component: {fileID: 1758940196}
+  - component: {fileID: 1758940195}
   m_Layer: 0
   m_Name: logo
   m_TagString: Untagged
@@ -877,6 +879,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1758940195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758940192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b7220f1d3e49747bb4aab9b3531160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animateNDialog: {fileID: 8012215625250133369}
+  ndEventText: {fileID: 1643551292}
+  isNDEvent: 0
+--- !u!114 &1758940196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758940192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7953b7da78b69246b09820d6bb9228f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animateNDialog: {fileID: 8012215625250133369}
+  ndEvent: {fileID: 1758940195}
 --- !u!1 &1807181193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,7 +2032,7 @@ PrefabInstance:
     - target: {fileID: 2135158693730118947, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: ndEvent
       value: 
-      objectReference: {fileID: 8012215625250133366}
+      objectReference: {fileID: 0}
     - target: {fileID: 2135158693730118947, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: firstEvent
       value: 
@@ -2098,46 +2129,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: NDialogCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2135158693730118947, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
 --- !u!224 &8012215625250133365 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8012215626279118371, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
   m_PrefabInstance: {fileID: 8012215625250133364}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8012215625250133366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225827289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b7220f1d3e49747bb4aab9b3531160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animateNDialog: {fileID: 8012215625250133368}
-  ndEventText: {fileID: 1643551292}
-  isNDEvent: 0
---- !u!114 &8012215625250133367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225827289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7953b7da78b69246b09820d6bb9228f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animateNDialog: {fileID: 8012215625250133368}
-  ndEvent: {fileID: 8012215625250133366}
---- !u!114 &8012215625250133368 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2135158693730118947, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
+--- !u!95 &8012215625250133366 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5842683862153037219, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
   m_PrefabInstance: {fileID: 8012215625250133364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8012215625250133369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225827289}
   m_Enabled: 1
@@ -2145,3 +2154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febaa330e7e0a5d449e891e1855c54db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 8012215625250133366}
+  layer: 0
+  ndEvent: {fileID: 1758940195}
+  IsTransition: 0
+  n_SentenceTrigger: 0

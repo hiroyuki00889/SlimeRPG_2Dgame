@@ -35,7 +35,9 @@ public class Enemy_Move : MonoBehaviour
     public Transform Player;
 
     [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino;
-
+    [SerializeField] AnimateNDialog animateNDialog;
+    [SerializeField] NDEvent ndEvent;
+    string sd = "Skill";
 
     private void Start()
     {
@@ -48,7 +50,23 @@ public class Enemy_Move : MonoBehaviour
     }
 
 
+    void OnDisable()
+    {
+        if(ndEvent != null)
+        {
+            if (!PlayerPrefs.HasKey("SkillDiscribe"))
+            {
+                //スキル説明
+                ndEvent.isNDEvent = true;
+                animateNDialog.DialogNarratorOpen();
+                ndEvent.StartNDEvent(sd);
 
+                //Stage1キーに値を入れる
+                PlayerPrefs.SetInt("Skilldiscribe", 1);
+                PlayerPrefs.Save();
+            }
+        }
+    }
     private void FixedUpdate()
     {
         if (!oc.step)

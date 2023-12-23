@@ -11726,6 +11726,8 @@ MonoBehaviour:
   Opossum: 0
   Pig: 0
   Dino: 0
+  animateNDialog: {fileID: 0}
+  ndEvent: {fileID: 0}
 --- !u!95 &1667085968
 Animator:
   serializedVersion: 5
@@ -12490,6 +12492,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog
       objectReference: {fileID: 0}
+    - target: {fileID: 5402911628294532079, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
+      propertyPath: ndEvent
+      value: 
+      objectReference: {fileID: 813369820}
+    - target: {fileID: 5402911628294532079, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
+      propertyPath: animateNDialog
+      value: 
+      objectReference: {fileID: 8012215625250133366}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdbb668fb8a926b439ab6fecdc51641d, type: 3}
 --- !u!224 &5466757904527890310
