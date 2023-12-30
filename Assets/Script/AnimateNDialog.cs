@@ -8,6 +8,7 @@ public class AnimateNDialog : MonoBehaviour
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
     [SerializeField] NDEvent ndEvent;
+    [SerializeField] Enemy_Move enemymove;
 
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
@@ -23,16 +24,10 @@ public class AnimateNDialog : MonoBehaviour
 
     private void Update()
     {
-
         //ダイアログが開いていて左クリックをしたら文章送りのboolをtrueにする
         if (Input.GetMouseButtonDown(0) && gameObject.activeSelf == true)
         {
             n_SentenceTrigger = true;
-        }
-        else
-        {
-            //エラーハンドリング
-            Debug.Log("NDialogのオブジェクトがアクティブでないか、マウス左クリックが入力されていない");
         }
 
         //文章が表示されていて、表示フラグがfalseになったら閉じる
@@ -40,10 +35,6 @@ public class AnimateNDialog : MonoBehaviour
         {
             DialogNarratorClose();
             n_SentenceTrigger = false;
-        }
-        else
-        {
-            Debug.Log("表示フラグががfalseか、文章トリガーがtrueじゃない");
         }
     }
 

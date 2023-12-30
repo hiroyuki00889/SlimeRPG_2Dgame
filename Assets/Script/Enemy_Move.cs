@@ -34,11 +34,12 @@ public class Enemy_Move : MonoBehaviour
     private Coroutine pigcoroutine = null;
     public GameObject pigimpact;
     public Transform Player;
+    public bool anylater;
 
     [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino;
     [SerializeField] AnimateNDialog animateNDialog;
     [SerializeField] NDEvent ndEvent;
-    string sd = "Skill";
+    
 
     private void Start()
     {
@@ -55,19 +56,27 @@ public class Enemy_Move : MonoBehaviour
     {
         if(ndEvent != null)
         {
-            if (!PlayerPrefs.HasKey("SkillDiscribe"))
+            PlayerPrefs.DeleteAll();　//とりあえずここに書く
+            // キーの値はパソコンの何処かに保存されるから、何処かでDeleteAllしないと次やる時に表示されなくなる
+            if (!PlayerPrefs.HasKey("SkillDiscribe")) 
             {
-                //スキル説明
-                ndEvent.isNDEvent = true;
-                animateNDialog.DialogNarratorOpen();
-                ndEvent.StartNDEvent(sd);
-
-                //Stage1キーに値を入れる
-                PlayerPrefs.SetInt("Skilldiscribe", 1);
-                PlayerPrefs.Save();
+                Invoke("SkillDiscribe", 0.5f);
             }
         }
     }
+    private void SkillDiscribe()
+    {
+        anylater = true; // animateNDialogを1秒待つフラグ
+                         //スキル説明
+        string sd = "Skill";
+        ndEvent.isNDEvent = true;
+        animateNDialog.DialogNarratorOpen();
+        ndEvent.StartNDEvent(sd);
+        //Skilldiscribeキーに値を入れる
+        PlayerPrefs.SetInt("SkillDiscribe", 1);
+        PlayerPrefs.Save();
+    }
+    
     private void FixedUpdate()
     {
         if (!oc.step)

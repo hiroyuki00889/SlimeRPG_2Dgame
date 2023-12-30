@@ -7,8 +7,6 @@ public class Stage1 : MonoBehaviour
     [SerializeField] AnimateNDialog animateNDialog;
     [SerializeField] NDEvent ndEvent;
     //«‘‚ÌƒL[‚Æ“¯‚¶•¶š—ñ‚Å”»’è
-    
-    string sd = "Skill";
     void Start()
     {
             string tag = "Stage1";

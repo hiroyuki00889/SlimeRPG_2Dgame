@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (/*restjump > 0*/restjump>0)
         {
             animator.SetTrigger("isJumping");
-            rb.velocity = new Vector2(rb.velocity.x, 10);
+            rb.velocity = new Vector2(rb.velocity.x, 11);
             restjump -= 1;
         }
     }
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 right = true; 
             }
 
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKey(KeyCode.S))
             {
                 if (rb.velocity.x < 10)
                 {
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
                 right = false;
             }
 
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKey(KeyCode.S))
             {
                 if (rb.velocity.x > -10)
                 {
