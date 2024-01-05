@@ -222,6 +222,7 @@ public class PlayerController : MonoBehaviour
         }
         if(tdEvent!=null && tdEvent.isTDEvent)
         {
+            Debug.Log("player側のTD判定機能");
             string tag =collision.gameObject.tag;
             string hantei = "TDEvent";
             //TDEventがタグに含まれていたらトークダイアログを開く

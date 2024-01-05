@@ -38,7 +38,6 @@ public class NDEvent : MonoBehaviour
         {
             // ‰ï˜b“à—e‚ð•\Ž¦
             DisplayNDEvent(ndEventText);
-            Debug.Log("totyuu");
         }
         else
         {

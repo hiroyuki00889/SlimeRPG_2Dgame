@@ -12,24 +12,24 @@ public class TDEvent : MonoBehaviour
     public Text tdEventText;
     string[] parts;
     int i = 1;
-    public bool isTDEvent = false;
+    public bool isTDEvent;
     ////辞書定義
-    private Dictionary<string, string> ndEvent = new Dictionary<string, string>();
+    private Dictionary<string, string> tdEvent = new Dictionary<string, string>();
 
     private void Start()
     {
         //会話文追加。「,,」で名前と文章の区切り。最初は名前。Unityの方のタグと合わせる
-        ndEvent.Add("TDEventTag1-A", "悟空,,オッス、オラ悟空！,,この世界にはつえーやつがたくさんいるんだな,,オラワクワクすっぞ！");
-        ndEvent.Add("TDEventTagB", "イベントタグBの文章です");
-        ndEvent.Add("TDEventTagC", "イベントタグCの文章です");
-        ndEvent.Add("TDEventTagD", "イベントタグDの文章です");
+        tdEvent.Add("TDEventTag1-A", "ライバル,,よう！");
+        tdEvent.Add("TDEventTagB", "イベントタグBの文章です");
+        tdEvent.Add("TDEventTagC", "イベントタグCの文章です");
+        tdEvent.Add("TDEventTagD", "イベントタグDの文章です");
         // ここに会話文追加
     }
 
     public void StartTDEvent(string eventTag)
     {
         // コライダーのタグで会話内容を取得
-        if (ndEvent.TryGetValue(eventTag, out string tdEventText))
+        if (tdEvent.TryGetValue(eventTag, out string tdEventText))
         {
             // 会話内容を表示
             DisplayTDEvent(tdEventText);

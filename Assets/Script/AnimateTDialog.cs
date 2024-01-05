@@ -28,21 +28,13 @@ public class AnimateTDialog : MonoBehaviour
         {
             t_SentenceTrigger = true;
         }
-        else
-        {
-            //エラーハンドリング
-            Debug.Log("TDialogのオブジェクトがアクティブでないか、マウス左クリックが入力されていない");
-        }
 
         //文章が表示されていて、表示フラグがfalseになったら閉じる
         if (t_SentenceTrigger == true && tdEvent.isTDEvent == false)
         {
             TDialogClose();
             t_SentenceTrigger = false;
-        }
-        else
-        {
-            Debug.Log("表示フラグががfalseか、文章トリガーがtrueじゃない");
+            tdEvent.isTDEvent = true;
         }
     }
 
