@@ -972,6 +972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2062874001}
   - component: {fileID: 2062874002}
+  - component: {fileID: 2062874003}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1010,6 +1011,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.39235806, y: -0.26974618}
   m_Size: {x: 0.565393, y: 1.0817411}
   m_Direction: 0
+--- !u!114 &2062874003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062874000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cc349718cbf9b45aaa7d5964ac8f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 0
 --- !u!1 &2082977921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,7 +1164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  check: {fileID: 0}
+  check: {fileID: 2062874003}
   firePre: {fileID: 8413604818050855950, guid: b492cbc8bfb44b14d9ec011c77a6ad1f, type: 3}
   spawnPoint: {fileID: 2082977923}
   fireSpeed: 10
