@@ -86,7 +86,7 @@ public class CounterDisplay : MonoBehaviour
                 }
                 // counterTextB.text = $"EnemyTagB: {kvp.Value}";
             }
-            else if (kvp.Key == "Dino")
+            /*else if (kvp.Key == "Dino")
             {
                 if (kvp.Value == 0)
                 {
@@ -142,7 +142,7 @@ public class CounterDisplay : MonoBehaviour
                     counterTextPig.text = kvp.Value.ToString();
                 }
                 // counterTextB.text = $"EnemyTagB: {kvp.Value}";
-            }
+            }*/
             // ‘¼‚Ìƒ^ƒO‚É‘Î‚·‚é•\Ž¦‚à’Ç‰Á‚Å‚«‚Ü‚·
         }
     }
