@@ -20,6 +20,7 @@ TagManager:
   - NDEventTag1-A
   - TDEventTag1-A
   - Bear
+  - Pig
   layers:
   - Default
   - TransparentFX
