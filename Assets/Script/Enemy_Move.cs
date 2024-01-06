@@ -30,6 +30,9 @@ public class Enemy_Move : MonoBehaviour
     public Transform spawnPoint;         // 発射位置
     public float fireSpeed = 10f;  // 発射速度
     public float fireLifetime = 2f; // 発射オブジェクトの寿命（秒）
+    private float cooldownTime = 2f; // Fireのクールタイム
+    private float lastFireTime; // 最後に発射した時間
+    private bool canFire = true; // Fire発射可否判定
     private bool opposumright;
     private Coroutine pigcoroutine = null;
     public GameObject pigimpact;
@@ -76,7 +79,8 @@ public class Enemy_Move : MonoBehaviour
         PlayerPrefs.SetInt("SkillDiscribe", 1);
         PlayerPrefs.Save();
     }
-    
+
+
     private void FixedUpdate()
     {
         if (!oc.step)
@@ -155,6 +159,10 @@ public class Enemy_Move : MonoBehaviour
             {
                 enemyTagCounter.IncrementCounter("Bat");
             }
+            else if (gameObject.CompareTag("Dino"))
+            {
+                enemyTagCounter.IncrementCounter("Dino");
+            }
             Debug.Log(enemyTagCounter);
         }
     }
@@ -221,15 +229,36 @@ public class Enemy_Move : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
             rb.velocity = new Vector2(-speed, rb.velocity.y);
-            if (distance <= 5)
+            if (distance <= 5 && canFire)
+            {
                 DinoFire();
+            }
+            if (!canFire)
+            {
+                float elapsedCooldownTime = Time.time - lastFireTime;
+                if (elapsedCooldownTime >= cooldownTime)
+                {
+                    canFire = true;
+                }
+            }
+
         }
-        else if(playerpos_x >= enemypos_x) //敵の位置がPlayerより左の場合
+        else if (playerpos_x >= enemypos_x) //敵の位置がPlayerより左の場合
         {
             transform.localScale = new Vector3(-1, 1, 1);
             rb.velocity = new Vector2(speed, rb.velocity.y);
-            if (distance <= 5)
+            if (distance <= 5 && canFire)
+            {
                 DinoFire();
+            }
+            if (!canFire)
+            {
+                float elapsedCooldownTime = Time.time - lastFireTime;
+                if (elapsedCooldownTime >= cooldownTime)
+                {
+                    canFire = true;
+                }
+            }
         }
     }
 
@@ -245,7 +274,14 @@ public class Enemy_Move : MonoBehaviour
 
         // 一定時間後に発射オブジェクトを破棄
         Destroy(Fire, fireLifetime);
+
+        // クールダウン開始
+        canFire = false;
+        //Debug.Log("クールダウン開始");
+        // 最後に発射した時間を更新
+        lastFireTime = Time.time;
     }
+
 
 
     private void DogMove()
