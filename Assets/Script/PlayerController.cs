@@ -99,21 +99,21 @@ public class PlayerController : MonoBehaviour
                 if (rb.velocity.x < 10)
                 {
                     animator.SetBool("Dash", true);
-                    rb.velocity = new Vector2(speed * time, rb.velocity.y);
+                    rb.velocity = new Vector2(speed * time, VelocityYControl());
                     time += Time.fixedDeltaTime;
                     
                 }
                 else
                 {
                     
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                    rb.velocity = new Vector2(rb.velocity.x, VelocityYControl());
                 }
             }
             else 
             {
                 animator.SetBool("Dash", false);
                 time = 1;
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+                rb.velocity = new Vector2(speed, VelocityYControl());
             }
         }
         else if (Input.GetKey(KeyCode.A))
@@ -138,26 +138,26 @@ public class PlayerController : MonoBehaviour
                 if (rb.velocity.x > -10)
                 {
                     animator.SetBool("Dash", true);
-                    rb.velocity = new Vector2(-speed * time, rb.velocity.y);
+                    rb.velocity = new Vector2(-speed * time, VelocityYControl());
                     time += Time.fixedDeltaTime;
                 }
                 else
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                    rb.velocity = new Vector2(rb.velocity.x, VelocityYControl());
                 }
             }
             else 
             {
                 animator.SetBool("Dash", false);
                 time = 1;
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                rb.velocity = new Vector2(-speed, VelocityYControl());
             }
         }
         else
         {
             animator.SetBool("Dash", false);
             time = 1;
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = new Vector2(0, VelocityYControl());
         }
     }
 
@@ -246,5 +246,17 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1f, 0.5f, 1f);
         }
         small = true;
+    }
+
+    private float VelocityYControl() 
+    {
+        if (rb.velocity.y>-15)
+        {
+            return rb.velocity.y;
+        }
+        else 
+        {
+            return -15f;
+        }
     }
 }

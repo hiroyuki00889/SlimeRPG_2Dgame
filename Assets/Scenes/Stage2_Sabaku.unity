@@ -778,7 +778,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2123866582}
         m_TargetAssemblyTypeName: Skill_Activate, Assembly-CSharp
-        m_MethodName: SmallSlime
+        m_MethodName: Bunny
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13761,9 +13761,15 @@ MonoBehaviour:
   counterTextBunny: {fileID: 476706743}
   counterTextDog: {fileID: 446210955}
   counterTextBat: {fileID: 72763083}
+  counterTextDino: {fileID: 0}
+  counterTextOpossum: {fileID: 0}
+  counterTextPig: {fileID: 0}
   Bunny: {fileID: 717194286}
   Dog: {fileID: 1437398975}
   Bat: {fileID: 1548589894}
+  Dino: {fileID: 0}
+  Opossum: {fileID: 0}
+  Pig: {fileID: 0}
 --- !u!114 &1607599416
 MonoBehaviour:
   m_ObjectHideFlags: 0
