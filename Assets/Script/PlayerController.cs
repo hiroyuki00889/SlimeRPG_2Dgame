@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
                 right = false;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 if (rb.velocity.x > -10)
                 {
