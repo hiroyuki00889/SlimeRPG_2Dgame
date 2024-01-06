@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class FireEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            collider.gameObject.GetComponent<PlayerController>().down = true;
+        }
     }
 }
