@@ -163,6 +163,14 @@ public class Enemy_Move : MonoBehaviour
             {
                 enemyTagCounter.IncrementCounter("Dino");
             }
+            else if (gameObject.CompareTag("Opossum"))
+            {
+                enemyTagCounter.IncrementCounter("Opossum");
+            }
+            else if (gameObject.CompareTag("Pig"))
+            {
+                enemyTagCounter.IncrementCounter("Pig");
+            }
             Debug.Log(enemyTagCounter);
         }
     }

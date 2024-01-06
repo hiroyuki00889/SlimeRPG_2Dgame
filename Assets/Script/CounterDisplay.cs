@@ -9,9 +9,15 @@ public class CounterDisplay : MonoBehaviour
     public Text counterTextBunny;
     public Text counterTextDog;
     public Text counterTextBat;
+    public Text counterTextDino;
+    public Text counterTextOpossum;
+    public Text counterTextPig;
     public Button Bunny;
     public Button Dog;
     public Button Bat;
+    public Button Dino;
+    public Button Opossum;
+    public Button Pig;
 
 
 
@@ -77,6 +83,63 @@ public class CounterDisplay : MonoBehaviour
 
                     // テキストに数値を表示
                     counterTextBat.text = kvp.Value.ToString();
+                }
+                // counterTextB.text = $"EnemyTagB: {kvp.Value}";
+            }
+            else if (kvp.Key == "Dino")
+            {
+                if (kvp.Value == 0)
+                {
+                    //Club.gameObject.SetActive(false); // 画像を非表示
+                    Bat.interactable = false;
+                    counterTextDino.gameObject.SetActive(false);  // テキストを非表示
+                }
+                else if (kvp.Value >= 1)
+                {
+                    //Club.gameObject.SetActive(true);  // 画像を表示
+                    Bat.interactable = true;
+                    counterTextDino.gameObject.SetActive(true);   // テキストを表示
+
+                    // テキストに数値を表示
+                    counterTextDino.text = kvp.Value.ToString();
+                }
+                // counterTextB.text = $"EnemyTagB: {kvp.Value}";
+            }
+            else if (kvp.Key == "Opossum")
+            {
+                if (kvp.Value == 0)
+                {
+                    //Club.gameObject.SetActive(false); // 画像を非表示
+                    Bat.interactable = false;
+                    counterTextOpossum.gameObject.SetActive(false);  // テキストを非表示
+                }
+                else if (kvp.Value >= 1)
+                {
+                    //Club.gameObject.SetActive(true);  // 画像を表示
+                    Bat.interactable = true;
+                    counterTextOpossum.gameObject.SetActive(true);   // テキストを表示
+
+                    // テキストに数値を表示
+                    counterTextOpossum.text = kvp.Value.ToString();
+                }
+                // counterTextB.text = $"EnemyTagB: {kvp.Value}";
+            }
+            else if (kvp.Key == "Pig")
+            {
+                if (kvp.Value == 0)
+                {
+                    //Club.gameObject.SetActive(false); // 画像を非表示
+                    Bat.interactable = false;
+                    counterTextPig.gameObject.SetActive(false);  // テキストを非表示
+                }
+                else if (kvp.Value >= 1)
+                {
+                    //Club.gameObject.SetActive(true);  // 画像を表示
+                    Bat.interactable = true;
+                    counterTextPig.gameObject.SetActive(true);   // テキストを表示
+
+                    // テキストに数値を表示
+                    counterTextPig.text = kvp.Value.ToString();
                 }
                 // counterTextB.text = $"EnemyTagB: {kvp.Value}";
             }
