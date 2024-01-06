@@ -219,6 +219,7 @@ MonoBehaviour:
   fireLifetime: 2
   pigimpact: {fileID: 25655981888401640, guid: 619094852d845c2459cd44f9242ee26f, type: 3}
   Player: {fileID: 0}
+  anylater: 0
   Bunny: 0
   Bat: 0
   Dog: 0
