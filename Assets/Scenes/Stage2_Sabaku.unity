@@ -778,7 +778,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2123866582}
         m_TargetAssemblyTypeName: Skill_Activate, Assembly-CSharp
-        m_MethodName: Bunny
+        m_MethodName: PigImpact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

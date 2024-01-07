@@ -7,6 +7,7 @@ public class Skill_Activate : MonoBehaviour
     private PlayerController controller;
     private EnemyTagCounter enemyTagCounter;
     public Skill_Table skill_table;
+    public float impulse;
 
     private void Start()
     {
@@ -56,4 +57,55 @@ public class Skill_Activate : MonoBehaviour
         Destroy(fire, 2f);
     }
 
+    public void PigImpact()
+    {
+        StartCoroutine(PigImpactJamp());
+    }
+
+
+    private IEnumerator PigImpactJamp()
+    {
+        //‰º‚É—Í‚©‚¯‚éˆ—
+        yield return new WaitUntil(() => controller.rb.velocity.y == 0);
+        float i = impulse;
+        GameObject impact1 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x - 1.5f, this.transform.position.y), Quaternion.identity);
+        GameObject impact2 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x + 1.5f, this.transform.position.y), Quaternion.identity);
+        impact1.tag = "PlayerAttack";
+        impact2.tag = "PlayerAttack";
+        if (i > -1)//‰½ŒÌ‚©‘å‚«‚³‚ª•Ï‚í‚ç‚ñ
+        {
+            Debug.Log(i);
+        }
+        else if (i > -3)
+        {
+            Debug.Log(i);
+            impact1.transform.localScale = new Vector2(2f, 2f);
+            impact2.transform.localScale = new Vector2(2f, 2f);
+        }
+        else if (i > -6)
+        {
+            Debug.Log(i);
+            impact1.transform.localScale = new Vector2(2f, 2f);
+            impact2.transform.localScale = new Vector2(2f, 2f);
+        }
+        else if (i > -9)
+        {
+            Debug.Log(i);
+            impact1.transform.localScale = new Vector2(2f, 2f);
+            impact2.transform.localScale = new Vector2(2f, 2f);
+        }
+        else if (i > -12)
+        {
+            Debug.Log(i);
+            impact1.transform.localScale = new Vector2(2f, 2f);
+            impact2.transform.localScale = new Vector2(2f, 2f);
+        }
+        else if (i > -16)
+        {
+            Debug.Log(i);
+            impact1.transform.localScale = new Vector2(2f, 2f);
+            impact2.transform.localScale = new Vector2(2f, 2f);
+        }
+        Debug.Log(i);
+    }
 }

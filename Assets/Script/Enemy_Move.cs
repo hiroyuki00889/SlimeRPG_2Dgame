@@ -444,7 +444,7 @@ public class Enemy_Move : MonoBehaviour
         this.transform.DOShakePosition(rnd-0.1f,1f,20,90f,false); //‚±‚±‚Å‚·
         rb.velocity = new Vector2(0, -20);//‰º~
         yield return new WaitUntil(() =>rb.velocity.y==0);
-        Instantiate(pigimpact,new Vector2(this.transform.position.x-1.5f,this.transform.position.y),Quaternion.identity);
+        Instantiate(pigimpact, new Vector2(this.transform.position.x-1.5f,this.transform.position.y),Quaternion.identity);
         Instantiate(pigimpact, new Vector2(this.transform.position.x + 1.5f, this.transform.position.y), Quaternion.identity);
         yield return new WaitForSeconds(1f);
         animator.SetTrigger("PigRun");

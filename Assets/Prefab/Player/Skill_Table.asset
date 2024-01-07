@@ -21,3 +21,7 @@ MonoBehaviour:
     skill_effect: {fileID: 100002, guid: db50ab1c866680e4bb870bf5eb72dd3d, type: 3}
   - skill_type: 3
     skill_effect: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  - skill_type: 4
+    skill_effect: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  - skill_type: 5
+    skill_effect: {fileID: 25655981888401640, guid: 619094852d845c2459cd44f9242ee26f, type: 3}

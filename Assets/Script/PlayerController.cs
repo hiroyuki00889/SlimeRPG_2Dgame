@@ -259,4 +259,9 @@ public class PlayerController : MonoBehaviour
             return -15f;
         }
     }
+
+    public float GetVelocityY()
+    {
+        return rb.velocity.y;
+    }
 }

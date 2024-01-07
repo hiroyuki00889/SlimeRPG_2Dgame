@@ -12,9 +12,20 @@ public class PigImpact : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (CompareTag("PlayerAttack"))
         {
-            collider.gameObject.GetComponent<PlayerController>().down = true;
+            if (collider.gameObject.CompareTag("Pig"))
+            {
+                collider.gameObject.GetComponent<ObjectCollision>().step = true;
+            }
+            
+        }
+        else
+        {
+            if (collider.gameObject.CompareTag("Player"))
+            {
+                collider.gameObject.GetComponent<PlayerController>().down = true;
+            }
         }
     }
 }
