@@ -18,7 +18,7 @@ public class Skill
         JumpEnhance,
         SmallSlime,
         Fire,
-        PigImpact,
+        Impact,
     }
     public Skills skill_type;
     public GameObject skill_effect;

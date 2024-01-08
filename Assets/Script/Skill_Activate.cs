@@ -59,11 +59,11 @@ public class Skill_Activate : MonoBehaviour
 
     public void PigImpact()
     {
-        StartCoroutine(PigImpactJamp());
+        StartCoroutine(Impact());
     }
 
 
-    private IEnumerator PigImpactJamp()
+    private IEnumerator Impact()
     {
         //‰º‚É—Í‚©‚¯‚éˆ—
         yield return new WaitUntil(() => controller.rb.velocity.y == 0);
@@ -72,40 +72,34 @@ public class Skill_Activate : MonoBehaviour
         GameObject impact2 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x + 1.5f, this.transform.position.y), Quaternion.identity);
         impact1.tag = "PlayerAttack";
         impact2.tag = "PlayerAttack";
-        if (i > -1)//‰½ŒÌ‚©‘å‚«‚³‚ª•Ï‚í‚ç‚ñ
+        if (i > -1)
         {
-            Debug.Log(i);
+
         }
         else if (i > -3)
         {
-            Debug.Log(i);
-            impact1.transform.localScale = new Vector2(2f, 2f);
-            impact2.transform.localScale = new Vector2(2f, 2f);
+            impact1.transform.localScale *=1.2f;
+            impact2.transform.localScale *=1.2f;
         }
         else if (i > -6)
         {
-            Debug.Log(i);
-            impact1.transform.localScale = new Vector2(2f, 2f);
-            impact2.transform.localScale = new Vector2(2f, 2f);
+            impact1.transform.localScale *= 1.4f;
+            impact2.transform.localScale *= 1.4f;
         }
         else if (i > -9)
         {
-            Debug.Log(i);
-            impact1.transform.localScale = new Vector2(2f, 2f);
-            impact2.transform.localScale = new Vector2(2f, 2f);
+            impact1.transform.localScale *= 1.6f;
+            impact2.transform.localScale *= 1.6f;
         }
         else if (i > -12)
         {
-            Debug.Log(i);
-            impact1.transform.localScale = new Vector2(2f, 2f);
-            impact2.transform.localScale = new Vector2(2f, 2f);
+            impact1.transform.localScale *= 1.8f;
+            impact2.transform.localScale *= 1.8f;
         }
         else if (i > -16)
         {
-            Debug.Log(i);
-            impact1.transform.localScale = new Vector2(2f, 2f);
-            impact2.transform.localScale = new Vector2(2f, 2f);
+            impact1.transform.localScale *= 2f;
+            impact2.transform.localScale *= 2f;
         }
-        Debug.Log(i);
     }
 }
