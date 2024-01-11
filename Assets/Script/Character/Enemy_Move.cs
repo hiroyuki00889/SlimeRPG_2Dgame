@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.Events;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Enemy_Move : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class Enemy_Move : MonoBehaviour
     public Transform Player;
     public bool anylater;
 
-    [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino;
+    [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino ,Vulture;
     [SerializeField] AnimateNDialog animateNDialog;
     [SerializeField] NDEvent ndEvent;
     
@@ -70,7 +71,7 @@ public class Enemy_Move : MonoBehaviour
     private void SkillDiscribe()
     {
         anylater = true; // animateNDialogを1秒待つフラグ
-                         //スキル説明
+        //スキル説明
         string sd = "Skill";
         ndEvent.isNDEvent = true;
         animateNDialog.DialogNarratorOpen();
@@ -139,6 +140,12 @@ public class Enemy_Move : MonoBehaviour
                 enemypos_x = transform.position.x;
                 DinoMove();
             }
+            else if (spriteRenderer.isVisible && Vulture && coroutine == false)
+            {
+                playerpos_x = playerOb.transform.position.x;
+                enemypos_x = transform.position.x;
+                VultureMove();
+            }
         }
         else
         {
@@ -187,6 +194,66 @@ public class Enemy_Move : MonoBehaviour
             Destroy(this.gameObject);
         }
     }*/
+    private void VultureMove()
+    {
+        VultuerState();
+        time += Time.fixedDeltaTime;
+        if(time >= 5)
+        {
+            StartCoroutine(VultureHovering());
+            StartCoroutine(VultureGliding());
+
+        }
+
+    }
+    IEnumerator VultureHovering()
+    {
+        coroutine = true;
+        distance = Vector2.Distance(transform.position, playerOb.transform.position);
+        if(distance >= 15)
+        {
+            VultuerState();
+        }
+        yield return new WaitForSeconds(2);
+        coroutine = false;
+    }
+    private void VultuerState()
+    {
+        Vector3 e_pos = transform.position;
+        Vector3 p_pos = playerOb.transform.position;
+        Vector2 camera_wh = new Vector2(Screen.width, Screen.height);
+        Debug.Log(e_pos);
+
+        if (p_pos.y+5 < e_pos.y)
+        {
+            rb.velocity = new Vector2(rb.velocity.x , -speed);
+            return;
+        }
+        if(p_pos.y + 5 > e_pos.y)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, speed);
+            return;
+        }
+        if (p_pos.x < e_pos.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            return;
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            return;
+        }
+
+
+
+    }
+    IEnumerator VultureGliding()
+    {
+        yield return null;
+    }
     private void BunnyMove()
     {
        
