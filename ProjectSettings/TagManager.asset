@@ -23,6 +23,7 @@ TagManager:
   - Pig
   - PlayerAttack
   - Vulture
+  - PainObjects
   layers:
   - Default
   - TransparentFX
