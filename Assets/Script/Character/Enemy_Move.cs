@@ -39,6 +39,11 @@ public class Enemy_Move : MonoBehaviour
     public GameObject pigimpact;
     public Transform Player;
     public bool anylater;
+    private Vector3 e_pos;
+    private Vector3 p_pos;
+    private bool vul_arri;
+    public bool vul_isgrap = true;
+
 
     [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino ,Vulture;
     [SerializeField] AnimateNDialog animateNDialog;
@@ -140,10 +145,10 @@ public class Enemy_Move : MonoBehaviour
                 enemypos_x = transform.position.x;
                 DinoMove();
             }
-            else if (spriteRenderer.isVisible && Vulture && coroutine == false)
+            else if (Vulture && coroutine == false)
             {
-                playerpos_x = playerOb.transform.position.x;
-                enemypos_x = transform.position.x;
+                e_pos = transform.position;
+                p_pos = playerOb.transform.position;
                 VultureMove();
             }
         }
@@ -196,61 +201,40 @@ public class Enemy_Move : MonoBehaviour
     }*/
     private void VultureMove()
     {
-        VultuerState();
-        time += Time.fixedDeltaTime;
-        if(time >= 5)
+        distance = Vector2.Distance(e_pos, p_pos);
+        //距離が20以内かつ所定の位置に着くまでの一回きりの移動速度
+        if (distance < 20 && vul_arri == false)
         {
-            StartCoroutine(VultureHovering());
-            StartCoroutine(VultureGliding());
-
+            transform.position = Vector3.Lerp(e_pos, new Vector3(p_pos.x + 5, p_pos.y + 6), 0.5f * Time.deltaTime);
+        }
+        //所定の位置に着いた後にフラグオン
+        if(p_pos.x+5 >= e_pos.x && p_pos.y+6 >= e_pos.y && vul_arri == false)
+        {
+            vul_arri = true;
+        }
+        //通常の動き、playerの前でホバリング
+        if(vul_arri == true)
+        {
+            transform.position = Vector3.Lerp(e_pos, new Vector3(p_pos.x + 5, p_pos.y + 6), speed * Time.deltaTime);
+        }
+        if (spriteRenderer.isVisible)
+        {
+            time += Time.fixedDeltaTime; //画面内に来てから時間計測
+        }
+        if (time >= 5)
+        {
+            vul_isgrap = false;　//つかんでいるものを落とす
+            time = 0;
+        }
+        //帰っていくよ
+        if(vul_isgrap == false && time >= 2)
+        {
+            transform.position = Vector3.Lerp(e_pos, new Vector3(p_pos.x + 20, p_pos.y + 20), 0.2f * Time.deltaTime);
+            transform.localScale = Vector3.one;
         }
 
     }
-    IEnumerator VultureHovering()
-    {
-        coroutine = true;
-        distance = Vector2.Distance(transform.position, playerOb.transform.position);
-        if(distance >= 15)
-        {
-            VultuerState();
-        }
-        yield return new WaitForSeconds(2);
-        coroutine = false;
-    }
-    private void VultuerState()
-    {
-        Vector3 e_pos = transform.position;
-        Vector3 p_pos = playerOb.transform.position;
-        Vector2 camera_wh = new Vector2(Screen.width, Screen.height);
-        Debug.Log(e_pos);
-
-        if (p_pos.y+5 < e_pos.y)
-        {
-            rb.velocity = new Vector2(rb.velocity.x , -speed);
-            return;
-        }
-        if(p_pos.y + 5 > e_pos.y)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, speed);
-            return;
-        }
-        if (p_pos.x < e_pos.x)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
-            return;
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-            return;
-        }
-
-
-
-    }
-    IEnumerator VultureGliding()
+    IEnumerator VultureGrab()　//掴む動きももしかしたら追加するかも
     {
         yield return null;
     }
