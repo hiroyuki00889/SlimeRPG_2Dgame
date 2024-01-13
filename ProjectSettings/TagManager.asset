@@ -21,6 +21,8 @@ TagManager:
   - TDEventTag1-A
   - Bear
   - Pig
+  - PlayerAttack
+  - Vulture
   layers:
   - Default
   - TransparentFX

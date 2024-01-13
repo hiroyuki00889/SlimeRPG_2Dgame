@@ -17,7 +17,8 @@ public class Skill
         UltraSounds,
         JumpEnhance,
         SmallSlime,
-        Fire
+        Fire,
+        Impact,
     }
     public Skills skill_type;
     public GameObject skill_effect;

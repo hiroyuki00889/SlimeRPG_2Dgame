@@ -94,26 +94,26 @@ public class PlayerController : MonoBehaviour
                 right = true; 
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 if (rb.velocity.x < 10)
                 {
                     animator.SetBool("Dash", true);
-                    rb.velocity = new Vector2(speed * time, rb.velocity.y);
+                    rb.velocity = new Vector2(speed * time, VelocityYControl());
                     time += Time.fixedDeltaTime;
                     
                 }
                 else
                 {
                     
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                    rb.velocity = new Vector2(rb.velocity.x, VelocityYControl());
                 }
             }
             else 
             {
                 animator.SetBool("Dash", false);
                 time = 1;
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+                rb.velocity = new Vector2(speed, VelocityYControl());
             }
         }
         else if (Input.GetKey(KeyCode.A))
@@ -133,38 +133,41 @@ public class PlayerController : MonoBehaviour
                 right = false;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 if (rb.velocity.x > -10)
                 {
                     animator.SetBool("Dash", true);
-                    rb.velocity = new Vector2(-speed * time, rb.velocity.y);
+                    rb.velocity = new Vector2(-speed * time, VelocityYControl());
                     time += Time.fixedDeltaTime;
                 }
                 else
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                    rb.velocity = new Vector2(rb.velocity.x, VelocityYControl());
                 }
             }
             else 
             {
                 animator.SetBool("Dash", false);
                 time = 1;
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                rb.velocity = new Vector2(-speed, VelocityYControl());
             }
         }
         else
         {
             animator.SetBool("Dash", false);
             time = 1;
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = new Vector2(0, VelocityYControl());
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || collision.gameObject.CompareTag("Bat") || collision.gameObject.CompareTag("Dino") || collision.gameObject.CompareTag("Bear") || collision.gameObject.CompareTag("Opossum") || collision.gameObject.CompareTag("Pig"))
+        if (collision.gameObject.CompareTag("Bunny") || collision.gameObject.CompareTag("Dog") || 
+            collision.gameObject.CompareTag("Bat") || collision.gameObject.CompareTag("Dino") || 
+            collision.gameObject.CompareTag("Bear") || collision.gameObject.CompareTag("Opossum") || 
+            collision.gameObject.CompareTag("Pig") || collision.gameObject.CompareTag("Vulture"))
        {
             float stepOnHeight = (capsulecollider.size.y * (stepOnRate / 100f));
         //踏みつけ判定のワールド座標
@@ -246,5 +249,22 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1f, 0.5f, 1f);
         }
         small = true;
+    }
+
+    private float VelocityYControl() 
+    {
+        if (rb.velocity.y>-15)
+        {
+            return rb.velocity.y;
+        }
+        else 
+        {
+            return -15f;
+        }
+    }
+
+    public float GetVelocityY()
+    {
+        return rb.velocity.y;
     }
 }
