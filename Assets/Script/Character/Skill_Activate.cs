@@ -80,30 +80,30 @@ public class Skill_Activate : MonoBehaviour
         {
 
         }
-        else if (i > -3)
+        else if (i > -5)
         {
             impact1.transform.localScale *=1.2f;
             impact2.transform.localScale *=1.2f;
         }
-        else if (i > -6)
+        else if (i > -10)
         {
             impact1.transform.localScale *= 1.4f;
             impact2.transform.localScale *= 1.4f;
         }
-        else if (i > -9)
+        else if (i > -15)
         {
             impact1.transform.localScale *= 1.6f;
             impact2.transform.localScale *= 1.6f;
         }
-        else if (i > -12)
+        else if (i > -20)
         {
             impact1.transform.localScale *= 1.8f;
             impact2.transform.localScale *= 1.8f;
         }
-        else if (i > -16)
+        else if (i > -30)
         {
-            impact1.transform.localScale *= 2f;
-            impact2.transform.localScale *= 2f;
+            impact1.transform.localScale *= 2.5f;
+            impact2.transform.localScale *= 2.5f;
         }
     }
 }
