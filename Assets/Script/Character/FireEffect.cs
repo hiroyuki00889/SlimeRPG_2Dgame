@@ -15,5 +15,6 @@ public class FireEffect : MonoBehaviour
             LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
             lifeManage.TakeDamage();
         }
+
     }
 }
