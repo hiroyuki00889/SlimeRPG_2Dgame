@@ -44,6 +44,8 @@ public class Skill_Activate : MonoBehaviour
 
     public void SmallSlime() 
     {
+        // スキル発動前にデクリメント処理
+        enemyTagCounter.DecrementCounter("Opposum");
         Instantiate(skill_table.skill[3].skill_effect,this.transform.position,Quaternion.identity);
         controller.SmallSlime();
     }
@@ -59,6 +61,8 @@ public class Skill_Activate : MonoBehaviour
 
     public void PigImpact()
     {
+        // スキル発動前にデクリメント処理
+        enemyTagCounter.DecrementCounter("Pig");
         StartCoroutine(Impact());
     }
 
