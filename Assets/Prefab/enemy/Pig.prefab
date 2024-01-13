@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 966196011172339345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.3, y: -2.92, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 966196011120983353}
@@ -220,12 +220,14 @@ MonoBehaviour:
   pigimpact: {fileID: 25655981888401640, guid: 619094852d845c2459cd44f9242ee26f, type: 3}
   Player: {fileID: 0}
   anylater: 0
+  vul_isgrap: 1
   Bunny: 0
   Bat: 0
   Dog: 0
   Opossum: 0
   Pig: 1
   Dino: 0
+  Vulture: 0
   animateNDialog: {fileID: 0}
   ndEvent: {fileID: 0}
 --- !u!114 &966196011172339359

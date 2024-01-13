@@ -70,8 +70,12 @@ public class Skill_Activate : MonoBehaviour
     private IEnumerator Impact()
     {
         //‰º‚É—Í‚©‚¯‚éˆ—
+        controller.rb.AddForce(new Vector3(0, 100, 0),ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        controller.rb.AddForce(new Vector3(0, -150, 0), ForceMode2D.Impulse);
         yield return new WaitUntil(() => controller.rb.velocity.y == 0);
         float i = impulse;
+        Debug.Log(i);
         GameObject impact1 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x - 1.5f, this.transform.position.y), Quaternion.identity);
         GameObject impact2 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x + 1.5f, this.transform.position.y), Quaternion.identity);
         impact1.tag = "PlayerAttack";

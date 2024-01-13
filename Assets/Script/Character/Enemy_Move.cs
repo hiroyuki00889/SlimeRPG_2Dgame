@@ -453,11 +453,11 @@ public class Enemy_Move : MonoBehaviour
             if (playerOb.transform.position.x>this.transform.position.x)
             {
                 xVector = 1;
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-0.8f, 0.8f, 1);
             }
             else
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(0.8f, 0.8f, 1);
             }
 
             if (pigcoroutine == null)
