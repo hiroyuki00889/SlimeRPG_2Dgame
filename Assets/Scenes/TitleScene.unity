@@ -962,6 +962,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7034934938683881712, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
   m_PrefabInstance: {fileID: 436653581}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1873006267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873006244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619428eff205b7c4c967cfe004162fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2062874000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,12 +1184,14 @@ MonoBehaviour:
   pigimpact: {fileID: 0}
   Player: {fileID: 1873006259}
   anylater: 0
+  vul_isgrap: 1
   Bunny: 0
   Bat: 0
   Dog: 0
   Opossum: 0
   Pig: 0
   Dino: 1
+  Vulture: 0
   animateNDialog: {fileID: 0}
   ndEvent: {fileID: 0}
 --- !u!95 &2082977927
