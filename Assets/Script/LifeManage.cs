@@ -6,9 +6,10 @@ public class LifeManage : MonoBehaviour
 {
     private int life = 5;
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         life--;
+        Debug.Log(life);
 
         if(life <= 0)
         {
@@ -18,6 +19,7 @@ public class LifeManage : MonoBehaviour
 
     void GameOver()
     {
+        Debug.Log("GameOver");
         // どこかにゲームオーバーの処理なかったでしたっけ？移植してほしいです
     }
 
