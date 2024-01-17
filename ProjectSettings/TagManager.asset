@@ -24,6 +24,7 @@ TagManager:
   - PlayerAttack
   - Vulture
   - PainObjects
+  - BreakGround
   layers:
   - Default
   - TransparentFX
