@@ -25,6 +25,7 @@ TagManager:
   - Vulture
   - PainObjects
   - BreakGround
+  - TDEventTag1-B
   layers:
   - Default
   - TransparentFX

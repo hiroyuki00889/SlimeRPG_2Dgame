@@ -8,7 +8,6 @@ public class AnimateNDialog : MonoBehaviour
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
     [SerializeField] NDEvent ndEvent;
-    [SerializeField] Enemy_Move enemymove;
 
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
