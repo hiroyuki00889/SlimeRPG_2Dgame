@@ -20,7 +20,8 @@ public class Skill_Activate : MonoBehaviour
         // スキル発動前にデクリメント処理
         enemyTagCounter.DecrementCounter("Bunny");
         Instantiate(skill_table.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
-        controller.rb.AddForce(new Vector3(0, 65, 0), ForceMode2D.Impulse);
+        controller.rb.velocity = new Vector2(controller.rb.velocity.x,0);
+        controller.rb.AddForce(new Vector3(0, 60, 0), ForceMode2D.Impulse);
     }
 
     public void Bite()
