@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TDEvent : MonoBehaviour
 {
     [SerializeField] AnimateTDialog animateTDialog;
-    bool isCallOnece = false;
+    private bool isCallOnece = false;
     public Text nameText;
     public Text tdEventText;
     string[] parts;
@@ -19,8 +19,8 @@ public class TDEvent : MonoBehaviour
     private void Start()
     {
         //会話文追加。「,,」で名前と文章の区切り。最初は名前。Unityの方のタグと合わせる
-        tdEvent.Add("TDEventTag1-A", "ライバル,,よう！");
-        tdEvent.Add("TDEventTagB", "イベントタグBの文章です");
+        tdEvent.Add("TDEventTag1-A", "ライバル,,よう！,,お前しってるか？,,四天王がここらを支配して1年、やつら天狗になってやがる,,いい加減野放しにできないよな,,なに？お前が倒すだって？,,ばかいえ、俺が倒すんだよ！,,お前より俺の必殺技のが…");
+        tdEvent.Add("TDEventTag1-B", "ライバル,,イベントタグBの文章です,,１行だとエラーになるのか");
         tdEvent.Add("TDEventTagC", "イベントタグCの文章です");
         tdEvent.Add("TDEventTagD", "イベントタグDの文章です");
         // ここに会話文追加
@@ -57,6 +57,7 @@ public class TDEvent : MonoBehaviour
         //一度しか呼び出されないフラグがfalseかつ、衝突してきた相手がPlayer
         if (!isCallOnece && collider.gameObject.CompareTag("Player"))
         {
+            Debug.Log("TDEventのOnTrigetr");
             isCallOnece = true;
             isTDEvent = true;
         }
@@ -65,7 +66,7 @@ public class TDEvent : MonoBehaviour
     private void Update()
     {
         //ナレーターダイアログが開いている間、左クリックを押すと、文章送り
-        if (animateTDialog.t_IsOpen && animateTDialog.t_SentenceTrigger == true)
+        if (animateTDialog.t_IsOpen && animateTDialog.t_SentenceTrigger == true && parts !=null)
         {
             if (i < parts.Length - 1)
             {
@@ -79,6 +80,7 @@ public class TDEvent : MonoBehaviour
             {
                 isTDEvent = false;
                 i = 0;
+                Array.Clear(parts, 0, parts.Length);
             }
         }
     }
