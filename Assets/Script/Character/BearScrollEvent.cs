@@ -11,7 +11,6 @@ public class BearScrollEvent : MonoBehaviour
     public GameObject parent;
     public Vector3 scrollspeed= new Vector3(0.01f, 0, 0); //スクロールスピード
     public Vector3 upspeed; //スピードアップ時の速度
-    private float speeddowntime = 0f;
     private bool a;
     private Animator bearanim;
 
