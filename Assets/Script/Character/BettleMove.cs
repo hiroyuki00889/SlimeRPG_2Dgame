@@ -10,6 +10,7 @@ public class BettleMove : MonoBehaviour
     [SerializeField]private GameObject player;
     private Rigidbody2D rb;
     private Animator anim;
+    private CircleCollider2D circleCollider;
     [SerializeField]private Vector2 rightrush;//âEë§Ç©ÇÁìÀåÇèâä˙à íu
     [SerializeField] private Vector2 rightrushend;//é~Ç‹ÇÈà íu
     [SerializeField]private Vector3[] rightrushdetour;
@@ -20,12 +21,17 @@ public class BettleMove : MonoBehaviour
     [SerializeField]private float digholeup;
     private int nextmove;
     private bool movenow;
+    [SerializeField] private float dighole;
+    private bool digholenow;
+
+    [SerializeField] private Vector3[] walkpath;
     
     private void Start()
     {
         rb=GetComponent<Rigidbody2D>();
         anim=GetComponent<Animator>();
-        nextmove = Random.Range(0,3);
+        circleCollider=GetComponent<CircleCollider2D>();
+        nextmove = Random.Range(0,2);
         rightrushdetour[0] = rightrush;
         leftrushdetour[0] = leftrush;
     }
@@ -35,7 +41,7 @@ public class BettleMove : MonoBehaviour
         {
             if (nextmove == 0)
             {
-                StartCoroutine(BettleRush());
+                StartCoroutine(DigHole());
             }
             else if (nextmove == 1)
             {
@@ -43,18 +49,34 @@ public class BettleMove : MonoBehaviour
             }
             else if (nextmove == 2) 
             {
-                StartCoroutine(BettleRush());
+                StartCoroutine(DigHole());
             }
         }
         else 
         {
+            if (digholenow) 
+            {
+                if (this.transform.position.x == player.transform.position.x) 
+                {
+                    return;
+                }
+                if (this.transform.position.x < player.transform.position.x)
+                {
+                    rb.velocity = new Vector2(7, 0);
+                }
+                else 
+                {
+                    rb.velocity = new Vector2(-7, 0);
+                }
+            }
             return;
         }
     }
 
     private IEnumerator BettleWalk()
     {
-        yield break;
+        //int rnd = Random.Range(0, walkpath.Length);
+        yield return this.transform.DOPath(walkpath,3f).WaitForCompletion();
     }
 
     private IEnumerator BettleRush() 
@@ -79,13 +101,36 @@ public class BettleMove : MonoBehaviour
             yield return this.transform.DOPath(rightrushdetour, 1f).WaitForCompletion();
             yield return this.transform.DOMove(new Vector2(rightrushend.x - 1, rightrushend.y), 1f).WaitForCompletion();
         }
-
-
-        movenow= false;
+        yield return StartCoroutine(Down());
+        nextmove = Random.Range(0, 2);
+        movenow = false;
     }
 
-    private IEnumerator DigHole() 
+    private IEnumerator DigHole()
     {
-        yield break;
+        movenow= true;
+        yield return this.transform.DOMoveY(dighole,2f).WaitForCompletion();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        digholenow = true;
+        yield return new WaitForSeconds(2f);
+        digholenow = false;
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        yield return this.transform.DOMoveY(dighole+8,1f).SetDelay(0.2f).WaitForCompletion();
+        yield return StartCoroutine(Down());
+        nextmove = Random.Range(0, 2);
+        movenow = false;
+    }
+
+    private IEnumerator Down()
+    {
+        yield return this.transform.DORotate(new Vector3(180, 0, 0), 0.5f).WaitForCompletion();
+        rb.bodyType= RigidbodyType2D.Dynamic;
+        circleCollider.isTrigger= false;
+        yield return new WaitForSeconds(2f);
+        circleCollider.isTrigger = true;
+        rb.bodyType= RigidbodyType2D.Kinematic;
+        yield return this.transform.DORotate(Vector3.zero, 0.5f).WaitForCompletion();
+        yield return StartCoroutine(BettleWalk());
     }
 }
