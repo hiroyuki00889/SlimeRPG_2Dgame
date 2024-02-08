@@ -222,7 +222,6 @@ public class PlayerController : MonoBehaviour
             //NDEventがタグに含まれていたらナレーターダイアログを開く
             if (tag.Contains(hantei))
             {
-                animateNDialog.DialogNarratorOpen();
                 ndEvent.StartNDEvent(tag);
             }
         }
@@ -234,7 +233,6 @@ public class PlayerController : MonoBehaviour
             //TDEventがタグに含まれていたらトークダイアログを開く
             if (tag.Contains(hantei))
             {
-                animateTDialog.TDialogOpen();
                 tdEvent.StartTDEvent(tag);
             }
         }

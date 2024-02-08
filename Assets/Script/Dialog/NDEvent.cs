@@ -8,7 +8,7 @@ public class NDEvent : MonoBehaviour
 {
 
     [SerializeField] AnimateNDialog animateNDialog;
-    bool isCallOnece = false;
+    private string callOnece;
     public Text ndEventText;
     private string[] parts;
     int i = 0;
@@ -28,7 +28,7 @@ public class NDEvent : MonoBehaviour
         //Stage1初回起動時の表示文章、実行はStage1スクリプト
         ndEvent.Add("Stage1", "魔物の縄張りに住むスライムは平和に暮らしていました,,しかし、あることで縄張りを治める四天王にムカついてしまいました,,スライムは四天王を倒す旅に出ます");
         ndEvent.Add("Skill", "やったね！\n犬の魔物を飲み込めたね！,,スライムは飲み込んだ敵の情報を取り込んでスキルとして使えるようになるよ,,スキルは画面の下に表示されるよ,,使いたいスキルにカーソルを合わせてクリックしてね");
-
+        
     }
 
     public void StartNDEvent(string eventTag)
@@ -38,6 +38,8 @@ public class NDEvent : MonoBehaviour
         {
             // 会話内容を表示
             DisplayNDEvent(ndEventText);
+            animateNDialog.DialogNarratorOpen();
+            callOnece = eventTag;
         }
         else
         {
@@ -57,10 +59,9 @@ public class NDEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //一度しか呼び出されないフラグがfalseかつ、衝突してきた相手がPlayer
-        if (!isCallOnece && collider.gameObject.CompareTag("Player"))
+        //衝突してきた相手がPlayerならplayercontrollerのフラグオン
+        if (collider.gameObject.CompareTag("Player"))
         {
-            isCallOnece = true;           
             isNDEvent = true;
         }
     }
@@ -80,8 +81,10 @@ public class NDEvent : MonoBehaviour
             //最後の文章になって、左クリックを押すとフラグオフ、Textオブジェクトを非アクティブにする
             if (i >= parts.Length - 1)
             {
+                Array.Clear(parts, 0, parts.Length);
                 isNDEvent = false;
                 i=0;
+                ndEvent.Remove(callOnece);
             }
         }
     }
