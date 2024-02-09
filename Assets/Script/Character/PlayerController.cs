@@ -222,7 +222,6 @@ public class PlayerController : MonoBehaviour
             //NDEventがタグに含まれていたらナレーターダイアログを開く
             if (tag.Contains(hantei))
             {
-                animateNDialog.DialogNarratorOpen();
                 ndEvent.StartNDEvent(tag);
             }
         }
@@ -234,7 +233,6 @@ public class PlayerController : MonoBehaviour
             //TDEventがタグに含まれていたらトークダイアログを開く
             if (tag.Contains(hantei))
             {
-                animateTDialog.TDialogOpen();
                 tdEvent.StartTDEvent(tag);
             }
         }
@@ -256,13 +254,13 @@ public class PlayerController : MonoBehaviour
 
     private float VelocityYControl() 
     {
-        if (rb.velocity.y>-15)
+        if (rb.velocity.y>-30)
         {
             return rb.velocity.y;
         }
         else 
         {
-            return -15f;
+            return -30f;
         }
     }
 

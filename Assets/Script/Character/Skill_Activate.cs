@@ -20,7 +20,8 @@ public class Skill_Activate : MonoBehaviour
         // スキル発動前にデクリメント処理
         enemyTagCounter.DecrementCounter("Bunny");
         Instantiate(skill_table.skill[0].skill_effect, this.transform.position - new Vector3(0, -1, 0), Quaternion.identity);
-        controller.rb.AddForce(new Vector3(0, 65, 0), ForceMode2D.Impulse);
+        controller.rb.velocity = new Vector2(controller.rb.velocity.x,0);
+        controller.rb.AddForce(new Vector3(0, 60, 0), ForceMode2D.Impulse);
     }
 
     public void Bite()
@@ -70,8 +71,12 @@ public class Skill_Activate : MonoBehaviour
     private IEnumerator Impact()
     {
         //下に力かける処理
+        controller.rb.AddForce(new Vector3(0, 100, 0),ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        controller.rb.AddForce(new Vector3(0, -150, 0), ForceMode2D.Impulse);
         yield return new WaitUntil(() => controller.rb.velocity.y == 0);
         float i = impulse;
+        Debug.Log(i);
         GameObject impact1 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x - 1.5f, this.transform.position.y), Quaternion.identity);
         GameObject impact2 = Instantiate(skill_table.skill[5].skill_effect, new Vector2(this.transform.position.x + 1.5f, this.transform.position.y), Quaternion.identity);
         impact1.tag = "PlayerAttack";
@@ -80,30 +85,30 @@ public class Skill_Activate : MonoBehaviour
         {
 
         }
-        else if (i > -3)
+        else if (i > -5)
         {
             impact1.transform.localScale *=1.2f;
             impact2.transform.localScale *=1.2f;
         }
-        else if (i > -6)
+        else if (i > -10)
         {
             impact1.transform.localScale *= 1.4f;
             impact2.transform.localScale *= 1.4f;
         }
-        else if (i > -9)
+        else if (i > -15)
         {
             impact1.transform.localScale *= 1.6f;
             impact2.transform.localScale *= 1.6f;
         }
-        else if (i > -12)
+        else if (i > -20)
         {
             impact1.transform.localScale *= 1.8f;
             impact2.transform.localScale *= 1.8f;
         }
-        else if (i > -16)
+        else if (i > -30)
         {
-            impact1.transform.localScale *= 2f;
-            impact2.transform.localScale *= 2f;
+            impact1.transform.localScale *= 2.5f;
+            impact2.transform.localScale *= 2.5f;
         }
     }
 }

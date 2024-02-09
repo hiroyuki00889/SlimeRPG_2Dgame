@@ -18,6 +18,7 @@ public class AnimateTDialog : MonoBehaviour
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
+        m_Animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     private void Update()
@@ -34,7 +35,6 @@ public class AnimateTDialog : MonoBehaviour
         {
             TDialogClose();
             t_SentenceTrigger = false;
-            tdEvent.isTDEvent = true;
         }
     }
 
@@ -47,6 +47,7 @@ public class AnimateTDialog : MonoBehaviour
         m_Animator.SetBool(ParamIsOpen, true); // IsOpenフラグをtrueにセット
         // アニメーション待機
         StartCoroutine(WaitAnimation("Shown"));
+        Time.timeScale = 0;
     }
 
     private void TDialogClose()
@@ -55,6 +56,7 @@ public class AnimateTDialog : MonoBehaviour
         m_Animator.SetBool(ParamIsOpen, false); // IsOpenフラグをfalseにセット
         // アニメーション待機し、終わったらパネル自体を非アクティブにする
         StartCoroutine(WaitAnimation("Hidden", () => gameObject.SetActive(false)));
+        Time.timeScale = 1;
     }
 
     private IEnumerator WaitAnimation(string stateName, UnityAction onCompleted = null)
