@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class TDEvent : MonoBehaviour
 {
     [SerializeField] AnimateTDialog animateTDialog;
+    [SerializeField] CameraShake camShake;
+    float c_seconds;
     private string callOnece;
     public Text nameText;
     public Text tdEventText;
@@ -14,19 +16,25 @@ public class TDEvent : MonoBehaviour
     int i = 1;
     public bool isTDEvent;
     public bool isTalkStop;
+    public bool isCamShake;
     ////辞書定義
     private Dictionary<string, string> tdEvent = new Dictionary<string, string>();
 
     private void Start()
     {
+        //カメラが揺れる秒数
+        c_seconds = camShake.shakeDuration;
         //会話文追加。「,,」で名前と文章の区切り。最初は名前。Unityの方のタグと合わせる
+        //連続で会話イベント等する場合は区切り文字で余分にpart.Lengthを増やしておくこと
         tdEvent.Add("TDEventTag1-A", "ライバル,,よう！,,お前しってるか？,,四天王がここらを支配して1年、やつら天狗になってやがる,,いい加減野放しにできないよな,,なに？お前が倒すだって？,,ばかいえ、俺が倒すんだよ！,,お前より俺の必殺技のが…,, ");
         tdEvent.Add("TDEventTag1-B", "ライバル,,イベントタグBの文章です,,１行だとエラーになるのか,,aaaaaaa,,iiiiii");
         tdEvent.Add("TDEventTagC", "イベントタグCの文章です");
         tdEvent.Add("TDEventTagD", "イベントタグDの文章です");
 
         // 表示方法が変わっている文章
-        tdEvent.Add("Guooo!!!", "???,,グゥオオオオオオォォォォォォ！！！！！");
+        tdEvent.Add("Guooo!!!", "???,,グゥオオオオオオォォォォォォ！！！！！,, ");
+        tdEvent.Add("Bibiru", "ライバル,,ヒェッ…,,.........,,..................,,ふん、どうやら四天王の1人がご立腹のようだぜ,,ここらを牛耳っているのはクマのやつだな,,いい加減、取り締め料として食料を取られ続ける訳にはいかねぇ!,,お前、ちょっと様子見て来いよ,,この先にクマの根城があるそうだ,,俺？俺は何かあった時に動けるように陰から見てるからよ");
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -108,20 +116,33 @@ public class TDEvent : MonoBehaviour
     //話の最中に他の人物が話をするためのもの（俺：…、相手：…　等）
     private void TalkChange(string key)
     {
+        i = 0;
         if (key == "TDEventTag1-A")
         {
+            isTalkStop = true;
+            Time.timeScale = 1;
             StartTDEvent("Guooo!!!");
             //DOTweenを使って画面を揺らしたい
             //揺れが収まるまでか、収まって数秒立つまで待ちたいからコルーチン？
+            isCamShake = true;
+            StartCoroutine(AfterShakeTalk(c_seconds,"Bibiru"));
         }
+    }
+
+    IEnumerator AfterShakeTalk(float seconds, string key)
+    {
+        yield return new WaitForSeconds(seconds);
+        isTalkStop = false;
+        Time.timeScale = 0;
+        StartTDEvent(key);
     }
     //会話の間を持たせる関数
     IEnumerator StopTalk(string key)
     {
-        StartCoroutine(Seconds3());
+        StartCoroutine(Seconds3Talk());
         yield return new WaitForSeconds(1);
     }
-    IEnumerator Seconds3()
+    IEnumerator Seconds3Talk()
     {
         isTalkStop = true;
         Time.timeScale = 0;
