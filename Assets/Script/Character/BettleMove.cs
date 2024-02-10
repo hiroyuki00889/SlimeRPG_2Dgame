@@ -32,6 +32,9 @@ public class BettleMove : MonoBehaviour
     [SerializeField] private Vector3[] walkpath;
     private ObjectCollision oc;
     private bool downnow;
+
+    private bool invinciblenow;
+    private SpriteRenderer spriterenderer;
     
     private void Start()
     {
@@ -39,6 +42,7 @@ public class BettleMove : MonoBehaviour
         anim=GetComponent<Animator>();
         circleCollider=GetComponent<CircleCollider2D>();
         oc=GetComponent<ObjectCollision>();
+        spriterenderer=GetComponent<SpriteRenderer>();
         nextmove = Random.Range(0,2);
         rightrushdetour[0] = rightrush;
         leftrushdetour[0] = leftrush;
@@ -50,7 +54,10 @@ public class BettleMove : MonoBehaviour
                 oc.step = false;
                 if (downnow)
                     {
-                StartCoroutine(Damaged());
+                        if (!invinciblenow)
+                            {
+                                StartCoroutine(Damaged()); 
+                            }
                     }
             }
 
@@ -165,6 +172,7 @@ public class BettleMove : MonoBehaviour
     private IEnumerator Damaged() 
     {
         Debug.Log("’Ê‚è‚Ü‚µ‚½");
+        StartCoroutine(Invincible());
         this.hp -= 1;
         if (hp == 0)
         {
@@ -177,5 +185,23 @@ public class BettleMove : MonoBehaviour
             Debug.Log("“{‚Á‚½");
         }
         yield break;
+    }
+
+    private IEnumerator Invincible() 
+    {
+        invinciblenow = true;
+        for (int i = 0; i < 10; i++) 
+        {
+            if (i % 2 == 0)
+            {
+                spriterenderer.enabled = false;
+            }
+            else 
+            {
+                spriterenderer.enabled = true;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        invinciblenow = false;
     }
 }
