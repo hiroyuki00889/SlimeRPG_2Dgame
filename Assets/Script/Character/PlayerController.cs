@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public bool down=false; //死亡フラグ
     private bool small;
     private float cashe_steponrate;
+    public bool isStopPlayer;
     //[SerializeField] private CursorScript cursorscript;
     //[SerializeField] private Skill_Activate skill_Activate;
     [SerializeField] private Animator m_Animator;

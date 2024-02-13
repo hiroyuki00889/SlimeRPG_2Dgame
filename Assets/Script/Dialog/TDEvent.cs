@@ -120,10 +120,7 @@ public class TDEvent : MonoBehaviour
         if (key == "TDEventTag1-A")
         {
             isTalkStop = true;
-            Time.timeScale = 1;
             StartTDEvent("Guooo!!!");
-            //DOTweenを使って画面を揺らしたい
-            //揺れが収まるまでか、収まって数秒立つまで待ちたいからコルーチン？
             isCamShake = true;
             StartCoroutine(AfterShakeTalk(c_seconds,"Bibiru"));
         }
@@ -131,9 +128,9 @@ public class TDEvent : MonoBehaviour
 
     IEnumerator AfterShakeTalk(float seconds, string key)
     {
+        Debug.Log("AfterShakeTalk");
         yield return new WaitForSeconds(seconds);
         isTalkStop = false;
-        Time.timeScale = 0;
         StartTDEvent(key);
     }
     //会話の間を持たせる関数
