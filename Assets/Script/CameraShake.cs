@@ -23,8 +23,18 @@ public class CameraShake : MonoBehaviour
 
     private void CameraShaker()
     {
-        camera.DOComplete();
+        //DOTween
+        //.To(value => { }, 0, 1, 1)
+        //.SetUpdate(true);
         camera.DOShakePosition(shakeDuration, positionStrength);
-        camera.DOShakeRotation(shakeDuration,rotationStrength);
+        camera.DOShakeRotation(shakeDuration, rotationStrength)/*.OnComplete(StartTime)*/;
     }
+
+    //void StartTime()
+    //{
+    //    DOTween
+    //    .To(value => { }, 0, 1, 1)
+    //    .SetUpdate(false);
+    //}
+
 }
