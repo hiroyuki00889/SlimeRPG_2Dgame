@@ -7,6 +7,9 @@ public class ScrollJump : MonoBehaviour
     //[SerializeField] GameObject playergo;
     [SerializeField] PlayerController pc;
     private bool isTauch;
+    public bool up;
+    public bool right45;
+    public bool left45;
     void Start()
     {
 
@@ -25,7 +28,21 @@ public class ScrollJump : MonoBehaviour
     }
     void PlayerJump()
     {
-        pc.rb.AddForce(new Vector2(1, 50), ForceMode2D.Impulse);
+        if(up == true)
+        {
+            pc.rb.AddForce(new Vector2(1, 50), ForceMode2D.Impulse);
+            Debug.Log("è„ï˚å¸");
+        }
+        if(right45 == true)
+        {
+            pc.rb.AddForce(new Vector2(50, 50),ForceMode2D.Impulse);
+            Debug.Log("âE45ìx");
+        }
+        if (left45 == true)
+        {
+            pc.rb.AddForce(new Vector2(-50,50),ForceMode2D.Impulse);
+            Debug.Log("ç∂ÇSÇTìx");
+        }
     }
     void IsTauch()
     {

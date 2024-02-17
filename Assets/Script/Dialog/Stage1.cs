@@ -12,7 +12,6 @@ public class Stage1 : MonoBehaviour
             string tag = "Stage1";
             //‰‰ñ‹N“®‚Ìˆ—‚ğÀs
             ndEvent.isNDEvent = true;
-            animateNDialog.DialogNarratorOpen();
             ndEvent.StartNDEvent(tag);
 
     }

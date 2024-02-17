@@ -40,6 +40,7 @@ public class NDEvent : MonoBehaviour
             DisplayNDEvent(ndEventText);
             animateNDialog.DialogNarratorOpen();
             callOnece = eventTag;
+            Debug.Log("StartNDEvent");
         }
         else
         {
@@ -69,7 +70,7 @@ public class NDEvent : MonoBehaviour
     private void Update()
     {
         //ナレーターダイアログが開いている間、左クリックを押すと、文章送り
-        if (animateNDialog.IsOpen && animateNDialog.n_SentenceTrigger == true)
+        if (animateNDialog.IsOpen && animateNDialog.n_SentenceTrigger == true && parts != null)
         {
             if (i < parts.Length - 1)
             {

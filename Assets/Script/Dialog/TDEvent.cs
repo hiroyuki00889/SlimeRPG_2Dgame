@@ -77,11 +77,11 @@ public class TDEvent : MonoBehaviour
         nameText.text = parts[0];
         //ç≈èâÇÃï∂èÕì¸óÕ
         tdEventText.text = parts[1];
-        foreach (string part in parts)
-        {
-            Debug.Log(part);
-        }
-        Debug.Log(parts.Length);
+        //foreach (string part in parts)
+        //{
+        //    Debug.Log(part);
+        //}
+        //Debug.Log(parts.Length);
     }
     
 
@@ -105,7 +105,7 @@ public class TDEvent : MonoBehaviour
             if (i >= parts.Length - 1)
             {
                 Array.Clear(parts, 0, parts.Length);
-                Debug.Log("ç≈å„ÇÃçs");
+                //Debug.Log("ç≈å„ÇÃçs");
                 isTDEvent = false;
                 i = 0;
                 tdEvent.Remove(callOnece);
@@ -122,6 +122,7 @@ public class TDEvent : MonoBehaviour
             isTalkStop = true;
             StartTDEvent("Guooo!!!");
             isCamShake = true;
+            Time.timeScale = 1;
             StartCoroutine(AfterShakeTalk(c_seconds,"Bibiru"));
         }
     }
@@ -131,6 +132,7 @@ public class TDEvent : MonoBehaviour
         Debug.Log("AfterShakeTalk");
         yield return new WaitForSeconds(seconds);
         isTalkStop = false;
+        Time.timeScale = 0;
         StartTDEvent(key);
     }
     //âÔòbÇÃä‘ÇéùÇΩÇπÇÈä÷êî
