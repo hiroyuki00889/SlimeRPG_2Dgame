@@ -8,10 +8,13 @@ public class LifeManage : MonoBehaviour
     public int maxLife = 5; // ライフの最大値
     private int currentLife; // 現在のライフ
     public GameObject heartPrefab; // ハートのプレハブ
-
+    public GameObject heartAreaPrefab; // ユニークなオブジェクトのプレハブ
 
     private void Start()
     {
+        int objectCount = FindObjectsOfType<LifeManage>().Length;
+        if (objectCount == 1)
+        // ハートの初期化処理を実行
         currentLife = maxLife;
         InitializeHearts();
     }
@@ -19,12 +22,12 @@ public class LifeManage : MonoBehaviour
     void InitializeHearts()
     {
         float heartWidth = 30f; // ハートの幅
-        float startPosition = -480f;
+        float startPosition = -850f;
 
         for (int i = 0; i < maxLife; i++)
         {
             GameObject heart = Instantiate(heartPrefab, transform);
-            heart.transform.localPosition = new Vector2(startPosition + i * (heartWidth + 10), 220f); // ハートの位置を設定
+            heart.transform.localPosition = new Vector2(startPosition + i * (heartWidth + 40), 460f); // ハートの位置を設定
             heart.SetActive(true); // ハートをアクティブにする
         }
 
