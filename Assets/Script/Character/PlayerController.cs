@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rb;
+    public Transform tf;
     private EnemyTagCounter enemyTagCounter;
     private int maxjump;
     private int restjump; //ジャンプ回数

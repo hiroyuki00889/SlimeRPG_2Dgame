@@ -42,8 +42,8 @@ public class TDEvent : MonoBehaviour
         //衝突してきた相手がPlayerならplayercontrollerのフラグオン
         if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("TDEventのOnTrigetr");
             isTDEvent = true;
+            //これより上に書くと一回目で会話が発生しない
         }
     }
 
