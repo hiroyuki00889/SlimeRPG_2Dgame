@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage1_HeigenScene.unity
     guid: 091d42c81bb5dc743b4407849bb089b5
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3c10e2aa5c91003408d715474d1c236f
+  - enabled: 1
+    path: Assets/Scenes/Stage2_Sabaku.unity
+    guid: b2f9c60f3d4415a43aee4668a688df38
   m_configObjects: {}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LifeManage : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LifeManage : MonoBehaviour
     private int currentLife; // 現在のライフ
     public GameObject heartPrefab; // ハートのプレハブ
     public GameObject heartAreaPrefab; // ユニークなオブジェクトのプレハブ
+    public string currentSceneName; // ゲームオーバー時のシーン名
 
     private void Start()
     {
@@ -66,8 +68,9 @@ public class LifeManage : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("GameOver");
-        // どこかにゲームオーバーの処理なかったでしたっけ？移植してほしいです
+        // 現在のシーンの名前を取得し、変数に格納する
+        currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("GameOver");
     }
 
 }
