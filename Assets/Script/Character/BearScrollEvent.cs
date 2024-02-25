@@ -35,7 +35,7 @@ public class BearScrollEvent : MonoBehaviour
         {
             parent.transform.position += scrollspeed; //現在は親オブジェクトの座標準拠(熊そのものだとワールド座標に変換する処理が入りそうなため)
 
-            if (parent.transform.position.x > eventcoordinate[i]) 
+            if (parent.transform.position.x < eventcoordinate[i]) 
             {
                 events[i].Invoke();
                 i++;
