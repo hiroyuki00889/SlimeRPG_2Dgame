@@ -22,7 +22,6 @@ public class BettleMove : MonoBehaviour
     [SerializeField]private Vector2 leftrush;
     [SerializeField] private Vector2 leftrushend;
     [SerializeField]private Vector3[] leftrushdetour;
-    [SerializeField]private float digholedown;
     [SerializeField]private float digholeup;
     private int nextmove;
     private bool movenow;
@@ -69,7 +68,7 @@ public class BettleMove : MonoBehaviour
             }
             else if (nextmove == 1)
             {
-                StartCoroutine(BettleRush());
+                StartCoroutine(DigHole());
             }
             else if (nextmove == 2) 
             {
@@ -146,7 +145,7 @@ public class BettleMove : MonoBehaviour
         digholenow = false;
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
-        yield return this.transform.DOMoveY(dighole+8,0.5f).SetDelay(0.2f).WaitForCompletion();
+        yield return this.transform.DOMoveY(digholeup,0.5f).SetDelay(0.2f).WaitForCompletion();
         anim.SetBool(digholeanim, false);
         yield return StartCoroutine(Down());
         nextmove = Random.Range(0, 2);
@@ -203,5 +202,10 @@ public class BettleMove : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         invinciblenow = false;
+    }
+
+    private IEnumerator BettleRampage() 
+    {
+        yield break;
     }
 }
