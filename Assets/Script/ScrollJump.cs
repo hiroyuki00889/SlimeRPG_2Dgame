@@ -7,10 +7,13 @@ public class ScrollJump : MonoBehaviour
     //[SerializeField] GameObject playergo;
     [SerializeField] PlayerController pc;
     private bool isTauch;
+    [Header("どの方向に飛ぶか")]
     public bool up;
     public bool right;
     public bool left;
     public bool down;
+    [Header("ジャンプの強さ")]
+    public float jumppower=50;
     void Start()
     {
     }
@@ -30,32 +33,28 @@ public class ScrollJump : MonoBehaviour
     {
         if(up == true)
         {
-            pc.rb.AddForce(new Vector2(1, 50), ForceMode2D.Impulse);
-            Debug.Log("上方向");
+            pc.rb.AddForce(Vector2.up * jumppower, ForceMode2D.Impulse);
         }
         if(right)
         {
-            pc.rb.AddForce(Vector2.right * 50,ForceMode2D.Impulse);
-            Debug.Log("右方向");
+            pc.rb.AddForce(Vector2.right * jumppower,ForceMode2D.Impulse);
         }
         if (left)
         {
-            pc.rb.AddForce(Vector2.left * 50, ForceMode2D.Impulse);
-            Debug.Log("左方向");
+            pc.rb.AddForce(Vector2.left * jumppower, ForceMode2D.Impulse);
         }
         if (down == true)
         {
-            pc.rb.AddForce(Vector2.down * 50, ForceMode2D.Impulse);
-            Debug.Log("下方向");
+            pc.rb.AddForce(Vector2.down * jumppower, ForceMode2D.Impulse);
         }
     }
     void IsTauch()
     {
         isTauch = false;
     }
-    IEnumerator ScrollMove()
+    IEnumerator ScrollMove() //スクロールのばねの動き
     {
-        pc.enabled = false;
+        pc.enabled = false;　　　　　　　//Playerの慣性をゼロにして、少しの間動かせない
         pc.rb.velocity = Vector2.zero;
         transform.localScale = new Vector3(1, 0.8f, 1);
         yield return new WaitForSeconds(0.05f);
