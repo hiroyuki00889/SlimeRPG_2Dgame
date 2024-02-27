@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScrollJump : MonoBehaviour
 {
-    //[SerializeField] GameObject playergo;
     [SerializeField] PlayerController pc;
     private bool isTauch;
     [Header("どの方向に飛ぶか")]
@@ -14,8 +13,10 @@ public class ScrollJump : MonoBehaviour
     public bool down;
     [Header("ジャンプの強さ")]
     public float jumppower=50;
+    private float scale_x;
     void Start()
     {
+        scale_x = gameObject.transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -56,15 +57,15 @@ public class ScrollJump : MonoBehaviour
     {
         pc.enabled = false;　　　　　　　//Playerの慣性をゼロにして、少しの間動かせない
         pc.rb.velocity = Vector2.zero;
-        transform.localScale = new Vector3(1, 0.8f, 1);
+        transform.localScale = new Vector3(scale_x, 0.8f, 1);
         yield return new WaitForSeconds(0.05f);
-        transform.localScale = new Vector3(1, 0.6f, 1);
+        transform.localScale = new Vector3(scale_x, 0.6f, 1);
         yield return new WaitForSeconds(0.05f);
-        transform.localScale = new Vector3(1, 0.3f, 1);
+        transform.localScale = new Vector3(scale_x, 0.3f, 1);
         yield return new WaitForSeconds(0.1f);
         pc.enabled = true;
-        transform.localScale = new Vector3(1, 0.8f, 1);
+        transform.localScale = new Vector3(scale_x, 0.8f, 1);
         yield return new WaitForSeconds(0.05f);
-        transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = new Vector3(scale_x, 1, 1);
     }
 }
