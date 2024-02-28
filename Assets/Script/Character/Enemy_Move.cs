@@ -37,6 +37,7 @@ public class Enemy_Move : MonoBehaviour
     private bool opposumright;
     private Coroutine pigcoroutine = null;
     public GameObject pigimpact;
+    [Header("player‚Ídino‚ÅŽg‚¤‚à‚Ì")]
     public Transform Player;
     public bool anylater;
     private Vector3 e_pos;

@@ -51,21 +51,21 @@ public class GroundCheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         skill_activate.impulse = controller.GetVelocityY();
-        if (collision.tag==ground_tag) 
+        if (collision.tag==ground_tag || collision.tag == "BreakGround") 
         {
             isGroundEnter= true;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag==ground_tag)
+        if (collision.tag==ground_tag || collision.tag == "BreakGround")
         {
             isGroundStay= true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision) 
     {
-        if (collision.tag == ground_tag) 
+        if (collision.tag == ground_tag || collision.tag == "BreakGround") 
         {
             isGroundExit= true;
         }
