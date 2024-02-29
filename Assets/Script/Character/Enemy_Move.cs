@@ -346,7 +346,6 @@ public class Enemy_Move : MonoBehaviour
 
     private void DogMove()
     {
-        animator.SetBool("goState", false);
         if (playerpos_x < enemypos_x)　//敵の位置がPlayerより右の場合
         {
             enemyRight = true;
@@ -359,6 +358,7 @@ public class Enemy_Move : MonoBehaviour
             //Playerとの位置が5以内でアニメーション変更
             if (distance <= 5)
             {
+                animator.SetBool("goState", false);
                 StartCoroutine(DogAttack());
             }
         }
