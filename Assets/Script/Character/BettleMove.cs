@@ -34,6 +34,8 @@ public class BettleMove : MonoBehaviour
 
     private bool invinciblenow;
     private SpriteRenderer spriterenderer;
+
+    [SerializeField] private GameObject rockeffect;
     
     private void Start()
     {
@@ -42,7 +44,7 @@ public class BettleMove : MonoBehaviour
         circleCollider=GetComponent<CircleCollider2D>();
         oc=GetComponent<ObjectCollision>();
         spriterenderer=GetComponent<SpriteRenderer>();
-        nextmove = Random.Range(0,2);
+        nextmove = Random.Range(0,3);
         rightrushdetour[0] = rightrush;
         leftrushdetour[0] = leftrush;
     }
@@ -64,7 +66,7 @@ public class BettleMove : MonoBehaviour
         {
             if (nextmove == 0)
             {
-                StartCoroutine(BettleRush());
+                StartCoroutine(BettleRampage());
             }
             else if (nextmove == 1)
             {
@@ -72,7 +74,7 @@ public class BettleMove : MonoBehaviour
             }
             else if (nextmove == 2) 
             {
-                StartCoroutine(BettleRush());
+                StartCoroutine(BettleRampage());
             }
         }
         else 
@@ -130,7 +132,7 @@ public class BettleMove : MonoBehaviour
             anim.SetBool(leftrushanim, false);
         }
         yield return StartCoroutine(Down());
-        nextmove = Random.Range(0, 2);
+        nextmove = Random.Range(0, 3);
         movenow = false;
     }
 
@@ -148,7 +150,7 @@ public class BettleMove : MonoBehaviour
         yield return this.transform.DOMoveY(digholeup,0.5f).SetDelay(0.2f).WaitForCompletion();
         anim.SetBool(digholeanim, false);
         yield return StartCoroutine(Down());
-        nextmove = Random.Range(0, 2);
+        nextmove = Random.Range(0, 3);
 
         movenow = false;
     }
@@ -206,6 +208,23 @@ public class BettleMove : MonoBehaviour
 
     private IEnumerator BettleRampage() 
     {
-        yield break;
+        movenow = true;
+        this.transform.DOMove(new Vector3(leftrushend.x,digholeup-1,0),1);
+        for (int i=0;i<5;i++) 
+        {
+            if (i%2==0)
+            {
+                yield return this.transform.DOMoveX(rightrushend.x,1).WaitForCompletion();
+                
+            }else
+            {
+                yield return this.transform.DOMoveX(leftrushend.x, 1).WaitForCompletion();
+            }
+            Instantiate(rockeffect,this.transform.transform.position,Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield return StartCoroutine(Down());
+        nextmove = Random.Range(0, 3);
+        movenow = false;
     }
 }
