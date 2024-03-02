@@ -374,6 +374,7 @@ public class Enemy_Move : MonoBehaviour
             //Playerとの位置が5以内でアニメーション変更
             if (distance <= 5)
             {
+                animator.SetBool("goState", false);
                 StartCoroutine(DogAttack());
             }
         }
