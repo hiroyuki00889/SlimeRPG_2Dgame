@@ -8,6 +8,13 @@ public class Skill_Activate : MonoBehaviour
     private EnemyTagCounter enemyTagCounter;
     public Skill_Table skill_table;
     public float impulse;
+    public GameObject firePre;  // 発射するオブジェクトのプレハブ
+    public Transform spawnPoint;         // 発射位置
+    public float fireSpeed = 10f;  // 発射速度
+    public float fireLifetime = 2f; // 発射オブジェクトの寿命（秒）
+    private float cooldownTime = 2f; // Fireのクールタイム
+    private float lastFireTime; // 最後に発射した時間
+    private bool canFire = true; // Fire発射可否判定
 
     private void Start()
     {
@@ -55,9 +62,24 @@ public class Skill_Activate : MonoBehaviour
     {
         // スキル発動前にデクリメント処理
         enemyTagCounter.DecrementCounter("Dino");
-        GameObject fire = Instantiate(skill_table.skill[4].skill_effect, this.transform.position, Quaternion.identity);
-        fire.transform.SetParent(this.transform);
-        Destroy(fire, 2f);
+
+        //// プレハブから新しい発射オブジェクトを生成
+        //GameObject Fire = Instantiate(firePre, spawnPoint.position, Quaternion.identity);
+
+        //// 発射方向の計算
+        //Vector2 launchDirection = (Player.position - spawnPoint.position).normalized;
+
+        //Fire.GetComponent<Rigidbody2D>().velocity = launchDirection * fireSpeed;
+
+        //// 一定時間後に発射オブジェクトを破棄
+        //Destroy(Fire, fireLifetime);
+
+        //// クールダウン開始
+        //canFire = false;
+        ////Debug.Log("クールダウン開始");
+        //// 最後に発射した時間を更新
+        //lastFireTime = Time.time;
+
     }
 
     public void PigImpact()
