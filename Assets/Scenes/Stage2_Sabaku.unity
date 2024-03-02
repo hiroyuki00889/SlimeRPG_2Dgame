@@ -66003,7 +66003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1957388728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66362,6 +66362,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skill_table: {fileID: 11400000, guid: 4e02ab7a593f81b4dbc178d70001d9ae, type: 2}
   impulse: 0
+  firePre: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  fireSpeed: 10
+  fireLifetime: 2
 --- !u!1001 &2009430100160406889
 PrefabInstance:
   m_ObjectHideFlags: 0
