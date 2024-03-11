@@ -15,6 +15,7 @@ public class Skill_Activate : MonoBehaviour
     private float cooldownTime = 2f; // Fireのクールタイム
     private float lastFireTime; // 最後に発射した時間
     private bool canFire = true; // Fire発射可否判定
+    public Transform Enemy;
 
     private void Start()
     {
@@ -63,22 +64,22 @@ public class Skill_Activate : MonoBehaviour
         // スキル発動前にデクリメント処理
         enemyTagCounter.DecrementCounter("Dino");
 
-        //// プレハブから新しい発射オブジェクトを生成
-        //GameObject Fire = Instantiate(firePre, spawnPoint.position, Quaternion.identity);
+        // プレハブから新しい発射オブジェクトを生成
+        GameObject Fire = Instantiate(firePre, spawnPoint.position, Quaternion.identity);
 
-        //// 発射方向の計算
-        //Vector2 launchDirection = (Player.position - spawnPoint.position).normalized;
+        // 発射方向の計算
+        Vector2 launchDirection = (Enemy.position - spawnPoint.position).normalized;
 
-        //Fire.GetComponent<Rigidbody2D>().velocity = launchDirection * fireSpeed;
+        Fire.GetComponent<Rigidbody2D>().velocity = launchDirection * fireSpeed;
 
-        //// 一定時間後に発射オブジェクトを破棄
-        //Destroy(Fire, fireLifetime);
+        // 一定時間後に発射オブジェクトを破棄
+        Destroy(Fire, fireLifetime);
 
-        //// クールダウン開始
-        //canFire = false;
-        ////Debug.Log("クールダウン開始");
-        //// 最後に発射した時間を更新
-        //lastFireTime = Time.time;
+        // クールダウン開始
+        canFire = false;
+        //Debug.Log("クールダウン開始");
+        // 最後に発射した時間を更新
+        lastFireTime = Time.time;
 
     }
 
