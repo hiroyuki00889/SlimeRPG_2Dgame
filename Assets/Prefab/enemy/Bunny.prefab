@@ -142,7 +142,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e0aab8ef7a3e2664c9a41888a276b862, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9205056, b: 0.9574574, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -213,12 +213,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   check: {fileID: 6709608149445334120}
+  firePre: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  fireSpeed: 10
+  fireLifetime: 2
+  bunnyJ_Height: 10
+  pigimpact: {fileID: 0}
+  Player: {fileID: 0}
+  anylater: 0
+  vul_isgrap: 1
   Bunny: 1
   Bat: 0
   Dog: 0
   Opossum: 0
-  pig: 0
+  Pig: 0
   Dino: 0
+  Vulture: 0
+  animateNDialog: {fileID: 0}
+  ndEvent: {fileID: 0}
 --- !u!114 &6709608149530261452
 MonoBehaviour:
   m_ObjectHideFlags: 0

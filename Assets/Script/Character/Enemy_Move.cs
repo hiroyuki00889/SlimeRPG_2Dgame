@@ -34,6 +34,8 @@ public class Enemy_Move : MonoBehaviour
     private float cooldownTime = 2f; // Fireのクールタイム
     private float lastFireTime; // 最後に発射した時間
     private bool canFire = true; // Fire発射可否判定
+    public float bunnyJ_Height; //ウサギのジャンプ高さ
+    private bool timestop;
     private bool opposumright;
     private Coroutine pigcoroutine = null;
     public GameObject pigimpact;
@@ -44,9 +46,9 @@ public class Enemy_Move : MonoBehaviour
     private Vector3 p_pos;
     private bool vul_arri;
     public bool vul_isgrap = true;
+    private bool ground_reland; //地面から離れて再び地面に着地するしたかの判定
 
-
-    [SerializeField] private bool Bunny, Bat, Dog, Opossum, Pig, Dino ,Vulture;
+    [SerializeField] private bool Bunny, BunnybitMove, Bat, Dog, Opossum, Pig, Dino ,Vulture;
     [SerializeField] AnimateNDialog animateNDialog;
     [SerializeField] NDEvent ndEvent;
     
@@ -99,8 +101,10 @@ public class Enemy_Move : MonoBehaviour
             }
 
 
-            if (Bunny)
+            if (Bunny && spriteRenderer.isVisible)
             {
+                playerpos_x = playerOb.transform.position.x;
+                enemypos_x = transform.position.x;
                 BunnyMove();
             }
             else if (Bat)
@@ -239,37 +243,68 @@ public class Enemy_Move : MonoBehaviour
     {
         yield return null;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("BreakGround")
+            && ground_reland == false && Bunny == true)
+        {
+            ground_reland = true;
+        }
+    }
     private void BunnyMove()
     {
-       
-        if (spriteRenderer.isVisible)
+        animator.SetInteger("BunnyMove", (int)rb.velocity.y);
+        if (ground_reland == true && timestop == false)
         {
+            time += Time.fixedDeltaTime;
+        }
 
-                animator.SetInteger("BunnyMove",(int)rb.velocity.y); 
-
-            if (rb.velocity.y==0)
+        if (playerpos_x > enemypos_x) //敵の位置がPlayerより左の場合
+        {
+            if (timestop == false && ground_reland == true)
             {
-                time += Time.fixedDeltaTime; 
-            }
-
-            int xVector = -1;
-
-            if (right)
-            {
-                xVector = 1;
                 transform.localScale = new Vector3(-1, 1, 1);
+                if(BunnybitMove == false)
+                {
+                    rb.velocity = new Vector2(speed, rb.velocity.y);
+                }
             }
-            else
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            if (time > 3)
+            if (time > 2 && timestop == false) // 何秒ごとにジャンプ
             {
                 time = 0;
-                rb.velocity = new Vector2(xVector * speed, 10);
+                timestop = true;
+                rb.velocity = new Vector2(speed, bunnyJ_Height);
+                StartCoroutine(Reland_F());
             }
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
         }
+        else if (playerpos_x < enemypos_x) //敵の位置がPlayerより右の場合
+        {
+            if (timestop == false && ground_reland == true)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                if (BunnybitMove == false)
+                {
+                    rb.velocity = new Vector2(-speed, rb.velocity.y);
+                }
+            }
+            if (time > 2 && timestop == false) // 何秒ごとにジャンプ
+            {
+                time = 0;
+                timestop = true;
+                rb.velocity = new Vector2(-speed, bunnyJ_Height);
+                StartCoroutine(Reland_F());
+            }
+        }
+        if (ground_reland == true && timestop == true) //二重ジャンプを防ぐ処理
+        {
+            time = 0;
+            timestop = false;
+        }
+    }
+    IEnumerator Reland_F()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ground_reland = false;
     }
 
     private void BatMove()
