@@ -12,10 +12,11 @@ public class Skill_Activate : MonoBehaviour
     public Transform spawnPoint;         // 発射位置
     public float fireSpeed = 10f;  // 発射速度
     public float fireLifetime = 2f; // 発射オブジェクトの寿命（秒）
-    private float cooldownTime = 2f; // Fireのクールタイム
-    private float lastFireTime; // 最後に発射した時間
-    private bool canFire = true; // Fire発射可否判定
-    public Transform Enemy;
+    // private float cooldownTime = 2f; // Fireのクールタイム
+    // private float lastFireTime; // 最後に発射した時間
+    // private bool canFire = true; // Fire発射可否判定
+    public string[] enemyTags = { "Bunny", "Pig","Dino","Bat","Dog","Opossum","Vulture"}; // 敵タグを指定
+    private Transform enemy;
 
     private void Start()
     {
@@ -67,20 +68,62 @@ public class Skill_Activate : MonoBehaviour
         // プレハブから新しい発射オブジェクトを生成
         GameObject Fire = Instantiate(firePre, spawnPoint.position, Quaternion.identity);
 
-        // 発射方向の計算
-        Vector2 launchDirection = (Enemy.position - spawnPoint.position).normalized;
+        // 最も近い敵の位置を取得
+        FindNearestEnemy();
 
-        Fire.GetComponent<Rigidbody2D>().velocity = launchDirection * fireSpeed;
+        // 発射方向の計算
+        if (enemy != null)
+        {
+            // Debug.Log("発射します");
+            // 発射方向の計算
+            Vector2 launchDirection = (enemy.position - spawnPoint.position).normalized;
+
+            Fire.GetComponent<Rigidbody2D>().velocity = launchDirection * fireSpeed;
+        }
+
 
         // 一定時間後に発射オブジェクトを破棄
         Destroy(Fire, fireLifetime);
 
         // クールダウン開始
-        canFire = false;
-        //Debug.Log("クールダウン開始");
+        // canFire = false;
+        // Debug.Log("クールダウン開始");
         // 最後に発射した時間を更新
-        lastFireTime = Time.time;
+        // lastFireTime = Time.time;
 
+    }
+
+    private void FindNearestEnemy()
+    {
+        GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+        float minDistance = Mathf.Infinity;
+        enemy = null;
+
+        foreach (GameObject obj in allGameObjects)
+        {
+            Debug.Log(obj.tag + "を確認");  ; 
+            if (IndexOf(enemyTags, obj.tag) != -1) // タグが指定されたものの中にあるか確認
+            {
+                float distance = Vector3.Distance(obj.transform.position, spawnPoint.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    enemy = obj.transform;
+                }
+            }
+        }
+    }
+
+    private int IndexOf(string[] array, string value)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == value)
+                // Debug.Log("取得したタグは" + array[i]);
+                return i;
+        }
+        // Debug.Log("タグの取得に失敗");
+        return -1;
     }
 
     public void PigImpact()
