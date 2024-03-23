@@ -8,8 +8,7 @@ public class ParticleCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            Debug.Log("ƒ_ƒ[ƒW");
-            //player‚ÌhpŒ¸‚ç‚·ˆ—
+            other.gameObject.GetComponent<LifeManage>().TakeDamage();
         }
     }
 }

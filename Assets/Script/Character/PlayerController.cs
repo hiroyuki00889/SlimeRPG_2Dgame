@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AnimateNDialog animateNDialog;
     [SerializeField] AnimateTDialog animateTDialog;
 
+    private bool invincible = false;
+    private SpriteRenderer spriterenderer;
+
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
         maxjump = 3; //if文でフラグ取得の判定
         restjump = maxjump;
         cashe_steponrate = stepOnRate;
+        spriterenderer= GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -187,34 +191,36 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                    if (!small)
+                    if (!invincible) 
                     {
-                        //ダウンする
-                        //animator.Play("Player_Down"); //死んだときのアニメーション
-                        //down = true;
-                        // 下記二行をコピペすれば任意の個所で被ダメ処理が実装できる
-                        LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
-                        lifeManage.TakeDamage();
-                    }
-                    else 
-                    {
-                        small= false;
-                        stepOnRate = cashe_steponrate; //エディターで入力した初期値へ
-                        if (right)
+                        if (!small)
                         {
-                            this.transform.localScale = Vector3.one;
+                            //ダウンする
+                            //animator.Play("Player_Down"); //死んだときのアニメーション
+                            //down = true;
+                            // 下記二行をコピペすれば任意の個所で被ダメ処理が実装できる
+                            LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
+                            lifeManage.TakeDamage();
+                            //StartCoroutine(InvincivleTime()); //無敵時間処理
                         }
-                        else 
+                        else
                         {
-                            this.transform.localScale =new Vector3(-1,1,1);
+                            small = false;
+                            stepOnRate = cashe_steponrate; //エディターで入力した初期値へ
+                            if (right)
+                            {
+                                this.transform.localScale = Vector3.one;
+                            }
+                            else
+                            {
+                                this.transform.localScale = new Vector3(-1, 1, 1);
+                            }
                         }
-                        //無敵時間処理追加予定
                     }
             }
         }
         
        }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -272,5 +278,23 @@ public class PlayerController : MonoBehaviour
     public float GetVelocityY()
     {
         return rb.velocity.y;
+    }
+
+    private IEnumerator InvincivleTime() 
+    {
+        invincible = true;
+        for (int i=0;i<10;i++) 
+        {
+            if (i%2==0)
+            {
+                spriterenderer.enabled = false;
+            }
+            else 
+            {
+                spriterenderer.enabled = true;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        invincible= false;
     }
 }
