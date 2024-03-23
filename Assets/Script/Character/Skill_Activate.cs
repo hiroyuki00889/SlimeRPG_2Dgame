@@ -15,7 +15,7 @@ public class Skill_Activate : MonoBehaviour
     // private float cooldownTime = 2f; // Fireのクールタイム
     // private float lastFireTime; // 最後に発射した時間
     // private bool canFire = true; // Fire発射可否判定
-    public string[] enemyTags = { "Bunny", "Pig","Dino","Bat","Dog","Opossum","Vulture"}; // 敵タグを指定
+    public string enemyTag = "FireTarget"; // 敵タグを指定
     private Transform enemy;
 
     private void Start()
@@ -101,8 +101,8 @@ public class Skill_Activate : MonoBehaviour
 
         foreach (GameObject obj in allGameObjects)
         {
-            Debug.Log(obj.tag + "を確認");  ; 
-            if (IndexOf(enemyTags, obj.tag) != -1) // タグが指定されたものの中にあるか確認
+            //Debug.Log(obj.tag + "を確認");  ; 
+            if (IndexOf(enemyTag, obj.tag) != -1) // タグが指定されたものの中にあるか確認
             {
                 float distance = Vector3.Distance(obj.transform.position, spawnPoint.position);
                 if (distance < minDistance)
@@ -114,16 +114,15 @@ public class Skill_Activate : MonoBehaviour
         }
     }
 
-    private int IndexOf(string[] array, string value)
+    private int IndexOf(string tag, string value)
     {
-        for (int i = 0; i < array.Length; i++)
+        if (tag == value)
         {
-            if (array[i] == value)
-                // Debug.Log("取得したタグは" + array[i]);
-                return i;
+            // Debug.Log("取得したタグは" + array[i]);
+            return 0;
         }
-        // Debug.Log("タグの取得に失敗");
-        return -1;
+    // Debug.Log("タグの取得に失敗");
+    return -1;
     }
 
     public void PigImpact()

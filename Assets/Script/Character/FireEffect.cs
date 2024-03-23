@@ -15,6 +15,10 @@ public class FireEffect : MonoBehaviour
             LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
             lifeManage.TakeDamage();
         }
+        else if (collider.gameObject.CompareTag("FireTarget"))
+        {
+            // 敵を倒す処理を追加
+        }
 
     }
 }
