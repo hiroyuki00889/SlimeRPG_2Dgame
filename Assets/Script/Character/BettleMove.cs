@@ -48,6 +48,7 @@ public class BettleMove : MonoBehaviour
         rightrushdetour[0] = rightrush;
         leftrushdetour[0] = leftrush;
     }
+
     private void FixedUpdate()
     {
         if (oc.step) 
@@ -209,19 +210,26 @@ public class BettleMove : MonoBehaviour
     private IEnumerator BettleRampage() 
     {
         movenow = true;
-        this.transform.DOMove(new Vector3(leftrushend.x,digholeup-1,0),1);
+        yield return this.transform.DOMove(new Vector3(leftrushend.x,digholeup-1,0),1).WaitForCompletion();
+        yield return this.transform.DOShakePosition(0.2f, 1, 10, 180, false).WaitForCompletion();
         for (int i=0;i<5;i++) 
         {
             if (i%2==0)
             {
-                yield return this.transform.DOMoveX(rightrushend.x,1).WaitForCompletion();
-                
-            }else
+                yield return this.transform.DOMoveX(rightrushend.x-(rightrushend.x-leftrushend.x)/2,0.5f).WaitForCompletion();
+                yield return this.transform.DOShakePosition(0.2f, 1, 10, 180, false).WaitForCompletion();
+                Instantiate(rockeffect, this.transform.transform.position, Quaternion.identity);
+                yield return this.transform.DOMoveX(rightrushend.x, 0.5f).WaitForCompletion();
+            }
+            else
             {
-                yield return this.transform.DOMoveX(leftrushend.x, 1).WaitForCompletion();
+                yield return this.transform.DOMoveX(rightrushend.x - (rightrushend.x-leftrushend.x)/2, 0.5f).WaitForCompletion();
+                yield return this.transform.DOShakePosition(0.2f, 1, 10, 180, false).WaitForCompletion();
+                Instantiate(rockeffect, this.transform.transform.position, Quaternion.identity);
+                yield return this.transform.DOMoveX(leftrushend.x, 0.5f).WaitForCompletion();
             }
             Instantiate(rockeffect,this.transform.transform.position,Quaternion.identity);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
         }
         yield return StartCoroutine(Down());
         nextmove = Random.Range(0, 3);
