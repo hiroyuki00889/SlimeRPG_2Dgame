@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
                             // 下記二行をコピペすれば任意の個所で被ダメ処理が実装できる
                             LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
                             lifeManage.TakeDamage();
-                            //StartCoroutine(InvincivleTime()); //無敵時間処理
+                            StartCoroutine(InvincivleTime()); //無敵時間処理
                         }
                         else
                         {
