@@ -65,11 +65,13 @@ public class Skill_Activate : MonoBehaviour
         // スキル発動前にデクリメント処理
         enemyTagCounter.DecrementCounter("Dino");
 
+        // 最も近い敵の位置を取得
+        FindNearestEnemy();
+
         // プレハブから新しい発射オブジェクトを生成
         GameObject Fire = Instantiate(firePre, spawnPoint.position, Quaternion.identity);
 
-        // 最も近い敵の位置を取得
-        FindNearestEnemy();
+
 
         // 発射方向の計算
         if (enemy != null)
@@ -101,14 +103,17 @@ public class Skill_Activate : MonoBehaviour
 
         foreach (GameObject obj in allGameObjects)
         {
-            //Debug.Log(obj.tag + "を確認");  ; 
-            if (IndexOf(enemyTag, obj.tag) != -1) // タグが指定されたものの中にあるか確認
+            if (obj.tag != "Untagged")
             {
-                float distance = Vector3.Distance(obj.transform.position, spawnPoint.position);
-                if (distance < minDistance)
+                // Debug.Log(obj.tag + "を確認");
+                if (IndexOf(enemyTag, obj.tag) != -1) // タグが指定されたものの中にあるか確認
                 {
-                    minDistance = distance;
-                    enemy = obj.transform;
+                    float distance = Vector3.Distance(obj.transform.position, spawnPoint.position);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        enemy = obj.transform;
+                    }
                 }
             }
         }
@@ -118,7 +123,7 @@ public class Skill_Activate : MonoBehaviour
     {
         if (tag == value)
         {
-            // Debug.Log("取得したタグは" + array[i]);
+            // Debug.Log("取得したタグは" + value);
             return 0;
         }
     // Debug.Log("タグの取得に失敗");

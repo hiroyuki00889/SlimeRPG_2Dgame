@@ -189,7 +189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &148188017
 GameObject:
@@ -628,6 +628,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: dino (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6852233214464219334, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
+      propertyPath: m_TagString
+      value: Bunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852233214503065047, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
+      propertyPath: m_TagString
+      value: Dino
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
 --- !u!1 &925949475
@@ -950,7 +958,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1758940195
 MonoBehaviour:
@@ -2533,7 +2541,7 @@ PrefabInstance:
       objectReference: {fileID: 1873006259}
     - target: {fileID: 6852233214464219332, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6852233214464219332, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2855,7 +2863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8012215626564341504, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8012215626564341504, guid: 06380221396281a4aac09c12e7b30a18, type: 3}
       propertyPath: m_AnchorMax.x
