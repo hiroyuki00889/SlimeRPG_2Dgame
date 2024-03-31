@@ -199,9 +199,10 @@ public class PlayerController : MonoBehaviour
                             //animator.Play("Player_Down"); //死んだときのアニメーション
                             //down = true;
                             // 下記二行をコピペすれば任意の個所で被ダメ処理が実装できる
-                            LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
-                            lifeManage.TakeDamage();
-                            StartCoroutine(InvincivleTime()); //無敵時間処理
+                            //LifeManage lifeManage = FindObjectOfType<LifeManage>(); // スライムにLifeManageをアタッチする必要がある
+                            /*lifeManage.TakeDamage();
+                            StartCoroutine(InvincivleTime()); //無敵時間処理も兼ねたPlayerTakeDamageに*/
+                            PlayerTakeDamage();
                         }
                         else
                         {
@@ -296,5 +297,13 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         invincible= false;
+    }
+
+
+    public void PlayerTakeDamage() 
+    {
+        LifeManage lifeManage = FindObjectOfType<LifeManage>();
+        lifeManage.TakeDamage();
+        StartCoroutine(InvincivleTime()); //無敵時間処理
     }
 }

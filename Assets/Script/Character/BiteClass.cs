@@ -46,7 +46,8 @@ public class BiteClass : MonoBehaviour
         if (collision.gameObject.CompareTag("Bunny")|| collision.gameObject.CompareTag("Dog")|| collision.gameObject.CompareTag("Bat")
             || collision.gameObject.CompareTag("Opossum"))
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<ObjectCollision>().hit=true;
         }
     }
 }

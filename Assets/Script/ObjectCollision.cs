@@ -5,4 +5,5 @@ using UnityEngine;
 public class ObjectCollision : MonoBehaviour
 {
     public bool step=false;
+    public bool hit = false;
 }
