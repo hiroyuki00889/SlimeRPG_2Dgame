@@ -26,6 +26,7 @@ TagManager:
   - PainObjects
   - BreakGround
   - TDEventTag1-B
+  - FireTarget
   layers:
   - Default
   - TransparentFX
