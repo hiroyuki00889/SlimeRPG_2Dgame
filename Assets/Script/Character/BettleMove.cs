@@ -67,7 +67,7 @@ public class BettleMove : MonoBehaviour
         {
             if (nextmove == 0)
             {
-                StartCoroutine(BettleRampage());
+                StartCoroutine(BettleRush());
             }
             else if (nextmove == 1)
             {
@@ -75,7 +75,7 @@ public class BettleMove : MonoBehaviour
             }
             else if (nextmove == 2) 
             {
-                StartCoroutine(BettleRampage());
+                StartCoroutine(DigHole());
             }
         }
         else 
