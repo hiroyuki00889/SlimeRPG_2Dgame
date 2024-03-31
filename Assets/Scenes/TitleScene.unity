@@ -426,7 +426,11 @@ PrefabInstance:
     - target: {fileID: 1964562160964239450, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: firePre
       value: 
-      objectReference: {fileID: 8413604818050855950, guid: b492cbc8bfb44b14d9ec011c77a6ad1f, type: 3}
+      objectReference: {fileID: 8413604818050855950, guid: 08461e80088d74d4b8e16e6764a575a5, type: 3}
+    - target: {fileID: 1964562160964239450, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: enemyTag
+      value: FireTarget
+      objectReference: {fileID: 0}
     - target: {fileID: 1964562160964239450, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -634,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6852233214503065047, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
       propertyPath: m_TagString
-      value: Dino
+      value: FireTarget
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf2cb5f0e0a7024794c32ab0db64af6, type: 3}
