@@ -16,7 +16,7 @@ public class PigImpact : MonoBehaviour
         {
             if (collider.gameObject.CompareTag("Pig"))
             {
-                collider.gameObject.GetComponent<ObjectCollision>().step = true;
+                collider.gameObject.GetComponent<ObjectCollision>().hit = true;
             }
             
         }
@@ -24,7 +24,7 @@ public class PigImpact : MonoBehaviour
         {
             if (collider.gameObject.CompareTag("Player"))
             {
-                collider.gameObject.GetComponent<PlayerController>().down = true;
+                collider.gameObject.GetComponent<PlayerController>().PlayerTakeDamage();
             }
         }
     }

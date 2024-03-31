@@ -51,9 +51,10 @@ public class BettleMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (oc.step) 
+        if (oc.step || oc.hit) 
             {
                 oc.step = false;
+                oc.hit = false;
                 if (downnow)
                     {
                         if (!invinciblenow)

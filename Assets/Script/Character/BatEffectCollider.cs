@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BatEffectCollider : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collider) 
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player")) 
+        if (collider.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerController>().down =true;
+            collider.gameObject.GetComponent<PlayerController>().PlayerTakeDamage();
         }
     }
 }

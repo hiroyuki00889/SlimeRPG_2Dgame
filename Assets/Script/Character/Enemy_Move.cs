@@ -92,6 +92,12 @@ public class Enemy_Move : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (oc.hit) 
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
         if (!oc.step)
         {
 
