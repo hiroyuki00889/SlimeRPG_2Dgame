@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
 
     private float time = 1;
     public bool right = false;
-    public bool down=false; //死亡フラグ
     private bool small;
     private float cashe_steponrate;
     public bool isStopPlayer;
@@ -50,26 +49,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!down) 
-        {
             restjump = ground.IsGround(maxjump, restjump);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
-        }
     }
 
     void FixedUpdate()
     {
-        if (!down)
-        {
             Move();
-        }
-        else 
-        {
-            rb.velocity = Vector2.zero;
-        }
     }
 
     private void Jump()
@@ -191,8 +180,6 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                    if (!invincible) 
-                    {
                         if (!small)
                         {
                             //ダウンする
@@ -217,7 +204,6 @@ public class PlayerController : MonoBehaviour
                                 this.transform.localScale = new Vector3(-1, 1, 1);
                             }
                         }
-                    }
             }
         }
         
@@ -283,7 +269,6 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator InvincivleTime() 
     {
-        invincible = true;
         for (int i=0;i<10;i++) 
         {
             if (i%2==0)
@@ -302,8 +287,12 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerTakeDamage() 
     {
+        if (!invincible) 
+        { 
         LifeManage lifeManage = FindObjectOfType<LifeManage>();
         lifeManage.TakeDamage();
+        invincible = true;
         StartCoroutine(InvincivleTime()); //無敵時間処理
+        }
     }
 }
