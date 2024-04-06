@@ -7,18 +7,37 @@ using UnityEngine.SceneManagement;
 public class LifeManage : MonoBehaviour
 {
     public int maxLife = 5; // ライフの最大値
-    private int currentLife; // 現在のライフ
+    public int currentLife; // 現在のライフ
     public GameObject heartPrefab; // ハートのプレハブ
     public GameObject heartAreaPrefab; // ユニークなオブジェクトのプレハブ
     public string currentSceneName; // ゲームオーバー時のシーン名
 
     private void Start()
     {
+        Debug.Log("GameManager instance: " + GameManager.instance);
         int objectCount = FindObjectsOfType<LifeManage>().Length;
         if (objectCount == 1)
-        // ハートの初期化処理を実行
-        currentLife = maxLife;
-        InitializeHearts();
+        {
+            // GameManagerのインスタンスが存在するか確認してからcurrentLifeを設定する
+            if (GameManager.instance != null)
+            {
+                currentLife = GameManager.instance.hearts;
+                Debug.Log("Current Lifeをインスタンスから取得");
+            }
+            else
+            {
+                currentLife = maxLife; // GameManagerが初期化されていない場合、最大値で初期化する
+                Debug.Log("Current Lifeを最大値から取得");
+            }
+
+            // ハートの初期化処理を実行
+            Debug.Log("Current Life: " + currentLife);
+            InitializeHearts();
+            //// ハートの初期化処理を実行
+            //Debug.Log(currentLife);
+            //currentLife = GameManager.instance.hearts;
+            //InitializeHearts();
+        }
     }
 
     void InitializeHearts()
@@ -37,6 +56,7 @@ public class LifeManage : MonoBehaviour
     }
     public void TakeDamage()
     {
+        currentLife = GameManager.instance.hearts;
         if (currentLife > 0)
         {
             currentLife--;
