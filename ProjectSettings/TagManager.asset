@@ -27,6 +27,8 @@ TagManager:
   - BreakGround
   - TDEventTag1-B
   - FireTarget
+  - NDEvent_Boss_Front
+  - NDEventTag1-B
   layers:
   - Default
   - TransparentFX
