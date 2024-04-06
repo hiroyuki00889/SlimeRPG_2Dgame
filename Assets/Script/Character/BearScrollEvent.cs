@@ -9,13 +9,10 @@ using Unity.VisualScripting;
 public class BearScrollEvent : MonoBehaviour
 {
     public GameObject parent;
-    public Vector3 scrollspeed= new Vector3(0.01f, 0, 0); //スクロールスピード
+    public Vector3 scrollspeed= new Vector3(0.7f, 0, 0); //スクロールスピード
     public Vector3 upspeed; //スピードアップ時の速度
     private bool a;
     private Animator bearanim;
-    public GameObject main_camera;
-    private GameObject parentob;
-    public GameObject chase_camera;
 
     private int roat = Animator.StringToHash("Roat");
     private int stay = Animator.StringToHash("Stay");
@@ -30,9 +27,6 @@ public class BearScrollEvent : MonoBehaviour
     private void Start()
     {
         bearanim = GetComponent<Animator>();
-        main_camera = GameObject.Find("Main_Camera");
-        parentob = GameObject.Find("Camera,BackGrounds");
-        chase_camera = parentob.transform.Find("Chase_Camera").gameObject;
     }
 
     private void Update() 
@@ -96,9 +90,12 @@ public class BearScrollEvent : MonoBehaviour
         bearanim.SetBool(stay, false);
     }
 
-    public void DiagonalUp(float time) 
+    public void DiagonalUp() 
     {
-        StartCoroutine(Diagonal(time,true));
+        Vector3 targetPosition = new Vector3(670.2f, -12.5f,1);
+        float speed = 0.5f;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime);
+        //StartCoroutine(Diagonal(time,true));
     }
 
     public void DiagonalDown(float time)
