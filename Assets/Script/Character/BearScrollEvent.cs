@@ -13,6 +13,9 @@ public class BearScrollEvent : MonoBehaviour
     public Vector3 upspeed; //スピードアップ時の速度
     private bool a;
     private Animator bearanim;
+    public GameObject main_camera;
+    private GameObject parentob;
+    public GameObject chase_camera;
 
     private int roat = Animator.StringToHash("Roat");
     private int stay = Animator.StringToHash("Stay");
@@ -27,13 +30,16 @@ public class BearScrollEvent : MonoBehaviour
     private void Start()
     {
         bearanim = GetComponent<Animator>();
+        main_camera = GameObject.Find("Main_Camera");
+        parentob = GameObject.Find("Camera,BackGrounds");
+        chase_camera = parentob.transform.Find("Chase_Camera").gameObject;
     }
 
     private void Update() 
     {
         if (!staynow) 
         {
-            parent.transform.position += scrollspeed; //現在は親オブジェクトの座標準拠(熊そのものだとワールド座標に変換する処理が入りそうなため)
+            parent.transform.position -= scrollspeed; //現在は親オブジェクトの座標準拠(熊そのものだとワールド座標に変換する処理が入りそうなため)
 
             if (parent.transform.position.x < eventcoordinate[i]) 
             {
@@ -41,6 +47,11 @@ public class BearScrollEvent : MonoBehaviour
                 i++;
             }
         }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    main_camera.SetActive(!main_camera.activeSelf);
+        //    chase_camera.SetActive(!chase_camera.activeSelf);
+        //}
     }
 
 
