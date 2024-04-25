@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using DG.Tweening;
 
 public class BearScrollEvent : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BearScrollEvent : MonoBehaviour
     public Vector3 upspeed; //スピードアップ時の速度
     private bool a;
     private Animator bearanim;
+    private int upint=0;
 
     private int roat = Animator.StringToHash("Roat");
     private int stay = Animator.StringToHash("Stay");
@@ -90,12 +92,16 @@ public class BearScrollEvent : MonoBehaviour
         bearanim.SetBool(stay, false);
     }
 
-    public void DiagonalUp() 
+    public void DiagonalUp(float time) 
     {
-        Vector3 targetPosition = new Vector3(670.2f, -12.5f,1);
-        float speed = 0.5f;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime);
-        //StartCoroutine(Diagonal(time,true));
+        if(upint == 0)
+        {
+            transform.DOMoveX(671, time).SetEase(Ease.Linear);
+            transform.DOMoveY(-9, time).SetEase(Ease.Linear);
+        }
+        
+
+        upint += 1;
     }
 
     public void DiagonalDown(float time)
