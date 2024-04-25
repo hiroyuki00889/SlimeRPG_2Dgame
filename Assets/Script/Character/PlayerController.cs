@@ -295,4 +295,14 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(InvincivleTime()); //無敵時間処理
         }
     }
+
+    public void GetItem() 
+    {
+
+    }
+
+    public void Death() 
+    {
+
+    }
 }
