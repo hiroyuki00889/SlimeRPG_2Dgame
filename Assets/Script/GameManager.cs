@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int hearts = 3; // ハートの初期数を設定
+    public int hearts; // ハートの初期数を設定
     // スキルの変数についてもここに記載する
 
     void Awake()

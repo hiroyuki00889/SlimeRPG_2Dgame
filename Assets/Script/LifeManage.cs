@@ -56,7 +56,7 @@ public class LifeManage : MonoBehaviour
     }
     public void TakeDamage()
     {
-        currentLife = GameManager.instance.hearts;
+
         if (currentLife > 0)
         {
             currentLife--;

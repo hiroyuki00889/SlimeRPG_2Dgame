@@ -2710,6 +2710,10 @@ PrefabInstance:
       propertyPath: heartAreaPrefab
       value: 
       objectReference: {fileID: 5129167017527884624, guid: 52770b254b542bf4ba40b029420102ba, type: 3}
+    - target: {fileID: 5129167017527884635, guid: 52770b254b542bf4ba40b029420102ba, type: 3}
+      propertyPath: currentSceneName
+      value: TitleScene
+      objectReference: {fileID: 0}
     - target: {fileID: 5129167017527884636, guid: 52770b254b542bf4ba40b029420102ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0
