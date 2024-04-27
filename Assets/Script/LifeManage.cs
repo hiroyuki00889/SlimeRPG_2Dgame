@@ -93,4 +93,18 @@ public class LifeManage : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
+    public void InstantDeath() 
+    {
+        currentLife = 0;
+        GameOver();
+    }
+
+    public void GetItem() 
+    {
+        if (currentLife<maxLife) 
+        {
+            currentLife++;
+            UpdateHearts();
+        }
+    }
 }
