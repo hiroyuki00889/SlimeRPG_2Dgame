@@ -45,6 +45,18 @@ public class EnemyTagCounter : MonoBehaviour
         return enemyTagCounters;
     }
 
+    // カウンターをバックアップする用関数
+    public void BackUpCounters()
+    {
+        // jsonファイルに書き込む処理を追加する
+    }
+
+    // シーン切り替え時対策
+    public void ReloadCounters()
+    {
+        // jsonファイルを読み込む処理を追加する
+    }
+
     public void ResetCounters()
     {
         enemyTagCounters.Clear();
@@ -60,7 +72,10 @@ public class EnemyTagCounter : MonoBehaviour
         /*{
             previousCounters[kvp.Key] = kvp.Value;
         }*/
+        ReloadCounters();
+
     }
+
 
     // 追加: カウンターが変更されたかどうかを確認する関数
     public bool IsCounterChanged()
