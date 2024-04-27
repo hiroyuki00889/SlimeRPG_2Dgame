@@ -99,7 +99,11 @@ public class BearScrollEvent : MonoBehaviour
             transform.DOMoveX(671, time).SetEase(Ease.Linear);
             transform.DOMoveY(-9, time).SetEase(Ease.Linear);
         }
-        
+        if(upint == 1)
+        {
+            transform.DOMoveX(625, time).SetEase(Ease.Linear);
+            transform.DOMoveY(-3.5f, time).SetEase(Ease.Linear);
+        }
 
         upint += 1;
     }
