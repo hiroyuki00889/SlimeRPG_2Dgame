@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private bool invincible = false;
     private SpriteRenderer spriterenderer;
 
+    private LifeManage lifeManage;
+
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour
         restjump = maxjump;
         cashe_steponrate = stepOnRate;
         spriterenderer= GetComponent<SpriteRenderer>();
+
+        lifeManage=FindObjectOfType<LifeManage>();
     }
 
     void Update()
@@ -289,7 +293,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!invincible) 
         { 
-        LifeManage lifeManage = FindObjectOfType<LifeManage>();
         lifeManage.TakeDamage();
         invincible = true;
         StartCoroutine(InvincivleTime()); //無敵時間処理
@@ -298,11 +301,11 @@ public class PlayerController : MonoBehaviour
 
     public void GetItem() 
     {
-
+        lifeManage.GetItem();
     }
 
     public void Death() 
     {
-
+        lifeManage.InstantDeath();
     }
 }
