@@ -15,6 +15,7 @@ public class BearScrollEvent : MonoBehaviour
     private bool a;
     private Animator bearanim;
     private int upint=0;
+    private int downint=0;
 
     private int roat = Animator.StringToHash("Roat");
     private int stay = Animator.StringToHash("Stay");
@@ -94,15 +95,25 @@ public class BearScrollEvent : MonoBehaviour
 
     public void DiagonalUp(float time) 
     {
-        if(upint == 0)
+        if (upint == 0)
         {
-            transform.DOMoveX(671, time).SetEase(Ease.Linear);
+            transform.DOMoveX(671.3f, time).SetEase(Ease.Linear);
             transform.DOMoveY(-9, time).SetEase(Ease.Linear);
         }
-        if(upint == 1)
+        if (upint == 1)
         {
-            transform.DOMoveX(625, time).SetEase(Ease.Linear);
-            transform.DOMoveY(-3.5f, time).SetEase(Ease.Linear);
+            transform.DOMoveX(625.3f, time).SetEase(Ease.Linear);
+            transform.DOMoveY(-5, time).SetEase(Ease.Linear);
+        }
+        if (upint == 2)
+        {
+            transform.DOMoveX(597.7f, time).SetEase(Ease.Linear);
+            transform.DOMoveY(-1, time).SetEase(Ease.Linear);
+        }
+        if (upint == 3)
+        {
+            transform.DOMoveX(267, time).SetEase(Ease.Linear);
+            transform.DOMoveY(-1, time).SetEase(Ease.Linear);
         }
 
         upint += 1;
@@ -110,7 +121,13 @@ public class BearScrollEvent : MonoBehaviour
 
     public void DiagonalDown(float time)
     {
-        StartCoroutine(Diagonal(time, false));
+        if (downint == 0)
+        {
+            transform.DOMoveX(357, time).SetEase(Ease.Linear);
+            transform.DOMoveY(-9, time).SetEase(Ease.Linear);
+        }
+
+        downint += 1;
     }
 
     private IEnumerator Diagonal(float time,bool b)//boolílÇÕè„Ç™ÇÈÇ©â∫Ç™ÇÈÇ© trueÇ≈è„Ç™ÇÈ

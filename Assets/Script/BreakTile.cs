@@ -65,10 +65,5 @@ public class BreakTile : MonoBehaviour
                 Destroy(Instantiate(particle, finalPosition + Vector3.one * 0.5f, Quaternion.identity), 0.85f);
             }
         }
-
-        if (ot.gameObject.CompareTag("BreakGround") && ot.gameObject.name == "")
-        {
-
-        }
     }
 }
