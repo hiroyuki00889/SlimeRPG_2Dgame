@@ -480,6 +480,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767388240648638354, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1964562160964239450, guid: e00d59622c5e37b4bb3300cadd45820d, type: 3}
       propertyPath: Enemy
       value: 
