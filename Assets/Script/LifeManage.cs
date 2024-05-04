@@ -10,33 +10,33 @@ public class LifeManage : MonoBehaviour
     public int currentLife; // 現在のライフ
     public GameObject heartPrefab; // ハートのプレハブ
     public GameObject heartAreaPrefab; // ユニークなオブジェクトのプレハブ
-    public string currentSceneName; // ゲームオーバー時のシーン名
+    public static string currentSceneName; // ゲームオーバー時のシーン名
 
     private void Start()
     {
-        Debug.Log("GameManager instance: " + GameManager.instance);
         int objectCount = FindObjectsOfType<LifeManage>().Length;
         if (objectCount == 1)
         {
-            // GameManagerのインスタンスが存在するか確認してからcurrentLifeを設定する
-            if (GameManager.instance != null)
-            {
-                currentLife = GameManager.instance.hearts;
-                Debug.Log("Current Lifeをインスタンスから取得");
-            }
-            else
-            {
-                currentLife = maxLife; // GameManagerが初期化されていない場合、最大値で初期化する
-                Debug.Log("Current Lifeを最大値から取得");
-            }
+            //// GameManagerのインスタンスが存在するか確認してからcurrentLifeを設定する
+            //if (GameManager.instance != null)
+            //{
+            //    currentLife = GameManager.instance.hearts;
+            //    Debug.Log("Current Lifeをインスタンスから取得");
+            //}
+            //else
+            //{
+            //    currentLife = maxLife; // GameManagerが初期化されていない場合、最大値で初期化する
+            //    Debug.Log("Current Lifeを最大値から取得");
+            //}
 
-            // ハートの初期化処理を実行
-            Debug.Log("Current Life: " + currentLife);
-            InitializeHearts();
             //// ハートの初期化処理を実行
-            //Debug.Log(currentLife);
-            //currentLife = GameManager.instance.hearts;
+            //Debug.Log("Current Life: " + currentLife);
             //InitializeHearts();
+            //// ハートの初期化処理を実行
+            Debug.Log(currentLife);
+            //currentLife = GameManager.instance.hearts;
+            currentLife = maxLife;
+            InitializeHearts();
         }
     }
 
@@ -90,6 +90,7 @@ public class LifeManage : MonoBehaviour
     {
         // 現在のシーンの名前を取得し、変数に格納する
         currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(currentSceneName);
         SceneManager.LoadScene("GameOver");
     }
 

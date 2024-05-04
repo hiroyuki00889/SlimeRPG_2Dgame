@@ -11,9 +11,11 @@ public class GameOver : MonoBehaviour
 
     void Start()
     {
+
         ButtonGiveup.onClick.AddListener(ToTitle);
         ButtonRestart.onClick.AddListener(ReStart);
     }
+
 
     void ToTitle()
     {
@@ -23,9 +25,9 @@ public class GameOver : MonoBehaviour
 
     void ReStart()
     {
-        LifeManage lifemanage = FindObjectOfType<LifeManage>();
-        string currentSceneName = lifemanage.currentSceneName;
         // w’è‚ÌƒV[ƒ“‚ğ“Ç‚İ‚Ş
-        SceneManager.LoadScene(currentSceneName);
+
+        //Debug.Log("‚â‚è’¼‚µ‚Í" + LifeManage.currentSceneName + "‚©‚ç");
+        SceneManager.LoadScene(LifeManage.currentSceneName);
     }
 }
