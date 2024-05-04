@@ -10,19 +10,21 @@ public class TorchScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player")) 
+        if (collider.CompareTag("Player") && (gimmic.color.a!=0 && gimmic.color.a != 0.5f))
         {
             color.a = 0;
             gimmic.color = color;
+            StartCoroutine(LanternGoOut());
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
+    private IEnumerator LanternGoOut() 
     {
-        if (collider.CompareTag("Player"))
-        {
-            color.a = 1;
-            gimmic.color = color;
-        }
+        yield return new WaitForSeconds(10f);
+        color.a = 0.5f;
+        gimmic.color = color;
+        yield return new WaitForSeconds(2f);
+        color.a = 1f;
+        gimmic.color = color;
     }
 }
