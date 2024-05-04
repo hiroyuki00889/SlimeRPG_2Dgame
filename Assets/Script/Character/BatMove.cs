@@ -103,7 +103,7 @@ public class BatMove : MonoBehaviour
             destination.y = 5;
         }
         rb.velocity = destination;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         rb.velocity = Vector2.zero;
         punish = false;
     }

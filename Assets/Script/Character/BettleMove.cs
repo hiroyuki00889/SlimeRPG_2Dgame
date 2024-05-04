@@ -36,6 +36,8 @@ public class BettleMove : MonoBehaviour
     private SpriteRenderer spriterenderer;
 
     [SerializeField] private GameObject rockeffect;
+
+    private PlayerController controller;
     
     private void Start()
     {
@@ -47,6 +49,8 @@ public class BettleMove : MonoBehaviour
         nextmove = Random.Range(0,3);
         rightrushdetour[0] = rightrush;
         leftrushdetour[0] = leftrush;
+        controller = player.GetComponent<PlayerController>();
+        this.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -235,5 +239,13 @@ public class BettleMove : MonoBehaviour
         yield return StartCoroutine(Down());
         nextmove = Random.Range(0, 3);
         movenow = false;
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("Player")) 
+        {
+            controller.PlayerTakeDamage();
+        }
     }
 }
