@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Stage1 : MonoBehaviour
 {
-    [SerializeField] AnimateNDialog animateNDialog;
-    [SerializeField] NDEvent ndEvent;
+    [SerializeField] NDTDEvent ndtdEvent;
     //辞書のキーと同じ文字列で判定
     void Start()
     {
-            string tag = "Stage1";
             //初回起動時の処理を実行
-            ndEvent.isNDEvent = true;
-            ndEvent.StartNDEvent(tag);
-
+            ndtdEvent.Stage1();
     }
     //最初の犬を倒したときにスキルなどの説明ダイアログ
     

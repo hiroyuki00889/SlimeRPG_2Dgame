@@ -7,7 +7,7 @@ public class AnimateNDialog : MonoBehaviour
 {
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
-    [SerializeField] NDEvent ndEvent;
+    [SerializeField] NDTDEvent ndtdEvent;
 
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("IsOpen");
@@ -28,9 +28,8 @@ public class AnimateNDialog : MonoBehaviour
         {
             n_SentenceTrigger = true;
         }
-
         //文章が表示されていて、表示フラグがfalseになったら閉じる
-        if (n_SentenceTrigger == true && ndEvent.isNDEvent == false)
+        if (n_SentenceTrigger == true && ndtdEvent.isNDEvent == false)
         {
             DialogNarratorClose();
             n_SentenceTrigger = false;
@@ -48,7 +47,7 @@ public class AnimateNDialog : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    private void DialogNarratorClose()
+    public void DialogNarratorClose()
     {
         if (!IsOpen || IsTransition) return;
         m_Animator.SetBool(ParamIsOpen, false); // IsOpenフラグをfalseにセット

@@ -7,7 +7,7 @@ public class AnimateTDialog : MonoBehaviour
 {
     [SerializeField] private Animator m_Animator;
     [SerializeField] private int layer;
-    [SerializeField] TDEvent tdEvent;
+    [SerializeField] NDTDEvent ndtdEvent;
 
     // IsOpenフラグ（アニメーターコントローラー内で定義したフラグ）
     private static readonly int ParamIsOpen = Animator.StringToHash("TDIsOpen");
@@ -31,7 +31,7 @@ public class AnimateTDialog : MonoBehaviour
         }
 
         //文章が表示されていて、表示フラグがfalseになったら閉じる
-        if (t_SentenceTrigger == true && tdEvent.isTDEvent == false)
+        if (t_SentenceTrigger == true && ndtdEvent.isTDEvent == false)
         {
             TDialogClose();
             t_SentenceTrigger = false;

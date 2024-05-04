@@ -41,7 +41,6 @@ public class Enemy_Move : MonoBehaviour
     public GameObject pigimpact;
     [Header("playerはdinoで使うもの")]
     public Transform Player;
-    public bool anylater;
     private Vector3 e_pos;
     private Vector3 p_pos;
     private bool vul_arri;
@@ -49,8 +48,6 @@ public class Enemy_Move : MonoBehaviour
     private bool ground_reland; //地面から離れて再び地面に着地するしたかの判定
 
     [SerializeField] private bool Bunny, BunnybitMove, Bat, Dog, Opossum, Pig, Dino ,Vulture;
-    [SerializeField] AnimateNDialog animateNDialog;
-    [SerializeField] NDEvent ndEvent;
     
 
     private void Start()
@@ -62,33 +59,6 @@ public class Enemy_Move : MonoBehaviour
         playerOb = GameObject.FindWithTag("Player");
         startPos = transform.position;    //後でセーブした地点に戻った時に初期位置に移動、復活するコード書く
     }
-
-
-    void OnDisable()
-    {
-        if(ndEvent != null)
-        {
-            PlayerPrefs.DeleteAll();　//とりあえずここに書く
-            // キーの値はパソコンの何処かに保存されるから、何処かでDeleteAllしないと次やる時に表示されなくなる
-            if (!PlayerPrefs.HasKey("SkillDiscribe")) 
-            {
-                Invoke("SkillDiscribe", 0.5f);
-            }
-        }
-    }
-    private void SkillDiscribe()
-    {
-        anylater = true; // animateNDialogを1秒待つフラグ
-        //スキル説明
-        string sd = "Skill";
-        ndEvent.isNDEvent = true;
-        animateNDialog.DialogNarratorOpen();
-        ndEvent.StartNDEvent(sd);
-        //Skilldiscribeキーに値を入れる
-        PlayerPrefs.SetInt("SkillDiscribe", 1);
-        PlayerPrefs.Save();
-    }
-
 
     private void FixedUpdate()
     {

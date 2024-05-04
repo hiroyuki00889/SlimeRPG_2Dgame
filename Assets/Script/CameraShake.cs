@@ -9,15 +9,15 @@ public class CameraShake : MonoBehaviour
     [SerializeField] private Transform camera;
     [SerializeField] private Vector3 positionStrength;
     [SerializeField] private Vector3 rotationStrength;
-    [SerializeField] TDEvent tdEvent;
+    [SerializeField] NDTDEvent ndtdEvent;
 
     public float shakeDuration = 3;
     void Update()
     {
-        if (tdEvent != null && tdEvent.isCamShake == true)
+        if (ndtdEvent != null && ndtdEvent.isCamShake == true)
         {
             CameraShaker();
-            tdEvent.isCamShake = false;
+            ndtdEvent.isCamShake = false;
         }
     }
 
